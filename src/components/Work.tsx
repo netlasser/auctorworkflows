@@ -1,11 +1,16 @@
 import { motion } from "framer-motion";
+import caseStudy1 from "@/assets/case-study-1.png";
+import caseStudy2 from "@/assets/case-study-2.png";
+import caseStudy3 from "@/assets/case-study-3.png";
+import caseStudy4 from "@/assets/case-study-4.png";
+import caseStudy5 from "@/assets/case-study-5.png";
 
 const projects = [
-  { title: "Lead Automation", category: "Sales Systems", span: "md:col-span-1 md:row-span-2", bg: "bg-muted" },
-  { title: "Content Pipeline", category: "Content Systems", span: "md:col-span-1", bg: "bg-secondary" },
-  { title: "CRM Integration", category: "Business Dev", span: "md:col-span-1", bg: "bg-muted" },
-  { title: "Ad Operations", category: "Marketing Ops", span: "md:col-span-1", bg: "bg-secondary" },
-  { title: "Reporting Dashboard", category: "Analytics", span: "md:col-span-1", bg: "bg-muted" },
+  { title: "Lead Automation", category: "Sales Systems", span: "md:col-span-1 md:row-span-2", image: caseStudy1 },
+  { title: "Content Pipeline", category: "Content Systems", span: "md:col-span-1", image: caseStudy2 },
+  { title: "CRM Integration", category: "Business Dev", span: "md:col-span-1", image: caseStudy3 },
+  { title: "Ad Operations", category: "Marketing Ops", span: "md:col-span-1", image: caseStudy4 },
+  { title: "Reporting Dashboard", category: "Analytics", span: "md:col-span-1", image: caseStudy5 },
 ];
 
 const Work = () => (
@@ -28,12 +33,20 @@ const Work = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className={`group relative overflow-hidden rounded-xl border border-border ${p.bg} ${p.span}`}
+            className={`group relative overflow-hidden rounded-xl border border-border ${p.span}`}
           >
-            <div className={`flex flex-col justify-end p-6 ${i === 0 ? "min-h-[320px] md:min-h-[400px]" : "min-h-[200px]"}`}>
-              <div className="mt-auto">
-                <span className="text-xs text-muted-foreground">{p.category}</span>
-                <h3 className="font-display text-lg font-semibold">{p.title}</h3>
+            <div
+              className={`relative flex flex-col justify-end ${i === 0 ? "min-h-[320px] md:min-h-[400px]" : "min-h-[200px]"}`}
+            >
+              <img
+                src={p.image}
+                alt={p.title}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="relative z-10 mt-auto p-6">
+                <span className="text-xs text-white/70">{p.category}</span>
+                <h3 className="font-display text-lg font-semibold text-white">{p.title}</h3>
               </div>
             </div>
           </motion.div>

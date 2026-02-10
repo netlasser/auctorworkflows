@@ -11,7 +11,7 @@ const Stats = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-label">Backed by LeftClick</span>
+          <span className="section-label">Why Felipe Workflows</span>
           <h2 className="mt-4 font-display text-3xl font-bold leading-tight md:text-4xl">
             50–90% cost reduction<br />(& hours saved).
           </h2>
@@ -27,8 +27,11 @@ const Stats = () => (
           <p className="text-sm leading-relaxed text-muted-foreground">
             We craft AI workflow systems that eliminate repetitive tasks, cut overhead by 50–90%, and ship sustainable ROI. Our team has built automation systems for agencies, e-commerce brands, and content firms — delivering measurable results every time.
           </p>
-          <button className="mt-4 self-start text-sm font-medium underline underline-offset-4 hover:text-foreground">
-            Read more
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            The future arrived faster than expected. Businesses today are drowning in repetitive work, manual processes, and data chaos — while the promise of AI feels out of reach: too complex, too expensive, too vague. We bridge that gap by building practical, revenue-driving automation systems tailored to your exact workflow. No fluff. No over-engineering. Just systems that save time and money from day one.
+          </p>
+          <button className="mt-4 self-start text-sm font-medium underline underline-offset-4 hover:text-foreground" onClick={() => document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })}>
+            Learn more about us →
           </button>
         </motion.div>
       </div>
