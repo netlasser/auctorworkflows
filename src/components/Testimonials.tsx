@@ -1,70 +1,91 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Quote } from "lucide-react";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const testimonials = [
   {
-    quote: "Felipe's team built us a seamless automation that cut our client onboarding from 10 hours to under an hour. They gave me back 40 hours a month — literally, a full work week. This is the single most impactful investment we've made in our business's growth.",
+    quote: "Felipe's team built us a seamless automation that cut our client onboarding from 10 hours to under an hour. They gave me back 40 hours a month. This is the single most impactful investment we've made in our business's growth.",
     name: "Maria Chen",
-    title: "Founder & CEO",
-    company: "Stratagem Consulting",
+    title: "Founder & CEO, Stratagem Consulting",
+    avatar: "MC",
   },
   {
-    quote: "Felipe Workflows implemented an intelligent automation system that connected our Shopify, warehouse, and accounting platforms. A 99.8% reduction in fulfillment errors and 28% recovery of abandoned carts. We've grown 3x in the last year.",
+    quote: "A 99.8% reduction in fulfillment errors and 28% recovery of abandoned carts. We've grown 3x in the last year, and our operations have actually gotten smoother. That's their magic.",
     name: "David Rossi",
-    title: "Operations Director",
-    company: "Zenith Goods",
+    title: "Operations Director, Zenith Goods",
+    avatar: "DR",
   },
   {
-    quote: "They mapped our entire client delivery process, identified hidden bottlenecks, and built a custom dashboard. Our project margins improved by 22% because we could finally track profitability in real-time. Felipe Workflows isn't a vendor — they're a strategic partner.",
+    quote: "Our project margins improved by 22% because we could finally track profitability in real-time. Felipe Workflows isn't a vendor — they're a strategic partner in our business.",
     name: "Samira Patel",
-    title: "Managing Partner",
-    company: "Beacon Creative Agency",
+    title: "Managing Partner, Beacon Creative Agency",
+    avatar: "SP",
   },
 ];
 
-const Testimonials = () => (
-  <section id="testimonials" className="py-24">
-    <div className="container mx-auto px-4 md:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mb-16 text-center"
-      >
-        <h2 className="font-display text-3xl font-bold md:text-4xl">
-          Trusted by <span className="gradient-text">Industry Leaders</span>
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-          Real results from real businesses that made the switch.
-        </p>
-      </motion.div>
+const Testimonials = () => {
+  const [idx, setIdx] = useState(0);
+  const t = testimonials[idx];
 
-      <div className="grid gap-6 md:grid-cols-3">
-        {testimonials.map((t, i) => (
+  return (
+    <section id="testimonials" className="border-t border-border bg-foreground py-16 text-primary-foreground">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex items-start justify-between">
           <motion.div
-            key={t.name}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
           >
-            <Card className="h-full border-border/50 bg-card">
-              <CardContent className="flex h-full flex-col p-6">
-                <Quote className="mb-4 h-8 w-8 text-primary/40" />
-                <p className="flex-1 text-sm leading-relaxed text-muted-foreground">"{t.quote}"</p>
-                <div className="mt-6 border-t border-border/50 pt-4">
-                  <div className="font-display font-semibold">{t.name}</div>
-                  <div className="text-sm text-primary">{t.title}</div>
-                  <div className="text-xs text-muted-foreground">{t.company}</div>
-                </div>
-              </CardContent>
-            </Card>
+            <span className="inline-flex items-center gap-2 text-sm text-primary-foreground/60">
+              <span className="h-2 w-2 rounded-full bg-primary-foreground" />
+              Testimonials
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold md:text-4xl">Some words from happy clients.</h2>
           </motion.div>
-        ))}
+
+          <div className="hidden gap-2 md:flex">
+            <Button variant="outline" size="icon" className="rounded-full border-primary-foreground/20 bg-transparent text-primary-foreground hover:bg-primary-foreground/10" onClick={() => setIdx((idx - 1 + testimonials.length) % testimonials.length)}>
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="icon" className="rounded-full border-primary-foreground/20 bg-transparent text-primary-foreground hover:bg-primary-foreground/10" onClick={() => setIdx((idx + 1) % testimonials.length)}>
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mt-10 max-w-2xl rounded-xl border border-primary-foreground/10 bg-primary-foreground/5 p-6 md:p-8"
+        >
+          <p className="font-display text-lg font-medium leading-relaxed md:text-xl">
+            "{t.quote}"
+          </p>
+          <div className="mt-6 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground font-display text-sm font-bold text-foreground">
+              {t.avatar}
+            </div>
+            <div>
+              <div className="font-display font-semibold">{t.name}</div>
+              <div className="text-xs text-primary-foreground/60">{t.title}</div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="mt-6 flex gap-2 md:hidden">
+          <Button variant="outline" size="icon" className="rounded-full border-primary-foreground/20 bg-transparent text-primary-foreground hover:bg-primary-foreground/10" onClick={() => setIdx((idx - 1 + testimonials.length) % testimonials.length)}>
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="icon" className="rounded-full border-primary-foreground/20 bg-transparent text-primary-foreground hover:bg-primary-foreground/10" onClick={() => setIdx((idx + 1) % testimonials.length)}>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Testimonials;
