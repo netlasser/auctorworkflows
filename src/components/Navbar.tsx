@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
+import felipeLogo from "@/assets/felipe-logo.jpg";
 
 const navLinks = [
   { label: "Case studies", href: "#work" },
@@ -19,9 +20,9 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
       <div className="container mx-auto flex h-14 items-center justify-between px-4 md:px-8">
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="font-display text-base font-bold tracking-tight flex items-center gap-1.5">
-          <span className="flex h-6 w-6 items-center justify-center rounded bg-foreground text-primary-foreground text-xs font-bold">F</span>
-          FELIPE WORKFLOWS
+        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2">
+          <img src={felipeLogo} alt="Felipe Workflows" className="h-8 w-8 rounded object-cover" />
+          <span className="font-display text-base font-bold tracking-tight">FELIPE WORKFLOWS</span>
         </button>
 
         <div className="hidden items-center gap-6 md:flex">
