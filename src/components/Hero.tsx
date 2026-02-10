@@ -30,9 +30,9 @@ const Hero = () => {
             <Button
               size="lg"
               className="rounded-full bg-foreground px-8 text-background hover:bg-foreground/80"
-              onClick={() => scrollTo("#contact")}
+              asChild
             >
-              Get a Call
+              <a href="https://cal.com/biruke-felipe/30min" target="_blank" rel="noopener noreferrer">Get a Call</a>
             </Button>
           </div>
         </motion.div>
