@@ -1,36 +1,41 @@
 import { motion } from "framer-motion";
 
-const stats = [
-  { value: "50–90%", label: "Cost Reduction" },
-  { value: "40+", label: "Hours Saved / Month" },
-  { value: "99.8%", label: "Error Reduction" },
-  { value: "3×", label: "Client Growth" },
-];
-
-const logos = ["Stratagem", "Zenith", "Beacon", "NovaTech", "Apex"];
+const logos = ["DIGITAL JOURNAL", "yahoo!", "Bloomberg", "Business Insider", "TechCrunch"];
 
 const Stats = () => (
-  <section className="border-y border-border/50 bg-secondary/30 py-16">
+  <section className="border-t border-border py-16">
     <div className="container mx-auto px-4 md:px-8">
-      <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-        {stats.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="text-center"
-          >
-            <div className="font-display text-3xl font-bold gradient-text md:text-4xl">{s.value}</div>
-            <div className="mt-2 text-sm text-muted-foreground">{s.label}</div>
-          </motion.div>
-        ))}
+      <div className="grid gap-12 md:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="section-label">Backed by LeftClick</span>
+          <h2 className="mt-4 font-display text-3xl font-bold leading-tight md:text-4xl">
+            50–90% cost reduction<br />(& hours saved).
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="flex flex-col justify-center"
+        >
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            We craft AI workflow systems that eliminate repetitive tasks, cut overhead by 50–90%, and ship sustainable ROI. Our team has built automation systems for agencies, e-commerce brands, and content firms — delivering measurable results every time.
+          </p>
+          <button className="mt-4 self-start text-sm font-medium underline underline-offset-4 hover:text-foreground">
+            Read more
+          </button>
+        </motion.div>
       </div>
 
-      <div className="mt-12 flex flex-wrap items-center justify-center gap-8 opacity-40">
+      <div className="mt-12 flex flex-wrap items-center gap-8 border-t border-border pt-8">
         {logos.map((l) => (
-          <span key={l} className="font-display text-lg font-semibold tracking-wider text-muted-foreground">{l}</span>
+          <span key={l} className="font-display text-sm font-semibold tracking-wider text-muted-foreground/60">{l}</span>
         ))}
       </div>
     </div>
