@@ -31,8 +31,8 @@ const Navbar = () => {
               {l.label}
             </button>
           ))}
-          <Button size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/80 text-xs px-5" onClick={() => scrollTo("#contact")}>
-            Join us →
+          <Button size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/80 text-xs px-5" asChild>
+            <a href="https://cal.com/biruke-felipe/30min" target="_blank" rel="noopener noreferrer">Join us →</a>
           </Button>
         </div>
 
@@ -47,7 +47,9 @@ const Navbar = () => {
                   {l.label}
                 </button>
               ))}
-              <Button className="mt-4 rounded-full" onClick={() => scrollTo("#contact")}>Book a Call</Button>
+              <Button className="mt-4 rounded-full" asChild>
+                <a href="https://cal.com/biruke-felipe/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+              </Button>
             </div>
           </SheetContent>
         </Sheet>

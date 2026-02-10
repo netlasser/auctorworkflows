@@ -32,9 +32,9 @@ const Contact = () => {
             <Button
               size="lg"
               className="rounded-full bg-foreground px-8 text-background hover:bg-foreground/80"
-              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+              asChild
             >
-              Get a Call
+              <a href="https://cal.com/biruke-felipe/30min" target="_blank" rel="noopener noreferrer">Get a Call</a>
             </Button>
           </div>
         </motion.div>
