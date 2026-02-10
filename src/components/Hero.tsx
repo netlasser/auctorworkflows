@@ -1,21 +1,32 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { WebcamPixelGrid } from "@/components/ui/webcam-pixel-grid";
 
 const Hero = () => {
-  const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section className="relative pt-14">
-      {/* Diagonal lines background */}
-      <div className="pointer-events-none absolute right-0 top-14 h-32 w-1/2 overflow-hidden opacity-10">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div key={i} className="absolute h-px w-full bg-foreground" style={{ top: `${i * 8}px`, transform: "rotate(-30deg)", transformOrigin: "right center" }} />
-        ))}
+    <section className="relative pt-14 overflow-hidden">
+      {/* Webcam pixel grid background */}
+      <div className="absolute inset-0 top-14">
+        <WebcamPixelGrid
+          gridCols={64}
+          gridRows={48}
+          colorMode="monochrome"
+          monochromeColor="#888888"
+          backgroundColor="hsl(0, 0%, 100%)"
+          darken={0.3}
+          borderOpacity={0.04}
+          gapRatio={0.08}
+          maxElevation={10}
+          motionSensitivity={0.5}
+          onWebcamReady={() => console.log("Webcam ready!")}
+          onWebcamError={(err) => console.error("Webcam error:", err)}
+        />
       </div>
 
-      <div className="container mx-auto px-4 pb-16 pt-16 md:px-8 md:pt-24">
+      {/* Gradient overlay for text readability */}
+      <div className="pointer-events-none absolute inset-0 top-14 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+
+      <div className="container relative z-10 mx-auto px-4 pb-16 pt-16 md:px-8 md:pt-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
