@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -9,8 +9,28 @@ const navLinks = [
   { label: "About", href: "#about" },
 ];
 
+const sectionIds = ["work", "about", "services", "testimonials", "contact"];
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
 
   const scrollTo = (href: string) => {
     setOpen(false);
@@ -27,7 +47,13 @@ const Navbar = () => {
 
         <div className="hidden items-center gap-6 md:flex">
           {navLinks.map((l) => (
-            <button key={l.href} onClick={() => scrollTo(l.href)} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <button
+              key={l.href}
+              onClick={() => scrollTo(l.href)}
+              className={`text-sm transition-colors hover:text-foreground ${
+                activeSection === l.href.slice(1) ? "text-foreground font-medium" : "text-muted-foreground"
+              }`}
+            >
               {l.label}
             </button>
           ))}

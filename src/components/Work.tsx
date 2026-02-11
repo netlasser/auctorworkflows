@@ -44,6 +44,11 @@ const Work = () => (
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <span className="rounded-full border border-white/40 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
+                  View project →
+                </span>
+              </div>
               <div className="relative z-10 mt-auto p-6">
                 <span className="text-xs text-white/70">{p.category}</span>
                 <h3 className="font-display text-lg font-semibold text-white">{p.title}</h3>
