@@ -1,64 +1,42 @@
 
 
-# Felipe Workflows — AI Agency Landing Page
+# Polish Tweaks for Felipe Workflows
 
-## Overview
-A sleek, modern, dark-themed landing page inspired by the LeftClick reference design. Professional and conversion-focused, showcasing AI workflow automation services.
-
----
-
-## Sections (Top to Bottom)
-
-### 1. Navigation Bar
-- Logo/brand name "Felipe Workflows" on the left
-- Nav links: Services, About, Testimonials, Contact
-- CTA button: "Book a Call"
-
-### 2. Hero Section
-- Bold headline: *"Stop Hiring for Problems AI Already Solved"*
-- Subheadline: *"We craft AI workflow systems that eliminate repetitive tasks, cut overhead by 50–90%, and ship sustainable ROI"*
-- CTA buttons: "Book a Call" + "See Our Work"
-- Subtle animated gradient or glow effect in the background (matching the reference's dark aesthetic)
-
-### 3. Stats/Trust Bar
-- Key metrics displayed in a row (e.g., "50–90% Cost Reduction", "40+ Hours Saved/Month", "99.8% Error Reduction")
-- Placeholder client/partner logos beneath
-
-### 4. Services Section
-- 4 service cards in a grid layout:
-  1. **Sales Systems** — for SEO/Marketing Agencies
-  2. **Business Development Systems** — for Agencies
-  3. **Content Production Systems** — for Writing/Content Firms
-  4. **Marketing Operations Systems** — for PPC/Ad Agencies
-- Each card shows the positioning statement, key automations as bullet tags, and a subtle icon
-
-### 5. About Section
-- Headline: *"We Don't Just Automate Tasks. We Build Your Future-Proof Business."*
-- Brief blurb about the problem you solve
-- Team cards for **Biruke Lavencian** (Founder) and **Nahum Welday** (Co-Founder) with placeholder avatars
-
-### 6. Testimonials Section
-- 3 testimonial cards in a carousel or grid:
-  - Maria Chen (Stratagem Consulting) — time savings story
-  - David Rossi (Zenith Goods) — revenue & scalability story
-  - Samira Patel (Beacon Creative Agency) — strategic partner story
-- Each with quote, name, title, and company
-
-### 7. CTA / Contact Section
-- Bold closing headline encouraging action
-- "Book a Call" button
-- Optional simple contact form (name, email, message) — purely frontend, no backend
-
-### 8. Footer
-- Brand name, copyright, social links placeholders
-- Quick nav links
+A collection of small but impactful refinements to take the site from great to exceptional.
 
 ---
 
-## Design Style
-- **Dark theme** with gradient accents (deep navy/black background, vibrant blue/purple highlights)
-- Clean typography, generous spacing
-- Smooth scroll animations on section entry
-- Fully responsive (mobile-first)
-- Matching the modern, premium feel of the LeftClick reference
+## 1. Smooth scroll-to-top button
+Add a floating "back to top" arrow button that appears after scrolling past the hero. Fades in/out smoothly in the bottom-right corner.
+
+
+
+## 2. Navbar active section highlight
+As users scroll through sections, subtly highlight the corresponding nav link (e.g., underline or bolder text) so they always know where they are on the page.
+
+## 3. Service cards hover effect
+Add a subtle lift/shadow on hover to the service cards in the grid, making them feel more interactive and clickable.
+
+## 4. Testimonial auto-rotate
+Add an auto-advance timer (every 5 seconds) to the testimonial carousel so it cycles through quotes without user interaction. Pauses on hover.
+
+## 5. Footer "back to top" link
+Add a small "Back to top" text link in the footer for users who scroll all the way down.
+
+## 6. Case study card hover overlay
+Add a subtle overlay with a "View project" label that appears on hover over the case study images, hinting they're interactive.
+
+---
+
+## Technical Details
+
+### Files to modify:
+- **src/components/Navbar.tsx** -- Add scroll-spy logic using IntersectionObserver to track active section and highlight the matching nav link
+- **src/components/Services.tsx** -- Add `hover:shadow-lg hover:-translate-y-1 transition-all` classes to service cards
+- **src/components/Testimonials.tsx** -- Add `useEffect` with `setInterval` for auto-rotation, clear on hover
+- **src/components/Work.tsx** -- Add hover overlay with "View project" text and arrow icon
+- **src/components/Footer.tsx** -- Add "Back to top" button
+- **src/pages/Index.tsx** -- Add a floating scroll-to-top button component with scroll position tracking
+
+### No new dependencies required -- all changes use existing framer-motion, Lucide icons, and Tailwind utilities.
 
