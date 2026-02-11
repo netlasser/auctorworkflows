@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
+import logoMereb from "@/assets/logo-mereb.png";
+import logoChapa from "@/assets/logo-chapa.png";
+import logoAcuity from "@/assets/logo-acuity.png";
+import logoLaven from "@/assets/logo-laven.png";
 
-const logos = ["DIGITAL JOURNAL", "yahoo!", "Bloomberg", "Business Insider", "TechCrunch"];
+const logos = [
+  { name: "Mereb Technologies", src: logoMereb },
+  { name: "Chapa", src: logoChapa },
+  { name: "Acuity Analytics", src: logoAcuity },
+  { name: "Laven", src: logoLaven },
+];
 
 const Stats = () => (
   <section className="border-t border-border py-16">
@@ -38,7 +47,7 @@ const Stats = () => (
 
       <div className="mt-12 flex flex-wrap items-center gap-8 border-t border-border pt-8">
         {logos.map((l) => (
-          <span key={l} className="font-display text-sm font-semibold tracking-wider text-muted-foreground/60">{l}</span>
+          <img key={l.name} src={l.src} alt={l.name} className="h-8 object-contain opacity-60 grayscale hover:opacity-100 hover:grayscale-0 transition-all" />
         ))}
       </div>
     </div>
