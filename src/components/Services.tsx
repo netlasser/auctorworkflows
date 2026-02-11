@@ -48,7 +48,7 @@ const Services = () => (
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className="bg-background p-6 md:p-8"
+            className="bg-background p-6 md:p-8 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-foreground">
               <s.icon className="h-5 w-5" />

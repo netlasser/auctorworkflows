@@ -42,7 +42,15 @@ const Footer = () => {
           ))}
         </div>
 
-        <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Felipe Workflows</p>
+        <div className="flex items-center gap-4">
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Felipe Workflows</p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+          >
+            ↑ Back to top
+          </button>
+        </div>
       </div>
     </footer>
   );

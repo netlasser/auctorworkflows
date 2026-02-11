@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -26,10 +26,24 @@ const testimonials = [
 
 const Testimonials = () => {
   const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
   const t = testimonials[idx];
 
+  const next = useCallback(() => setIdx((i) => (i + 1) % testimonials.length), []);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [paused, next]);
+
   return (
-    <section id="testimonials" className="border-t border-border bg-foreground py-16 text-primary-foreground">
+    <section
+      id="testimonials"
+      className="border-t border-border bg-foreground py-16 text-primary-foreground"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-start justify-between">
           <motion.div
