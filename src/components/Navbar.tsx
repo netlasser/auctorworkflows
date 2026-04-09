@@ -52,7 +52,7 @@ const Navbar = () => {
     <nav className="fixed top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-md">
       <div className="container mx-auto flex h-14 items-center justify-between px-4 md:px-8">
         <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2">
-          <img src={felipeLogo} alt="Felipe Workflows" className="h-12 w-12 rounded object-cover" />
+          <img src={felipeLogo} alt="Felipe Workflows" className="h-[88px] w-[88px] rounded object-cover" />
           <span className="font-display text-base font-bold tracking-tight">FELIPE WORKFLOWS</span>
         </button>
 
