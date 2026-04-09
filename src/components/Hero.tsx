@@ -37,7 +37,7 @@ const Hero = () => {
             Stop Hiring for Problems AI Already Solved.
           </h1>
 
-          <div className="mt-8">
+          <div className="mt-8 flex justify-center">
             <Button
               size="lg"
               className="rounded-full bg-foreground px-8 text-background hover:bg-foreground/80"
