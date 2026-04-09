@@ -12,7 +12,7 @@ const logos = [
 ];
 
 const Stats = () => (
-  <section className="border-t border-border py-16">
+  <section className="py-16">
     <div className="container mx-auto px-4 md:px-8">
       <div className="grid gap-12 md:grid-cols-2">
         <motion.div

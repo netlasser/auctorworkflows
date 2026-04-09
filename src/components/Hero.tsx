@@ -4,9 +4,9 @@ import { WebcamPixelGrid } from "@/components/ui/webcam-pixel-grid";
 
 const Hero = () => {
   return (
-    <section className="relative pt-14 overflow-hidden">
-      {/* Webcam pixel grid background */}
-      <div className="absolute inset-0 top-14">
+    <section className="relative pt-0 overflow-hidden">
+      {/* Webcam pixel grid background - extends behind navbar */}
+      <div className="absolute inset-0">
         <WebcamPixelGrid
           gridCols={64}
           gridRows={48}
@@ -24,9 +24,9 @@ const Hero = () => {
       </div>
 
       {/* Gradient overlay for text readability */}
-      <div className="pointer-events-none absolute inset-0 top-14 bg-gradient-to-b from-background/80 via-background/60 to-background" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
 
-      <div className="container relative z-10 mx-auto px-4 pb-16 pt-16 md:px-8 md:pt-24">
+      <div className="container relative z-10 mx-auto px-4 pb-16 pt-24 md:px-8 md:pt-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
