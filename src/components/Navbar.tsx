@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
-import felipeLogo from "@/assets/felipe-logo.jpg";
+import felipeLogo from "@/assets/felipe-logo.png";
 
 const navLinks = [
   { label: "Case studies", href: "#work" },
