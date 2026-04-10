@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-interface CaseStudy {
+export interface CaseStudy {
+  id: string;
   client: string;
   tag: string;
   title: string;
@@ -11,10 +13,15 @@ interface CaseStudy {
   tech: string[];
   badge: string;
   gradient: string;
+  fullDescription?: string;
+  challenge?: string;
+  solution?: string;
+  results?: string;
 }
 
-const caseStudies: CaseStudy[] = [
+export const caseStudies: CaseStudy[] = [
   {
+    id: "mereb-technologies",
     client: "Mereb Technologies",
     tag: "FinTech / Document Processing",
     title: "Intelligent Document Processing",
@@ -27,9 +34,14 @@ const caseStudies: CaseStudy[] = [
     ],
     tech: ["NLP", "OCR", "Workflow"],
     badge: "⚡ 360K hrs saved",
-    gradient: "from-[#0f2027] via-[#203a43] to-[#2c5364]",
+    gradient: "from-primary/20 via-muted to-secondary",
+    fullDescription: "Mereb Technologies needed to process thousands of commercial loan agreements monthly. Manual review was slow, error-prone, and expensive.",
+    challenge: "Processing commercial loan agreements manually took weeks per batch, with inconsistent accuracy and high labor costs.",
+    solution: "We built an AI-powered document processing pipeline using NLP and OCR to automatically extract, validate, and classify key terms from loan agreements.",
+    results: "The system reduced processing time from weeks to minutes, achieved 99.2% accuracy, saved 360K hours annually, and cut costs by 85%.",
   },
   {
+    id: "chapa",
     client: "Chapa",
     tag: "E-Commerce / Inventory",
     title: "Predictive Inventory Automation",
@@ -42,9 +54,14 @@ const caseStudies: CaseStudy[] = [
     ],
     tech: ["ML", "Forecasting", "API"],
     badge: "📦 12 centers synced",
-    gradient: "from-[#0f0c29] via-[#302b63] to-[#24243e]",
+    gradient: "from-secondary via-muted to-accent",
+    fullDescription: "Chapa's rapid growth across East Africa demanded a smarter approach to inventory management across their 12 distribution centers.",
+    challenge: "Frequent stockouts and overstock situations across 12 distribution centers led to lost sales and increased carrying costs.",
+    solution: "We deployed a machine learning forecasting system that predicts demand patterns, automates reordering, and optimizes transport routes.",
+    results: "Achieved 10% cost savings, 7% reduction in transport costs, and seamless synchronization across all 12 distribution centers.",
   },
   {
+    id: "acuity-analytics",
     client: "Acuity Analytics",
     tag: "Healthcare / Claims",
     title: "Medical Claims Processing AI",
@@ -57,9 +74,14 @@ const caseStudies: CaseStudy[] = [
     ],
     tech: ["Secure", "Pattern AI", "Audit"],
     badge: "🏥 HIPAA compliant",
-    gradient: "from-[#1a2a3a] via-[#0d4a4a] to-[#1a3a2a]",
+    gradient: "from-muted via-secondary to-accent",
+    fullDescription: "Acuity Analytics handles millions of medical claims annually and needed to improve processing speed while maintaining HIPAA compliance.",
+    challenge: "Manual claims review was slow and error-prone, with 20% of claims requiring rework due to processing errors.",
+    solution: "We built a HIPAA-compliant AI system that validates claims, flags anomalies using pattern recognition, and provides full audit trails.",
+    results: "Processing speed increased by 40%, anomaly detection precision reached 95%, and errors were reduced by 20%.",
   },
   {
+    id: "laven",
     client: "Laven",
     tag: "Customer Service / Support",
     title: "Omnichannel Support Automation",
@@ -72,7 +94,11 @@ const caseStudies: CaseStudy[] = [
     ],
     tech: ["NLP", "Sentiment", "Routing"],
     badge: "💬 50K+ daily",
-    gradient: "from-[#1a1a2e] via-[#16213e] to-[#0f3460]",
+    gradient: "from-accent via-muted to-secondary",
+    fullDescription: "Laven's customer support team was overwhelmed by 50,000+ daily inquiries, leading to long wait times and inconsistent experiences.",
+    challenge: "Handling 50,000+ daily support inquiries across multiple channels with limited staff led to poor response times and customer dissatisfaction.",
+    solution: "We implemented an intelligent routing system with NLP-powered sentiment analysis that prioritizes, categorizes, and responds to inquiries automatically.",
+    results: "The system now handles 50K+ queries daily with 24/7 uptime, cutting support costs by 25% while improving customer satisfaction.",
   },
 ];
 
@@ -92,14 +118,12 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
     const suffix = value.replace(/[0-9]/g, "");
     const duration = 2000;
     const steps = 60;
-    const increment = numeric / steps;
-    let current = 0;
     let step = 0;
     const timer = setInterval(() => {
       step++;
       const progress = step / steps;
       const eased = 1 - Math.pow(1 - progress, 3);
-      current = Math.round(eased * numeric);
+      const current = Math.round(eased * numeric);
       setDisplay(current + suffix);
       if (step >= steps) {
         clearInterval(timer);
@@ -111,8 +135,8 @@ function AnimatedStat({ value, label }: { value: string; label: string }) {
 
   return (
     <div ref={ref} className="text-center">
-      <span className="block text-lg font-bold text-[hsl(var(--cs-accent))]">{display}</span>
-      <span className="text-[10px] uppercase tracking-wider text-[hsl(var(--muted-foreground))]">{label}</span>
+      <span className="block text-lg font-bold text-foreground">{display}</span>
+      <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{label}</span>
     </div>
   );
 }
@@ -122,6 +146,7 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate();
 
   const handleMouse = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const el = cardRef.current;
@@ -147,23 +172,23 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
       onMouseMove={handleMouse}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={resetTilt}
-      className="cs-card group relative flex-shrink-0 w-[340px] sm:w-[380px] snap-center"
+      className="group relative flex-shrink-0 w-[340px] sm:w-[380px] snap-center cursor-pointer"
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(${hovered ? 30 : 0}px)`,
         transition: "transform 0.2s ease-out",
       }}
+      onClick={() => navigate(`/case-study/${study.id}`)}
     >
       <div
-        className="relative flex h-[620px] sm:h-[640px] flex-col overflow-hidden rounded-3xl border border-[hsl(var(--border))]"
+        className="relative flex h-[580px] sm:h-[600px] flex-col overflow-hidden rounded-3xl border border-border bg-card"
         style={{
-          background: "hsl(var(--cs-card-bg))",
           boxShadow: hovered
-            ? "0 20px 60px -10px hsla(var(--cs-accent)/.15), 0 0 0 1px hsla(var(--cs-accent)/.2)"
-            : "0 10px 40px -10px rgba(0,0,0,.3)",
+            ? "0 20px 60px -10px hsl(var(--foreground)/.1), 0 0 0 1px hsl(var(--foreground)/.08)"
+            : "0 10px 40px -10px hsl(var(--foreground)/.06)",
         }}
       >
         {/* Visual area */}
-        <div className={`relative h-[45%] overflow-hidden bg-gradient-to-br ${study.gradient}`}>
+        <div className={`relative h-[40%] overflow-hidden bg-gradient-to-br ${study.gradient}`}>
           {/* Shine sweep */}
           <div
             className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -173,35 +198,33 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
               animation: hovered ? "shineSweep 0.8s ease forwards" : "none",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[hsl(var(--cs-card-bg))] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
 
           {/* Client logo text */}
           <motion.div
             animate={{ y: [0, -4, 0] }}
             transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-            className="absolute left-4 top-4 rounded-lg bg-white/10 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm"
+            className="absolute left-4 top-4 rounded-lg bg-foreground/10 px-3 py-1.5 text-xs font-semibold text-foreground backdrop-blur-sm"
           >
             {study.client}
           </motion.div>
 
           {/* Badge */}
-          <div
-            className="absolute right-4 top-4 translate-y-[-20px] rounded-lg border border-[hsl(var(--cs-accent))]/30 bg-[hsl(var(--cs-accent))]/10 px-3 py-1.5 text-xs font-medium text-[hsl(var(--cs-accent))] opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-          >
+          <div className="absolute right-4 top-4 translate-y-[-20px] rounded-lg border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {study.badge}
           </div>
         </div>
 
         {/* Content area */}
         <div className="flex flex-1 flex-col p-5">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--cs-accent))]">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
             {study.tag}
           </span>
-          <h3 className="mt-2 text-xl font-bold text-[hsl(var(--foreground))]">{study.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">{study.description}</p>
+          <h3 className="mt-2 text-xl font-bold text-foreground">{study.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{study.description}</p>
 
           {/* Stats */}
-          <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl bg-[hsl(var(--muted))]/30 p-3">
+          <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl bg-muted/50 p-3">
             {study.stats.map((s) => (
               <AnimatedStat key={s.label} {...s} />
             ))}
@@ -212,7 +235,7 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
             {study.tech.map((t, i) => (
               <span
                 key={t}
-                className="rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--muted))]/40 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-[hsl(var(--muted-foreground))] transition-all duration-200 group-hover:border-[hsl(var(--cs-accent))]/30 group-hover:bg-[hsl(var(--cs-accent))]/10 group-hover:text-[hsl(var(--cs-accent))]"
+                className="rounded-full border border-border bg-muted/40 px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground transition-all duration-200 group-hover:border-primary/30 group-hover:bg-primary/10 group-hover:text-foreground"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
                 {t}
@@ -221,7 +244,13 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
           </div>
 
           {/* CTA */}
-          <button className="cs-cta mt-auto flex items-center gap-2 self-start rounded-xl bg-gradient-to-r from-[hsl(var(--cs-accent))] to-[hsl(var(--cs-accent-end))] px-5 py-2.5 text-sm font-semibold text-[hsl(var(--cs-card-bg))] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-[hsl(var(--cs-accent))]/20">
+          <button
+            className="mt-auto flex items-center gap-2 self-start rounded-xl bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/case-study/${study.id}`);
+            }}
+          >
             View Case Study
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>
@@ -267,7 +296,7 @@ const Work = () => {
   };
 
   return (
-    <section id="work" className="cs-section relative overflow-hidden py-20 md:py-28">
+    <section id="work" className="relative overflow-hidden py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-8">
         {/* Header */}
         <motion.div
@@ -276,24 +305,22 @@ const Work = () => {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-widest text-[hsl(var(--cs-accent))]">
-            Selected Work
-          </span>
-          <h2 className="mt-3 bg-gradient-to-b from-[hsl(var(--foreground))] to-[hsl(var(--muted-foreground))] bg-clip-text text-4xl font-bold text-transparent md:text-5xl">
+          <span className="section-label">Selected Work</span>
+          <h2 className="mt-3 text-4xl font-bold text-foreground md:text-5xl">
             Case Studies
           </h2>
-          <p className="mt-3 text-sm text-[hsl(var(--muted-foreground))]">
+          <p className="mt-3 text-sm text-muted-foreground">
             Drag or scroll to explore our transformative AI implementations
           </p>
         </motion.div>
       </div>
 
       {/* Carousel */}
-      <div className="mt-12" style={{ perspective: "2000px" }}>
+      <div className="mt-10" style={{ perspective: "2000px" }}>
         <div
           ref={trackRef}
           onScroll={handleScroll}
-          className="flex gap-6 overflow-x-auto scroll-smooth px-[max(1rem,calc((100vw-380px)/2))] pb-6 pt-2 snap-x snap-mandatory scrollbar-none"
+          className="flex gap-6 overflow-x-auto scroll-smooth px-[max(1rem,calc((100vw-380px)/2))] pb-4 pt-2 snap-x snap-mandatory scrollbar-none"
           style={{ scrollbarWidth: "none" }}
         >
           {caseStudies.map((s, i) => (
@@ -303,10 +330,10 @@ const Work = () => {
       </div>
 
       {/* Navigation */}
-      <div className="mt-6 flex items-center justify-center gap-4">
+      <div className="mt-4 flex items-center justify-center gap-4">
         <button
           onClick={() => scrollTo(Math.max(0, activeIdx - 1))}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] transition-colors hover:border-[hsl(var(--cs-accent))] hover:text-[hsl(var(--cs-accent))]"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
         </button>
@@ -319,14 +346,14 @@ const Work = () => {
               style={{
                 width: activeIdx === i ? 24 : 8,
                 background:
-                  activeIdx === i ? "hsl(var(--cs-accent))" : "hsl(var(--muted-foreground)/.3)",
+                  activeIdx === i ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground)/.3)",
               }}
             />
           ))}
         </div>
         <button
           onClick={() => scrollTo(Math.min(caseStudies.length - 1, activeIdx + 1))}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] transition-colors hover:border-[hsl(var(--cs-accent))] hover:text-[hsl(var(--cs-accent))]"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
         >
           <ArrowRight className="h-4 w-4" />
         </button>

@@ -75,7 +75,7 @@ const Navbar = () => {
             {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
           <Button size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/80 text-xs px-5" asChild>
-            <a href="https://cal.com/biruke-felipe/30min" target="_blank" rel="noopener noreferrer">Join us →</a>
+            <a href="https://cal.com/biruke-felipe/30-minutes-assessment-call" target="_blank" rel="noopener noreferrer">Join us →</a>
           </Button>
         </div>
 
@@ -98,7 +98,7 @@ const Navbar = () => {
                 {dark ? "Light mode" : "Dark mode"}
               </button>
               <Button className="mt-4 rounded-full" asChild>
-                <a href="https://cal.com/biruke-felipe/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+                <a href="https://cal.com/biruke-felipe/30-minutes-assessment-call" target="_blank" rel="noopener noreferrer">Book a Call</a>
               </Button>
             </div>
           </SheetContent>
