@@ -1,42 +1,39 @@
 
 
-# Polish Tweaks for Felipe Workflows
+## Plan: Replace Work Section with 3D Case Studies Carousel
 
-A collection of small but impactful refinements to take the site from great to exceptional.
+### What Changes
 
----
+**Replace `src/components/Work.tsx`** entirely with a new premium 3D carousel case studies section featuring:
 
-## 1. Smooth scroll-to-top button
-Add a floating "back to top" arrow button that appears after scrolling past the hero. Fades in/out smoothly in the bottom-right corner.
+1. **Header** — Centered with cyan "Selected Work" eyebrow, gradient "Case Studies" heading, and subtitle
+2. **3D Carousel** — Horizontal draggable/scrollable track with perspective and scroll-snap
+3. **4 Case Study Cards** (380×640px) with:
+   - Visual area (45%) with gradient overlay, floating badge that slides in on hover
+   - Content area (55%) with industry tag, title, description, animated stat counters, tech pills, and CTA button
+   - 3D tilt effect on hover (rotateX/Y via mouse tracking, cyan glow border)
+   - Shine sweep animation on image
+   - Staggered tech pill fade-in on hover
+4. **Navigation** — Arrow buttons + dot indicators below the carousel
+5. **Stat counters** — Numbers count up from 0 when card enters viewport (2s easeOut)
 
+### Technical Approach
 
+- Use `framer-motion` for animations (already installed)
+- Use `useRef` + mouse event handlers for 3D tilt calculation
+- Use `useRef` + scroll events for horizontal drag with momentum
+- Use `useInView` from framer-motion + `useEffect`/`useState` for counting animation
+- Use CSS `perspective`, `transform-style: preserve-3d`, `rotateX/Y` for 3D effects
+- Inline styles for dynamic tilt transforms; Tailwind for layout/colors
+- Remove old case study image imports (no longer needed — cards use gradient backgrounds instead)
+- Add custom CSS for shine sweep keyframe animation in `index.css`
 
-## 2. Navbar active section highlight
-As users scroll through sections, subtly highlight the corresponding nav link (e.g., underline or bolder text) so they always know where they are on the page.
+### Cards Data
 
-## 3. Service cards hover effect
-Add a subtle lift/shadow on hover to the service cards in the grid, making them feel more interactive and clickable.
+4 cards as specified: Mereb Technologies, Chapa, Acuity Analytics, Laven — each with tag, title, description, 3 stats, 3 tech pills, and a badge.
 
-## 4. Testimonial auto-rotate
-Add an auto-advance timer (every 5 seconds) to the testimonial carousel so it cycles through quotes without user interaction. Pauses on hover.
+### Files Modified
 
-## 5. Footer "back to top" link
-Add a small "Back to top" text link in the footer for users who scroll all the way down.
-
-## 6. Case study card hover overlay
-Add a subtle overlay with a "View project" label that appears on hover over the case study images, hinting they're interactive.
-
----
-
-## Technical Details
-
-### Files to modify:
-- **src/components/Navbar.tsx** -- Add scroll-spy logic using IntersectionObserver to track active section and highlight the matching nav link
-- **src/components/Services.tsx** -- Add `hover:shadow-lg hover:-translate-y-1 transition-all` classes to service cards
-- **src/components/Testimonials.tsx** -- Add `useEffect` with `setInterval` for auto-rotation, clear on hover
-- **src/components/Work.tsx** -- Add hover overlay with "View project" text and arrow icon
-- **src/components/Footer.tsx** -- Add "Back to top" button
-- **src/pages/Index.tsx** -- Add a floating scroll-to-top button component with scroll position tracking
-
-### No new dependencies required -- all changes use existing framer-motion, Lucide icons, and Tailwind utilities.
+1. **`src/components/Work.tsx`** — Full rewrite
+2. **`src/index.css`** — Add shine sweep keyframe and any supporting styles
 
