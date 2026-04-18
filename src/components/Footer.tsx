@@ -2,7 +2,6 @@ import { Instagram, Linkedin, Mail } from "lucide-react";
 import felipeLogo from "@/assets/felipe-logo.png";
 
 const links = [
-  { label: "Case studies", href: "#work" },
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
