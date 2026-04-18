@@ -5,11 +5,10 @@ import { Menu, Sun, Moon } from "lucide-react";
 import felipeLogo from "@/assets/felipe-logo.png";
 
 const navLinks = [
-  { label: "Case studies", href: "#work" },
   { label: "About", href: "#about" },
 ];
 
-const sectionIds = ["work", "about", "services", "testimonials", "contact"];
+const sectionIds = ["about", "services", "testimonials", "contact"];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

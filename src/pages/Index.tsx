@@ -4,7 +4,7 @@ import { ArrowUp } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
-import Work from "@/components/Work";
+
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
@@ -44,7 +44,6 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Stats />
-      <Work />
       <About />
       <Services />
       <Testimonials />
