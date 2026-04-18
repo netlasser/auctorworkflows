@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 export interface CaseStudy {
   id: string;
@@ -146,7 +145,6 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
-  const navigate = useNavigate();
 
   const handleMouse = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const el = cardRef.current;
@@ -172,12 +170,11 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
       onMouseMove={handleMouse}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={resetTilt}
-      className="group relative flex-shrink-0 w-[340px] sm:w-[380px] snap-center cursor-pointer"
+      className="group relative flex-shrink-0 w-[340px] sm:w-[380px] snap-center"
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(${hovered ? 30 : 0}px)`,
         transition: "transform 0.2s ease-out",
       }}
-      onClick={() => navigate(`/case-study/${study.id}`)}
     >
       <div
         className="relative flex h-[580px] sm:h-[600px] flex-col overflow-hidden rounded-3xl border border-border bg-card"
@@ -244,16 +241,16 @@ function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
           </div>
 
           {/* CTA */}
-          <button
+          <a
+            href="https://cal.com/biruke-felipe/30-minutes-assessment-call"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-auto flex items-center gap-2 self-start rounded-xl bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate(`/case-study/${study.id}`);
-            }}
+            onClick={(e) => e.stopPropagation()}
           >
-            View Case Study
+            Discuss a Project
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+          </a>
         </div>
       </div>
     </motion.div>
