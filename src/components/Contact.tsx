@@ -3,137 +3,83 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { Clock, DollarSign, TrendingUp, Sparkles } from "lucide-react";
 
-/* ── Animated workflow nodes ── */
-const workflowSteps = [
-  { id: 1, label: "Incoming Lead", icon: "📩", x: 50, y: 8 },
-  { id: 2, label: "AI Qualification", icon: "🤖", x: 20, y: 28 },
-  { id: 3, label: "CRM Update", icon: "📊", x: 75, y: 28 },
-  { id: 4, label: "Auto Follow-up", icon: "✉️", x: 10, y: 52 },
-  { id: 5, label: "Meeting Booked", icon: "📅", x: 50, y: 52 },
-  { id: 6, label: "Proposal Sent", icon: "📄", x: 85, y: 52 },
-  { id: 7, label: "Deal Closed", icon: "🎯", x: 50, y: 76 },
+const benefits = [
+  {
+    icon: Clock,
+    title: "Time saved per week",
+    desc: "See exactly which manual tasks we can eliminate from your workflow.",
+  },
+  {
+    icon: DollarSign,
+    title: "Cost reduction estimate",
+    desc: "Get a clear ROI projection based on your team size and current process.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Automation roadmap",
+    desc: "A prioritized 90-day plan tailored to your highest-impact workflows.",
+  },
+  {
+    icon: Sparkles,
+    title: "Tooling recommendations",
+    desc: "The exact AI stack we'd deploy — no vendor lock-in, no fluff.",
+  },
 ];
-
-const connections: [number, number][] = [
-  [1, 2], [1, 3], [2, 4], [2, 5], [3, 5], [3, 6], [4, 7], [5, 7], [6, 7],
-];
-
-const WorkflowDiagram = () => {
-  const getPos = (id: number) => {
-    const s = workflowSteps.find((n) => n.id === id)!;
-    return { x: s.x, y: s.y };
-  };
-
-  return (
-    <div className="relative h-full w-full min-h-[420px]">
-      {/* Connection lines */}
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet">
-        {connections.map(([from, to], i) => {
-          const a = getPos(from);
-          const b = getPos(to);
-          return (
-            <motion.line
-              key={`${from}-${to}`}
-              x1={a.x}
-              y1={a.y + 4}
-              x2={b.x}
-              y2={b.y}
-              stroke="hsl(var(--muted-foreground))"
-              strokeOpacity={0.15}
-              strokeWidth={0.4}
-              strokeDasharray="2 2"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
-            />
-          );
-        })}
-
-        {/* Animated pulse traveling along connections */}
-        {connections.map(([from, to], i) => {
-          const a = getPos(from);
-          const b = getPos(to);
-          return (
-            <motion.circle
-              key={`pulse-${from}-${to}`}
-              r={0.8}
-              fill="hsl(var(--primary))"
-              initial={{ opacity: 0 }}
-              animate={{
-                cx: [a.x, b.x],
-                cy: [a.y + 4, b.y],
-                opacity: [0, 1, 1, 0],
-              }}
-              transition={{
-                duration: 2.5,
-                delay: 1.5 + i * 0.6,
-                repeat: Infinity,
-                repeatDelay: connections.length * 0.6,
-                ease: "easeInOut",
-              }}
-            />
-          );
-        })}
-      </svg>
-
-      {/* Nodes */}
-      {workflowSteps.map((step, i) => (
-        <motion.div
-          key={step.id}
-          className="absolute flex flex-col items-center gap-1"
-          style={{ left: `${step.x}%`, top: `${step.y}%`, transform: "translate(-50%, -50%)" }}
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.15 * i, type: "spring", stiffness: 200, damping: 15 }}
-        >
-          <motion.div
-            className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-background text-lg shadow-sm"
-            whileHover={{ scale: 1.15, borderColor: "hsl(var(--primary))" }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            {step.icon}
-          </motion.div>
-          <span className="text-[10px] font-medium text-muted-foreground whitespace-nowrap">
-            {step.label}
-          </span>
-        </motion.div>
-      ))}
-
-      {/* Floating label */}
-      <motion.div
-        className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full border border-border bg-background/80 px-3 py-1 backdrop-blur-sm"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 1.2 }}
-      >
-        <span className="text-[10px] font-semibold tracking-wider text-muted-foreground">
-          LEAD → CLOSE AUTOMATION
-        </span>
-      </motion.div>
-    </div>
-  );
-};
 
 const Contact = () => {
   const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    company: "",
+    headcount: "",
+    automationGoal: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "We'll get back to you shortly." });
-    setForm({ name: "", email: "", message: "" });
+    if (!form.headcount) {
+      toast({ title: "Please select a headcount", variant: "destructive" });
+      return;
+    }
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("hubspot-lead", {
+        body: form,
+      });
+      if (error) throw error;
+      if (!data?.success) throw new Error(data?.error ?? "Submission failed");
+
+      toast({
+        title: "You're in!",
+        description: "We'll send your AI Automation Plan within 24 hours.",
+      });
+      setForm({ fullName: "", email: "", company: "", headcount: "", automationGoal: "" });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Something went wrong";
+      toast({ title: "Couldn't submit", description: message, variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <section id="contact" className="border-t border-border py-16">
+    <section id="contact" className="border-t border-border py-20">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid gap-12 md:grid-cols-2">
+        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           {/* Left: form */}
           <div>
             <motion.div
@@ -141,18 +87,12 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <p className="text-sm text-muted-foreground">
-                Trust us for a free, friendly, no-obligation chat about your workflow.
+              <h2 className="font-display text-4xl font-medium tracking-tight md:text-5xl">
+                Get Your AI Automation Plan
+              </h2>
+              <p className="mt-4 text-base text-muted-foreground md:text-lg">
+                Find out how much time and cost you can save by automating your workflows with AI.
               </p>
-              <div className="mt-4">
-                <Button
-                  size="lg"
-                  className="rounded-full bg-foreground px-8 text-background hover:bg-foreground/80"
-                  asChild
-                >
-                  <a href="https://cal.com/biruke-felipe/30-minutes-assessment-call" target="_blank" rel="noopener noreferrer">Get a Call</a>
-                </Button>
-              </div>
             </motion.div>
 
             <motion.form
@@ -161,35 +101,132 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="mt-10 space-y-4"
+              className="mt-8 space-y-4"
             >
               <div>
-                <Label htmlFor="name" className="text-xs text-muted-foreground">Name</Label>
-                <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Your name" required className="mt-1 rounded-lg border-border" />
+                <Label htmlFor="fullName" className="text-xs text-muted-foreground">
+                  Full Name
+                </Label>
+                <Input
+                  id="fullName"
+                  value={form.fullName}
+                  onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+                  placeholder="Jane Doe"
+                  required
+                  maxLength={120}
+                  className="mt-1 rounded-lg border-border"
+                />
               </div>
               <div>
-                <Label htmlFor="email" className="text-xs text-muted-foreground">Email</Label>
-                <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="you@company.com" required className="mt-1 rounded-lg border-border" />
+                <Label htmlFor="email" className="text-xs text-muted-foreground">
+                  Email Address
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder="you@company.com"
+                  required
+                  maxLength={255}
+                  className="mt-1 rounded-lg border-border"
+                />
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <Label htmlFor="company" className="text-xs text-muted-foreground">
+                    Company Name
+                  </Label>
+                  <Input
+                    id="company"
+                    value={form.company}
+                    onChange={(e) => setForm({ ...form, company: e.target.value })}
+                    placeholder="Acme Inc."
+                    required
+                    maxLength={200}
+                    className="mt-1 rounded-lg border-border"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="headcount" className="text-xs text-muted-foreground">
+                    Headcount
+                  </Label>
+                  <Select
+                    value={form.headcount}
+                    onValueChange={(v) => setForm({ ...form, headcount: v })}
+                  >
+                    <SelectTrigger id="headcount" className="mt-1 rounded-lg border-border">
+                      <SelectValue placeholder="Select range" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1-10">1–10</SelectItem>
+                      <SelectItem value="11-50">11–50</SelectItem>
+                      <SelectItem value="51-200">51–200</SelectItem>
+                      <SelectItem value="201-500">201–500</SelectItem>
+                      <SelectItem value="500+">500+</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               <div>
-                <Label htmlFor="message" className="text-xs text-muted-foreground">Message</Label>
-                <Textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Tell us about your workflow challenges..." rows={3} required className="mt-1 rounded-lg border-border" />
+                <Label htmlFor="automationGoal" className="text-xs text-muted-foreground">
+                  What do you want to automate?
+                </Label>
+                <Textarea
+                  id="automationGoal"
+                  value={form.automationGoal}
+                  onChange={(e) => setForm({ ...form, automationGoal: e.target.value })}
+                  placeholder="e.g. lead qualification, invoice processing, customer support…"
+                  rows={3}
+                  required
+                  maxLength={1000}
+                  className="mt-1 rounded-lg border-border"
+                />
               </div>
-              <Button type="submit" className="rounded-full bg-foreground px-6 text-background hover:bg-foreground/80">
-                Send Message
+              <Button
+                type="submit"
+                disabled={loading}
+                className="rounded-full bg-foreground px-6 text-background hover:bg-foreground/80"
+              >
+                {loading ? "Sending…" : "Get My Plan"}
               </Button>
             </motion.form>
           </div>
 
-          {/* Right: animated workflow diagram */}
+          {/* Right: benefits list */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="hidden md:flex items-center justify-center rounded-2xl border border-border bg-muted/30 p-6"
+            className="flex flex-col justify-center"
           >
-            <WorkflowDiagram />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              What you'll get
+            </span>
+            <h3 className="mt-3 font-display text-2xl font-medium tracking-tight md:text-3xl">
+              A custom plan, not a sales pitch.
+            </h3>
+            <ul className="mt-8 space-y-6">
+              {benefits.map((b, i) => (
+                <motion.li
+                  key={b.title}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.08 }}
+                  className="flex gap-4"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-background">
+                    <b.icon className="h-4 w-4 text-foreground" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-foreground">{b.title}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{b.desc}</p>
+                  </div>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </div>
