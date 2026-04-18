@@ -1,17 +1,21 @@
 import { motion } from "framer-motion";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import birukePhoto from "@/assets/founder-biruke.jpeg";
+import nahumPhoto from "@/assets/cofounder-nahum.png";
 
 const team = [
   {
     name: "Biruke Lavencian",
     role: "Founder",
     initials: "BL",
+    photo: birukePhoto,
     bio: "Passionate about translating AI's potential into real, working systems. Focuses on building custom automation that eliminates manual overhead and drives sustainable growth for agencies and businesses.",
   },
   {
     name: "Nahum Welday",
     role: "Co-Founder",
     initials: "NW",
+    photo: nahumPhoto,
     bio: "Expert in workflow architecture and system design. Builds the infrastructure that connects tools, teams, and processes into seamless automated pipelines.",
   },
 ];
@@ -43,7 +47,8 @@ const About = () => (
             transition={{ delay: i * 0.1 }}
             className="flex gap-4"
           >
-            <Avatar className="h-14 w-14 shrink-0">
+            <Avatar className="h-16 w-16 shrink-0">
+              <AvatarImage src={t.photo} alt={t.name} className="object-cover" />
               <AvatarFallback className="bg-foreground font-display text-sm font-bold text-primary-foreground">{t.initials}</AvatarFallback>
             </Avatar>
             <div>
