@@ -47,9 +47,9 @@ const About = () => (
             transition={{ delay: i * 0.1 }}
             className="flex gap-4"
           >
-            <Avatar className="h-16 w-16 shrink-0">
-              <AvatarImage src={t.photo} alt={t.name} className="object-cover" />
-              <AvatarFallback className="bg-foreground font-display text-sm font-bold text-primary-foreground">{t.initials}</AvatarFallback>
+            <Avatar className="h-24 w-24 shrink-0 rounded-xl">
+              <AvatarImage src={t.photo} alt={t.name} className="rounded-xl object-cover" />
+              <AvatarFallback className="rounded-xl bg-foreground font-display text-base font-bold text-primary-foreground">{t.initials}</AvatarFallback>
             </Avatar>
             <div>
               <div className="font-display font-semibold">{t.name}</div>
