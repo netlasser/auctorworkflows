@@ -49,12 +49,20 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-transparent backdrop-blur-md">
-      <div className="container mx-auto flex h-14 items-center justify-between px-4 md:px-8">
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="flex items-center gap-2">
-          <img src={felipeLogo} alt="Felipe Workflows" className="h-[68px] w-[68px] rounded object-cover" />
+      <div className="mx-auto flex h-16 w-full items-center justify-between px-6 md:px-12">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex shrink-0 items-center"
+          aria-label="Felipe Workflows — home"
+        >
+          <img
+            src={felipeLogo}
+            alt="Felipe Workflows"
+            className="h-10 w-10 rounded object-cover md:h-12 md:w-12"
+          />
         </button>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-8 md:flex md:ml-12">
           {navLinks.map((l) => (
             <button
               key={l.href}
