@@ -37,7 +37,7 @@ const About = () => (
         </p>
       </motion.div>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-2">
+      <div className="mt-12 flex flex-col gap-8">
         {team.map((t, i) => (
           <motion.div
             key={t.name}
@@ -45,16 +45,19 @@ const About = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="flex flex-col gap-4 sm:flex-row sm:gap-6"
+            className={`grid w-full gap-8 rounded-2xl border border-border bg-background p-6 shadow-sm md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-12 md:p-10 ${
+              i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+            }`}
           >
-            <Avatar className="h-48 w-48 shrink-0 rounded-xl border border-border shadow-lg shadow-foreground/5 ring-1 ring-foreground/5 sm:h-56 sm:w-56">
+            <Avatar className="aspect-square h-auto w-full max-w-md shrink-0 rounded-xl border border-border shadow-lg shadow-foreground/5 ring-1 ring-foreground/5">
               <AvatarImage src={t.photo} alt={t.name} className="rounded-xl object-cover" />
-              <AvatarFallback className="rounded-xl bg-foreground font-display text-lg font-bold text-primary-foreground">{t.initials}</AvatarFallback>
+              <AvatarFallback className="rounded-xl bg-foreground font-display text-4xl font-bold text-primary-foreground">{t.initials}</AvatarFallback>
             </Avatar>
-            <div>
-              <div className="font-display font-semibold">{t.name}</div>
-              <div className="text-xs text-muted-foreground">{t.role}</div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.bio}</p>
+            <div className="flex flex-col justify-center">
+              <span className="section-label">{t.role}</span>
+              <h3 className="mt-3 font-display text-2xl font-bold md:text-3xl">{t.name}</h3>
+              <div className="mt-4 h-px w-12 bg-foreground/20" />
+              <p className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg">{t.bio}</p>
             </div>
           </motion.div>
         ))}
