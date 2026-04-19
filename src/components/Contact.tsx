@@ -159,11 +159,13 @@ const Contact = () => {
                       <SelectValue placeholder="Select range" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1-10">1–10</SelectItem>
-                      <SelectItem value="11-50">11–50</SelectItem>
-                      <SelectItem value="51-200">51–200</SelectItem>
-                      <SelectItem value="201-500">201–500</SelectItem>
-                      <SelectItem value="500+">500+</SelectItem>
+                      <SelectItem value="1-5">1–5</SelectItem>
+                      <SelectItem value="5-25">5–25</SelectItem>
+                      <SelectItem value="25-50">25–50</SelectItem>
+                      <SelectItem value="50-100">50–100</SelectItem>
+                      <SelectItem value="100-500">100–500</SelectItem>
+                      <SelectItem value="500-1000">500–1000</SelectItem>
+                      <SelectItem value="1000+">1000+</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
