@@ -45,9 +45,9 @@ const About = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="flex gap-4"
+            className="flex flex-col gap-4 sm:flex-row sm:gap-6"
           >
-            <Avatar className="h-32 w-32 shrink-0 rounded-xl border border-border shadow-lg shadow-foreground/5 ring-1 ring-foreground/5">
+            <Avatar className="h-48 w-48 shrink-0 rounded-xl border border-border shadow-lg shadow-foreground/5 ring-1 ring-foreground/5 sm:h-56 sm:w-56">
               <AvatarImage src={t.photo} alt={t.name} className="rounded-xl object-cover" />
               <AvatarFallback className="rounded-xl bg-foreground font-display text-lg font-bold text-primary-foreground">{t.initials}</AvatarFallback>
             </Avatar>
