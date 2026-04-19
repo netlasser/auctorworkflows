@@ -100,6 +100,50 @@ Deno.serve(async (req) => {
       throw new Error(`HubSpot create failed [${response.status}]: ${JSON.stringify(data)}`);
     }
 
+    // Fire-and-forget Slack notification — don't fail the request if Slack errors
+    try {
+      const SLACK_API_KEY = Deno.env.get("SLACK_API_KEY");
+      if (SLACK_API_KEY) {
+        const slackText = `:tada: *New lead from website form*`;
+        const blocks = [
+          { type: "header", text: { type: "plain_text", text: "New Lead Submission" } },
+          {
+            type: "section",
+            fields: [
+              { type: "mrkdwn", text: `*Name:*\n${fullName}` },
+              { type: "mrkdwn", text: `*Email:*\n${email}` },
+              { type: "mrkdwn", text: `*Company:*\n${company}` },
+              { type: "mrkdwn", text: `*Headcount:*\n${headcount}` },
+            ],
+          },
+          {
+            type: "section",
+            text: { type: "mrkdwn", text: `*Wants to automate:*\n${automationGoal}` },
+          },
+        ];
+
+        const slackRes = await fetch("https://connector-gateway.lovable.dev/slack/api/chat.postMessage", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${LOVABLE_API_KEY}`,
+            "X-Connection-Api-Key": SLACK_API_KEY,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            channel: "websiteforms",
+            text: slackText,
+            blocks,
+          }),
+        });
+        const slackData = await slackRes.json();
+        if (!slackData.ok) {
+          console.error("Slack notification failed:", slackData);
+        }
+      }
+    } catch (slackErr) {
+      console.error("Slack notification error:", slackErr);
+    }
+
     return new Response(JSON.stringify({ success: true, id: data.id ?? null }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
