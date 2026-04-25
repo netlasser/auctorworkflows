@@ -32,7 +32,11 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="border-t border-border bg-background py-20 md:py-28">
+    <section
+      id="faq"
+      aria-labelledby="faq-heading"
+      className="border-t border-border bg-background py-20 md:py-28"
+    >
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-20">
           <motion.div
@@ -42,17 +46,20 @@ const FAQ = () => {
             className="lg:sticky lg:top-24 lg:self-start"
           >
             <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-              <span className="h-2 w-2 rounded-full bg-foreground" />
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-foreground" />
               FAQ
             </span>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-foreground md:text-5xl">
+            <h2
+              id="faq-heading"
+              className="mt-4 font-display text-3xl font-bold leading-tight text-foreground md:text-5xl"
+            >
               Questions, answered.
             </h2>
             <p className="mt-4 max-w-md text-sm text-muted-foreground md:text-base">
               The five things every operator asks before working with us. Still wondering something?{" "}
               <a
                 href="#contact"
-                className="text-foreground underline underline-offset-4 hover:text-foreground/70"
+                className="rounded text-foreground underline underline-offset-4 hover:text-foreground/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Just ask
               </a>
@@ -65,6 +72,8 @@ const FAQ = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
+            role="region"
+            aria-label="Frequently asked questions"
           >
             <Accordion type="single" collapsible defaultValue="item-0" className="w-full">
               {faqs.map((f, i) => (
@@ -73,9 +82,15 @@ const FAQ = () => {
                   value={`item-${i}`}
                   className="border-b border-border [&[data-state=open]>h3>button>svg]:rotate-45"
                 >
-                  <AccordionTrigger className="group py-6 text-left font-display text-lg font-semibold text-foreground hover:no-underline md:text-xl [&>svg]:hidden">
+                  <AccordionTrigger
+                    aria-label={`${f.q} — expand to read answer`}
+                    className="group rounded-sm py-6 text-left font-display text-lg font-semibold text-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-4 focus-visible:ring-offset-background md:text-xl [&>svg]:hidden"
+                  >
                     <span className="flex-1 pr-4">{f.q}</span>
-                    <Plus className="h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:text-foreground" />
+                    <Plus
+                      aria-hidden="true"
+                      className="h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 group-hover:text-foreground"
+                    />
                   </AccordionTrigger>
                   <AccordionContent className="pb-6 text-base leading-relaxed text-muted-foreground">
                     {f.a}
@@ -83,6 +98,11 @@ const FAQ = () => {
                 </AccordionItem>
               ))}
             </Accordion>
+
+            <p className="sr-only">
+              Use the Tab key to focus a question, then press Enter or Space to expand or collapse
+              it. Use Arrow Up and Arrow Down to move between questions.
+            </p>
           </motion.div>
         </div>
       </div>
