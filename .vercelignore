@@ -1,0 +1,8 @@
+.lovable
+supabase
+src/test
+*.test.ts
+*.test.tsx
+.env
+.env.local
+README.md
