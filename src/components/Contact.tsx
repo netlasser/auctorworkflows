@@ -118,104 +118,193 @@ const Contact = () => {
               </p>
             </motion.div>
 
-            <motion.form
-              onSubmit={handleSubmit}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="mt-8 space-y-4"
-            >
-              <div>
-                <Label htmlFor="fullName" className="text-xs text-muted-foreground">
-                  Full Name
-                </Label>
-                <Input
-                  id="fullName"
-                  value={form.fullName}
-                  onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                  placeholder="Jane Doe"
-                  required
-                  maxLength={120}
-                  className="mt-1 rounded-lg border-border"
-                />
-              </div>
-              <div>
-                <Label htmlFor="email" className="text-xs text-muted-foreground">
-                  Email Address
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  placeholder="you@company.com"
-                  required
-                  maxLength={255}
-                  className="mt-1 rounded-lg border-border"
-                />
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <Label htmlFor="company" className="text-xs text-muted-foreground">
-                    Company Name
-                  </Label>
-                  <Input
-                    id="company"
-                    value={form.company}
-                    onChange={(e) => setForm({ ...form, company: e.target.value })}
-                    placeholder="Acme Inc."
-                    required
-                    maxLength={200}
-                    className="mt-1 rounded-lg border-border"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="headcount" className="text-xs text-muted-foreground">
-                    Headcount
-                  </Label>
-                  <Select
-                    value={form.headcount}
-                    onValueChange={(v) => setForm({ ...form, headcount: v })}
+            <div className="relative mt-8 min-h-[480px]">
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="flex flex-col items-start gap-6 rounded-2xl border border-border bg-secondary/30 p-8 md:p-10"
+                    role="status"
+                    aria-live="polite"
                   >
-                    <SelectTrigger id="headcount" className="mt-1 rounded-lg border-border">
-                      <SelectValue placeholder="Select range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1-5">1–5</SelectItem>
-                      <SelectItem value="5-25">5–25</SelectItem>
-                      <SelectItem value="25-50">25–50</SelectItem>
-                      <SelectItem value="50-100">50–100</SelectItem>
-                      <SelectItem value="100-500">100–500</SelectItem>
-                      <SelectItem value="500-1000">500–1000</SelectItem>
-                      <SelectItem value="1000+">1000+</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="automationGoal" className="text-xs text-muted-foreground">
-                  What do you want to automate?
-                </Label>
-                <Textarea
-                  id="automationGoal"
-                  value={form.automationGoal}
-                  onChange={(e) => setForm({ ...form, automationGoal: e.target.value })}
-                  placeholder="e.g. lead qualification, invoice processing, customer support…"
-                  rows={3}
-                  required
-                  maxLength={1000}
-                  className="mt-1 rounded-lg border-border"
-                />
-              </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="rounded-full bg-foreground px-6 text-background hover:bg-foreground/80"
-              >
-                {loading ? "Sending…" : "Get My Plan"}
-              </Button>
-            </motion.form>
+                    <motion.div
+                      initial={{ scale: 0, rotate: -90 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
+                      className="relative flex h-20 w-20 items-center justify-center rounded-full bg-foreground text-background"
+                    >
+                      <motion.span
+                        initial={{ scale: 1, opacity: 0.6 }}
+                        animate={{ scale: 1.6, opacity: 0 }}
+                        transition={{ duration: 1.2, repeat: Infinity, ease: "easeOut" }}
+                        className="absolute inset-0 rounded-full bg-foreground"
+                        aria-hidden="true"
+                      />
+                      <motion.div
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+                        className="relative"
+                      >
+                        <Check className="h-10 w-10" strokeWidth={3} />
+                      </motion.div>
+                    </motion.div>
+
+                    <div>
+                      <motion.h3
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 }}
+                        className="font-display text-3xl font-medium tracking-tight md:text-4xl"
+                      >
+                        You're in. 🎉
+                      </motion.h3>
+                      <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 }}
+                        className="mt-3 text-base text-muted-foreground md:text-lg"
+                      >
+                        We've received your details and will send your custom AI Automation Plan
+                        within <span className="text-foreground font-medium">24 hours</span>. Check
+                        your inbox (and spam folder, just in case).
+                      </motion.p>
+                    </div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                      className="flex flex-wrap gap-3"
+                    >
+                      <Button
+                        asChild
+                        className="rounded-full bg-foreground px-6 text-background hover:bg-foreground/80"
+                      >
+                        <a
+                          href="https://cal.com/biruke-felipe/30-minutes-assessment-call"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Book a call now →
+                        </a>
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => setSubmitted(false)}
+                        className="rounded-full"
+                      >
+                        Submit another
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    onSubmit={handleSubmit}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4"
+                  >
+                    <div>
+                      <Label htmlFor="fullName" className="text-xs text-muted-foreground">
+                        Full Name
+                      </Label>
+                      <Input
+                        id="fullName"
+                        value={form.fullName}
+                        onChange={(e) => setForm({ ...form, fullName: e.target.value })}
+                        placeholder="Jane Doe"
+                        required
+                        maxLength={120}
+                        className="mt-1 rounded-lg border-border"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email" className="text-xs text-muted-foreground">
+                        Email Address
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        placeholder="you@company.com"
+                        required
+                        maxLength={255}
+                        className="mt-1 rounded-lg border-border"
+                      />
+                    </div>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div>
+                        <Label htmlFor="company" className="text-xs text-muted-foreground">
+                          Company Name
+                        </Label>
+                        <Input
+                          id="company"
+                          value={form.company}
+                          onChange={(e) => setForm({ ...form, company: e.target.value })}
+                          placeholder="Acme Inc."
+                          required
+                          maxLength={200}
+                          className="mt-1 rounded-lg border-border"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="headcount" className="text-xs text-muted-foreground">
+                          Headcount
+                        </Label>
+                        <Select
+                          value={form.headcount}
+                          onValueChange={(v) => setForm({ ...form, headcount: v })}
+                        >
+                          <SelectTrigger id="headcount" className="mt-1 rounded-lg border-border">
+                            <SelectValue placeholder="Select range" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="1-5">1–5</SelectItem>
+                            <SelectItem value="5-25">5–25</SelectItem>
+                            <SelectItem value="25-50">25–50</SelectItem>
+                            <SelectItem value="50-100">50–100</SelectItem>
+                            <SelectItem value="100-500">100–500</SelectItem>
+                            <SelectItem value="500-1000">500–1000</SelectItem>
+                            <SelectItem value="1000+">1000+</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="automationGoal" className="text-xs text-muted-foreground">
+                        What do you want to automate?
+                      </Label>
+                      <Textarea
+                        id="automationGoal"
+                        value={form.automationGoal}
+                        onChange={(e) => setForm({ ...form, automationGoal: e.target.value })}
+                        placeholder="e.g. lead qualification, invoice processing, customer support…"
+                        rows={3}
+                        required
+                        maxLength={1000}
+                        className="mt-1 rounded-lg border-border"
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="rounded-full bg-foreground px-6 text-background hover:bg-foreground/80"
+                    >
+                      {loading ? "Sending…" : "Get My Plan"}
+                    </Button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Right: benefits list */}
