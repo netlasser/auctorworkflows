@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Target, Handshake, FileText, BarChart3 } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 
 const services = [
   {
@@ -29,8 +29,54 @@ const services = [
   },
 ];
 
-const Services = () => (
-  <section id="services" className="border-t border-border py-16">
+const Services = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "services-jsonld";
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Felipe Workflows — Automation Services",
+      description:
+        "AI-powered workflow automation services across sales, business development, content production, and marketing operations.",
+      itemListElement: services.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "Service",
+          name: s.title,
+          description: `${s.title} automations ${s.audience}: ${s.automations.join(", ")}.`,
+          serviceType: s.title,
+          audience: {
+            "@type": "BusinessAudience",
+            name: s.audience.replace(/^for\s+/i, ""),
+          },
+          provider: {
+            "@type": "Organization",
+            name: "Felipe Workflows",
+            url: "https://workflowfelip.lovable.app/",
+          },
+          areaServed: "Global",
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: `${s.title} Automations`,
+            itemListElement: s.automations.map((a) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: a },
+            })),
+          },
+        },
+      })),
+    });
+    document.head.appendChild(script);
+    return () => {
+      document.getElementById("services-jsonld")?.remove();
+    };
+  }, []);
+
+  return (
+    <section id="services" aria-labelledby="services-heading" className="border-t border-border py-16">
     <div className="container mx-auto px-4 md:px-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -38,7 +84,7 @@ const Services = () => (
         viewport={{ once: true }}
       >
         <span className="section-label">Our Services</span>
-        <h2 className="mt-4 font-display text-3xl font-bold md:text-4xl">What we specialize in.</h2>
+        <h2 id="services-heading" className="mt-4 font-display text-3xl font-bold md:text-4xl">What we specialize in.</h2>
       </motion.div>
 
       <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
@@ -66,6 +112,7 @@ const Services = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Services;
