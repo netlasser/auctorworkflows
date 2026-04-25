@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,7 +13,8 @@ import {
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Clock, DollarSign, TrendingUp, Sparkles } from "lucide-react";
+import { Clock, DollarSign, TrendingUp, Sparkles, Check } from "lucide-react";
+import confetti from "canvas-confetti";
 
 const benefits = [
   {
@@ -41,6 +42,7 @@ const benefits = [
 const Contact = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -48,6 +50,29 @@ const Contact = () => {
     headcount: "",
     automationGoal: "",
   });
+
+  const fireConfetti = () => {
+    const reduced =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+
+    const defaults = {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 100,
+      colors: ["#000000", "#404040", "#a3a3a3", "#e5e5e5", "#ffffff"],
+    };
+    const shoot = (originX: number) => {
+      confetti({ ...defaults, particleCount: 40, origin: { x: originX, y: 0.6 } });
+    };
+    shoot(0.25);
+    shoot(0.5);
+    shoot(0.75);
+    setTimeout(() => shoot(0.4), 200);
+    setTimeout(() => shoot(0.6), 250);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,10 +88,8 @@ const Contact = () => {
       if (error) throw error;
       if (!data?.success) throw new Error(data?.error ?? "Submission failed");
 
-      toast({
-        title: "You're in!",
-        description: "We'll send your AI Automation Plan within 24 hours.",
-      });
+      setSubmitted(true);
+      fireConfetti();
       setForm({ fullName: "", email: "", company: "", headcount: "", automationGoal: "" });
     } catch (err) {
       const message = err instanceof Error ? err.message : "Something went wrong";
