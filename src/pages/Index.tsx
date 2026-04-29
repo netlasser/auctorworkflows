@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import CampaignBanner from "@/components/CampaignBanner";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 
 import About from "@/components/About";
 import Services from "@/components/Services";
+import Concierge from "@/components/Concierge";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -42,11 +44,13 @@ const ScrollToTop = () => {
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <CampaignBanner />
       <Navbar />
       <Hero />
       <Stats />
       <About />
       <Services />
+      <Concierge />
       <Testimonials />
       <FAQ />
       <Contact />
