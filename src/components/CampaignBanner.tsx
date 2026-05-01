@@ -18,6 +18,8 @@ const CampaignBanner = () => {
   }, []);
 
   // Keep --campaign-banner-h in sync with the actual rendered banner height.
+  // Use a layout effect so the variable is set before paint, preventing any
+  // flash where content sits underneath the banner.
   useEffect(() => {
     if (!visible) {
       setBannerHeightVar(0);
@@ -25,6 +27,8 @@ const CampaignBanner = () => {
     }
     const el = ref.current;
     if (!el) return;
+    // Set immediately on mount (before the slide-in animation finishes) so the
+    // reserved space matches the final banner height from the very first frame.
     const update = () => setBannerHeightVar(el.offsetHeight);
     update();
     const ro = new ResizeObserver(update);

@@ -89,6 +89,23 @@
   </head>
 
   <body>
+    <script>
+      // Reserve campaign banner height before React mounts to prevent layout shift.
+      (function () {
+        try {
+          if (localStorage.getItem('campaign-concierge-dismissed') === '1') {
+            document.documentElement.style.setProperty('--campaign-banner-h', '0px');
+          } else {
+            // Approximate: 40px on mobile, 44px on >=768px. Will be precisely
+            // updated by the React component once it mounts.
+            var h = window.matchMedia('(min-width: 768px)').matches ? 44 : 40;
+            document.documentElement.style.setProperty('--campaign-banner-h', h + 'px');
+          }
+        } catch (e) {
+          document.documentElement.style.setProperty('--campaign-banner-h', '40px');
+        }
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
