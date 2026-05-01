@@ -57,7 +57,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
+      style={{ top: "var(--campaign-banner-h, 0px)" }}
+      className={`fixed left-0 right-0 z-40 w-full backdrop-blur-md transition-all duration-300 ${
         scrolled ? "bg-background/80 border-b border-border/50 shadow-sm" : "bg-transparent"
       }`}
     >

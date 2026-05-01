@@ -121,3 +121,7 @@
 }
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* Campaign banner offset: ensure anchor scrolls land below sticky banner + navbar */
+:root { --campaign-banner-h: 0px; }
+section[id] { scroll-margin-top: calc(var(--campaign-banner-h, 0px) + 80px); }
