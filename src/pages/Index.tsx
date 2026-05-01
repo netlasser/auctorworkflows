@@ -43,7 +43,10 @@ const ScrollToTop = () => {
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div
+      className="min-h-screen bg-background text-foreground"
+      style={{ paddingTop: "var(--campaign-banner-h, 0px)" }}
+    >
       <CampaignBanner />
       <Navbar />
       <Hero />

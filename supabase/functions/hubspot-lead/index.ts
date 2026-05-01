@@ -8,6 +8,8 @@ interface LeadPayload {
   company: string;
   headcount: string;
   automationGoal: string;
+  source: string;
+  whatsapp: string;
 }
 
 function validate(body: unknown): { ok: true; data: LeadPayload } | { ok: false; error: string } {
@@ -18,16 +20,21 @@ function validate(body: unknown): { ok: true; data: LeadPayload } | { ok: false;
   const company = String(b.company ?? "").trim();
   const headcount = String(b.headcount ?? "").trim();
   const automationGoal = String(b.automationGoal ?? "").trim();
+  const source = String(b.source ?? "contact-form").trim();
+  const whatsapp = String(b.whatsapp ?? "").trim();
 
   if (!fullName || fullName.length > 120) return { ok: false, error: "Invalid name" };
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255)
     return { ok: false, error: "Invalid email" };
-  if (!company || company.length > 200) return { ok: false, error: "Invalid company" };
+  if (company.length > 200) return { ok: false, error: "Invalid company" };
   if (!headcount || headcount.length > 50) return { ok: false, error: "Invalid headcount" };
   if (!automationGoal || automationGoal.length > 1000)
     return { ok: false, error: "Invalid automation goal" };
+  if (!/^[a-zA-Z0-9-]{1,60}$/.test(source)) return { ok: false, error: "Invalid source" };
+  if (whatsapp && (whatsapp.length > 30 || !/^[+\d\s().-]+$/.test(whatsapp)))
+    return { ok: false, error: "Invalid WhatsApp number" };
 
-  return { ok: true, data: { fullName, email, company, headcount, automationGoal } };
+  return { ok: true, data: { fullName, email, company: company || "—", headcount, automationGoal, source, whatsapp } };
 }
 
 Deno.serve(async (req) => {
@@ -51,7 +58,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { fullName, email, company, headcount, automationGoal } = parsed.data;
+    const { fullName, email, company, headcount, automationGoal, source, whatsapp } = parsed.data;
     const [firstName, ...rest] = fullName.split(" ");
     const lastName = rest.join(" ") || "—";
 
@@ -61,9 +68,10 @@ Deno.serve(async (req) => {
       lastname: lastName,
       company,
       numemployees: headcount,
-      message: `Wants to automate: ${automationGoal}`,
+      message: `[${source}] ${automationGoal}`,
       lifecyclestage: "lead",
     };
+    if (whatsapp) properties.phone = whatsapp;
 
     // Try create
     let response = await fetch(`${GATEWAY_URL}/crm/v3/objects/contacts`, {
@@ -104,21 +112,29 @@ Deno.serve(async (req) => {
     try {
       const SLACK_API_KEY = Deno.env.get("SLACK_API_KEY");
       if (SLACK_API_KEY) {
-        const slackText = `:tada: *New lead from website form*`;
+        const isBlueprint = source === "blueprint";
+        const slackText = isBlueprint
+          ? `:rotating_light: *New Blueprint download* — Lead-Leakage Shield`
+          : `:tada: *New lead from website form*`;
         const blocks = [
-          { type: "header", text: { type: "plain_text", text: "New Lead Submission" } },
+          {
+            type: "header",
+            text: { type: "plain_text", text: isBlueprint ? "Blueprint Download" : "New Lead Submission" },
+          },
           {
             type: "section",
             fields: [
               { type: "mrkdwn", text: `*Name:*\n${fullName}` },
               { type: "mrkdwn", text: `*Email:*\n${email}` },
               { type: "mrkdwn", text: `*Company:*\n${company}` },
-              { type: "mrkdwn", text: `*Headcount:*\n${headcount}` },
+              { type: "mrkdwn", text: `*${isBlueprint ? "Ad spend" : "Headcount"}:*\n${headcount}` },
+              ...(whatsapp ? [{ type: "mrkdwn", text: `*WhatsApp:*\n${whatsapp}` }] : []),
+              { type: "mrkdwn", text: `*Source:*\n${source}` },
             ],
           },
           {
             type: "section",
-            text: { type: "mrkdwn", text: `*Wants to automate:*\n${automationGoal}` },
+            text: { type: "mrkdwn", text: `*Notes:*\n${automationGoal}` },
           },
         ];
 
