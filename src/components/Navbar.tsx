@@ -5,10 +5,11 @@ import { Menu, Sun, Moon } from "lucide-react";
 import felipeLogo from "@/assets/felipe-logo.png";
 
 const navLinks = [
+  { label: "Concierge", href: "#concierge" },
   { label: "About", href: "#about" },
 ];
 
-const sectionIds = ["about", "services", "testimonials", "contact"];
+const sectionIds = ["concierge", "about", "services", "testimonials", "contact"];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -57,7 +58,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ${
+      style={{ top: "var(--campaign-banner-h, 0px)" }}
+      className={`fixed z-50 w-full backdrop-blur-md transition-all duration-300 ${
         scrolled ? "bg-background/80 border-b border-border/50 shadow-sm" : "bg-transparent"
       }`}
     >

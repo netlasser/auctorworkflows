@@ -1,16 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 
 const STORAGE_KEY = "campaign-concierge-dismissed";
 
+const setBannerHeightVar = (px: number) => {
+  if (typeof document === "undefined") return;
+  document.documentElement.style.setProperty("--campaign-banner-h", `${px}px`);
+};
+
 const CampaignBanner = () => {
   const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (localStorage.getItem(STORAGE_KEY) !== "1") setVisible(true);
+    else setBannerHeightVar(0);
   }, []);
+
+  useEffect(() => {
+    if (!visible) {
+      setBannerHeightVar(0);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => setBannerHeightVar(el.offsetHeight);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [visible]);
 
   const dismiss = () => {
     localStorage.setItem(STORAGE_KEY, "1");
@@ -26,11 +51,12 @@ const CampaignBanner = () => {
     <AnimatePresence initial={false}>
       {visible && (
         <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
+          ref={ref}
+          initial={{ y: "-100%" }}
+          animate={{ y: 0 }}
+          exit={{ y: "-100%" }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="relative z-[60] w-full overflow-hidden border-b border-border bg-foreground text-background"
+          className="fixed left-0 right-0 top-0 z-[60] w-full border-b border-border bg-foreground text-background"
           role="region"
           aria-label="Campaign announcement"
         >
