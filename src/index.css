@@ -122,6 +122,20 @@
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
 
-/* Campaign banner offset: ensure anchor scrolls land below sticky banner + navbar */
+/* Smooth scrolling for all in-page anchor jumps. */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Campaign banner offset: ensure anchor scrolls land below sticky banner + navbar.
+   Initial value is set by an inline script in index.html to prevent layout shift. */
 :root { --campaign-banner-h: 0px; }
-section[id] { scroll-margin-top: calc(var(--campaign-banner-h, 0px) + 80px); }
+
+/* Reserve space at the top of the page for the fixed banner + navbar so content
+   never sits underneath them and the page doesn't jump when the banner mounts. */
+body { padding-top: calc(var(--campaign-banner-h, 0px)); }
+
+/* Anchor landing offset: banner + navbar height (navbar is 64px / h-16). */
+section[id],
+[id] { scroll-margin-top: calc(var(--campaign-banner-h, 0px) + 80px); }
