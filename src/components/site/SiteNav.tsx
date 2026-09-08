@@ -27,9 +27,8 @@ const SiteNav = () => {
       }`}
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-[22px]">
-        <a href="#top" className="flex items-center gap-3">
-          <img src={logo} alt="Biruke Zeckariyas logo" className="h-9 w-9 rounded-lg object-cover" />
-          <span className="font-logo text-base font-semibold tracking-tight">Biruke Z.</span>
+        <a href="#top" className="flex items-center">
+          <img src={logo} alt="Biruke Zeckariyas logo" className="h-[68px] w-[68px] rounded-xl object-cover" />
         </a>
 
         <nav className="hidden items-center gap-1 md:flex">
