@@ -7,6 +7,7 @@ const links = [
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
   { label: "Pricing", href: "#pricing" },
+  { label: "Testimonials", href: "#testimonials" },
 ];
 
 const SiteNav = () => {
@@ -31,7 +32,7 @@ const SiteNav = () => {
           <img
             src={logo}
             alt="Biruke Zeckariyas logo"
-            className="h-[180px] w-[180px] object-contain sm:h-[220px] sm:w-[220px] lg:h-[280px] lg:w-[280px]"
+            className="h-10 w-10 object-contain sm:h-11 sm:w-11 md:h-12 md:w-12"
           />
         </a>
 

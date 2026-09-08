@@ -69,7 +69,7 @@
     font-weight: 600;
   }
 
-  section[id] { scroll-margin-top: 320px; }
+  section[id] { scroll-margin-top: 90px; }
 }
 
 @layer utilities {
