@@ -12,7 +12,7 @@ const stats = [
 ];
 
 const Hero = () => (
-  <section id="top" className="px-[22px] pb-16 pt-32 md:pt-40">
+  <section id="top" className="px-[22px] pb-16 pt-[240px] sm:pt-[280px] lg:pt-[360px]">
     <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1fr_380px]">
       <Reveal>
         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs text-dim">

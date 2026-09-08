@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Github, Menu, X } from "lucide-react";
-import logo from "@/assets/bz-logo.jpg";
+import logo from "@/assets/bz-logo-transparent.png";
 import { CAL_LINK, GITHUB_LINK } from "@/lib/site";
 
 const links = [
@@ -28,7 +28,11 @@ const SiteNav = () => {
     >
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-[22px]">
         <a href="#top" className="flex items-center">
-          <img src={logo} alt="Biruke Zeckariyas logo" className="h-[68px] w-[68px] rounded-xl object-cover" />
+          <img
+            src={logo}
+            alt="Biruke Zeckariyas logo"
+            className="h-[180px] w-[180px] object-contain sm:h-[220px] sm:w-[220px] lg:h-[280px] lg:w-[280px]"
+          />
         </a>
 
         <nav className="hidden items-center gap-1 md:flex">
