@@ -66,7 +66,7 @@ Deno.serve(async (req) => {
     };
 
     // Try create
-    let response = await fetch(`${GATEWAY_URL}/crm/v3/objects/contacts`, {
+    const response = await fetch(`${GATEWAY_URL}/crm/v3/objects/contacts`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${LOVABLE_API_KEY}`,
