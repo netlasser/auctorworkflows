@@ -6,6 +6,7 @@ import { CAL_LINK, GITHUB_LINK } from "@/lib/site";
 const links = [
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
+  { label: "ROI Calculator", href: "#roi-calculator" },
   { label: "Pricing", href: "#pricing" },
   { label: "Testimonials", href: "#testimonials" },
 ];
