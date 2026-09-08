@@ -3,109 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="canonical" href="https://workflowfelip.lovable.app/" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#120c07" />
 
-    <title>Felipe Workflows — AI Automation That Replaces Busywork, Not People</title>
-    <meta name="description" content="We design AI-powered workflows that cut manual work by 80%, recover lost revenue, and give operators back their week. Stop hiring for problems AI already solved." />
-    <meta name="author" content="Felipe Workflows" />
-    <meta name="keywords" content="AI automation, workflow automation, business process automation, Make.com, n8n, Zapier expert, AI consultancy" />
+    <title>Biruke Zeckariyas — B2B AI Automation Engineer</title>
+    <meta name="description" content="I build intelligent n8n workflows that capture leads, personalize cold outreach, and follow up automatically — so your calendar fills itself." />
+    <meta name="author" content="Biruke Zeckariyas" />
+    <meta name="keywords" content="n8n automation, AI cold email, lead capture automation, Apollo.io enrichment, B2B automation engineer" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://workflowfelip.lovable.app/" />
-    <meta property="og:title" content="Felipe Workflows — AI Automation That Replaces Busywork, Not People" />
-    <meta property="og:description" content="We design AI-powered workflows that cut manual work by 80%, recover lost revenue, and give operators back their week." />
-    <meta property="og:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/1ojRcvbfSqconsPuLWU1S7HFxzn2/social-images/social-1770712647765-logo.jpg" />
-    <meta property="og:site_name" content="Felipe Workflows" />
+    <meta property="og:title" content="Biruke Zeckariyas — B2B AI Automation Engineer" />
+    <meta property="og:description" content="Intelligent n8n workflows that capture leads, personalize outreach, and follow up automatically." />
+    <meta property="og:site_name" content="Biruke Zeckariyas" />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Felipe Workflows — AI Automation That Replaces Busywork" />
-    <meta name="twitter:description" content="AI-powered workflows that cut manual work by 80% and give operators back their week." />
-    <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/1ojRcvbfSqconsPuLWU1S7HFxzn2/social-images/social-1770712647765-logo.jpg" />
+    <meta name="twitter:title" content="Biruke Zeckariyas — B2B AI Automation Engineer" />
+    <meta name="twitter:description" content="Intelligent n8n workflows that capture leads, personalize outreach, and follow up automatically." />
 
-    <!-- JSON-LD: Organization -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Felipe Workflows",
+      "@type": "Person",
+      "name": "Biruke Zeckariyas",
+      "jobTitle": "B2B AI Automation Engineer",
       "url": "https://workflowfelip.lovable.app/",
-      "description": "AI automation consultancy designing workflows that replace manual busywork.",
-      "sameAs": []
-    }
-    </script>
-
-    <!-- JSON-LD: FAQPage -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How long does a typical automation project take?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most workflows ship in 2–4 weeks. We start with a discovery call, scope the highest-ROI process first, and roll out incrementally so you see value before the project ends."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What does it cost?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Engagements start at a fixed-scope build for a single workflow and scale into ongoing automation partnerships. We quote per project after a free 30-minute assessment so the price matches the ROI."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which tools do you work with?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We're tool-agnostic. Common stacks include Make.com, n8n, Zapier, OpenAI, Claude, Airtable, HubSpot, Notion, Slack, and custom code when needed. We pick what fits your team — not what we want to sell."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Will this replace my team?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. We replace busywork, not people. Our clients use the time they get back to focus on strategy, customer relationships, and growth — the work humans actually enjoy."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What happens after the workflow goes live?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Every build comes with documentation, monitoring, and a 30-day support window. Many clients keep us on a monthly retainer for new workflows, optimizations, and changes as their business evolves."
-          }
-        }
-      ]
+      "address": { "@type": "PostalAddress", "addressLocality": "Addis Ababa", "addressCountry": "ET" },
+      "sameAs": ["https://github.com/netlasser/My-n8n-workflows-and-automation", "https://t.me/Colavenci"]
     }
     </script>
   </head>
 
   <body>
-    <script>
-      // Reserve campaign banner height before React mounts to prevent layout shift.
-      (function () {
-        try {
-          if (localStorage.getItem('campaign-concierge-dismissed') === '1') {
-            document.documentElement.style.setProperty('--campaign-banner-h', '0px');
-          } else {
-            // Approximate: 40px on mobile, 44px on >=768px. Will be precisely
-            // updated by the React component once it mounts.
-            var h = window.matchMedia('(min-width: 768px)').matches ? 44 : 40;
-            document.documentElement.style.setProperty('--campaign-banner-h', h + 'px');
-          }
-        } catch (e) {
-          document.documentElement.style.setProperty('--campaign-banner-h', '40px');
-        }
-      })();
-    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
