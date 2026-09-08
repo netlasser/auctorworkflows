@@ -1,5 +1,5 @@
 import { motion, type Variants } from "framer-motion";
-import { CalendarCheck, Code2, MapPin, Sparkles } from "lucide-react";
+import { CalendarCheck, Code2, MapPin } from "lucide-react";
 import profile from "@/assets/bz-profile.jpg";
 import { CAL_LINK, GITHUB_LINK } from "@/lib/site";
 
@@ -95,20 +95,9 @@ const Hero = () => (
         initial="hidden"
         animate="visible"
       >
-        <motion.div variants={itemVariants}>
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs text-dim">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--success))] opacity-70" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--success))]" />
-            </span>
-            <Sparkles className="h-3.5 w-3.5 text-primary" />
-            B2B AI Automation Engineer
-          </div>
-        </motion.div>
-
         <motion.h1
           variants={itemVariants}
-          className="mt-6 font-display text-4xl leading-[1.08] tracking-tight md:text-6xl"
+          className="font-display text-4xl leading-[1.08] tracking-tight md:text-6xl"
         >
           Your sales team is <em className="gradient-text not-italic md:italic">one automation away</em>
         </motion.h1>
