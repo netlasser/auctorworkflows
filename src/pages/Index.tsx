@@ -1,10 +1,10 @@
 import Ambient from "@/components/site/Ambient";
 import SiteNav from "@/components/site/SiteNav";
 import Hero from "@/components/site/Hero";
+import TrustedBy from "@/components/site/TrustedBy";
 import Services from "@/components/site/Services";
 import Process from "@/components/site/Process";
 import TechStack from "@/components/site/TechStack";
-import RoiCalculator from "@/components/site/RoiCalculator";
 import Pricing from "@/components/site/Pricing";
 import Testimonials from "@/components/site/Testimonials";
 import CTA from "@/components/site/CTA";
@@ -17,10 +17,10 @@ const Index = () => (
     <SiteNav />
     <main>
       <Hero />
+      <TrustedBy />
       <Services />
       <Process />
       <TechStack />
-      <RoiCalculator />
       <Pricing />
       <Testimonials />
       <CTA />

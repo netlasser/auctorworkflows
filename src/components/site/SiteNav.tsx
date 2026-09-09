@@ -6,7 +6,6 @@ import { CAL_LINK, GITHUB_LINK } from "@/lib/site";
 const links = [
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
-  { label: "ROI Calculator", href: "#roi-calculator" },
   { label: "Pricing", href: "#pricing" },
   { label: "Testimonials", href: "#testimonials" },
 ];
@@ -66,7 +65,7 @@ const SiteNav = () => {
         </nav>
 
         <button
-          className="rounded-lg border border-border p-2 md:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-xl border border-border text-foreground transition-colors hover:bg-card active:scale-95 md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={open}
@@ -76,19 +75,43 @@ const SiteNav = () => {
       </div>
 
       {open && (
-        <div className="mx-[22px] mt-3 flex flex-col gap-1 rounded-2xl border border-border bg-card p-3 md:hidden">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-sm text-dim">
-              {l.label}
+        <>
+          <div
+            className="fixed inset-0 top-[65px] -z-10 bg-black/60 backdrop-blur-sm md:hidden"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="mx-[18px] mt-2.5 flex flex-col gap-1.5 rounded-2xl border border-border bg-card/95 p-3.5 shadow-2xl backdrop-blur-xl md:hidden">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="flex min-h-[44px] items-center rounded-xl px-3.5 py-2 text-sm font-medium text-dim transition-colors hover:bg-primary/10 hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href={GITHUB_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="flex min-h-[44px] items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium text-dim transition-colors hover:bg-primary/10 hover:text-foreground"
+            >
+              <Github className="h-4 w-4" /> Portfolio
             </a>
-          ))}
-          <a href={GITHUB_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-dim">
-            <Github className="h-4 w-4" /> Portfolio
-          </a>
-          <a href={CAL_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary-glow mt-1 rounded-xl px-4 py-2.5 text-center text-sm font-semibold">
-            Book a Call
-          </a>
-        </div>
+            <a
+              href={CAL_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="btn-primary-glow mt-2 flex min-h-[44px] items-center justify-center rounded-xl px-4 py-2.5 text-center text-sm font-semibold"
+            >
+              Book a Call
+            </a>
+          </div>
+        </>
       )}
     </header>
   );
