@@ -15,8 +15,12 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Outfit", "sans-serif"],
-        body: ["Outfit", "sans-serif"],
+        display: ["Inter", "sans-serif"],
+        heading: ["Inter", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+        logo: ["Inter", "sans-serif"],
+        drama: ["Playfair Display", "serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",

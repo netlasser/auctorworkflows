@@ -1,6 +1,12 @@
 # AGENTS.md
 
-Single-page Vite + React 18 + TypeScript site (Lovable scaffold, shadcn/ui + Tailwind + framer-motion) — the **Auctor Workflows** two-person agency landing page (founders Biruke Zeckariyas + Horeb Yohannes). Rebrand from Biruke's solo site is complete: all copy is agency "we"-voice, Testimonials reference "Auctor Workflows", and SEO/schema is an Organization with both founders.
+Single-page Vite + React 18 + TypeScript site (shadcn/ui + Tailwind + framer-motion + GSAP) — the **Auctor Workflows** two-person agency landing page (founders Biruke Zeckariyas + Horeb Yohannes). Rebrand from Biruke's solo site is complete, and the site has been rebuilt as a dark "Midnight Luxe" cinematic experience (obsidian base, monochrome logo-grey accent, Ivory text, no gold).
+
+## Design system (rebuilt)
+- Preset B "Midnight Luxe" adapted to a monochrome accent: `--background` obsidian `#0D0D12` (`240 16% 6%`), `--primary` logo grey `#DCDCDC` (`0 0% 86%`), `--foreground` ivory (`40 33% 97%`), `--border` slate (`240 12% 19%`). No champagne/gold anywhere.
+- Fonts: **Inter** (headings, tight tracking), **Playfair Display italic** (drama — `.font-drama`), **JetBrains Mono** (data/labels — `.font-mono`/`.font-data`). Loaded via Google Fonts `@import` in `src/index.css`.
+- Motion: all scroll/entrance animation uses **GSAP** (`src/lib/gsap.ts` registers ScrollTrigger once; always wrap in `gsap.context(...)` + `ctx.revert()`). Helpers: `prefersReducedMotion()`. Shared magnetic button: `src/components/ui/MagneticButton.tsx`.
+- Fixed look: global noise overlay (`NoiseOverlay.tsx`, inline `feTurbulence` @ 0.05), radius scale `rounded-[2rem]`–`[3rem]`, magnetic buttons (`scale 1.03`, sliding bg span), link `.lift` (`translateY(-1px)`).
 
 ## Commands
 - `npm run dev` — Vite on http://localhost:3000 (host `0.0.0.0`, HMR overlay disabled)
@@ -12,17 +18,18 @@ Single-page Vite + React 18 + TypeScript site (Lovable scaffold, shadcn/ui + Tai
 - Lockfile is `bun.lockb`; README and `vercel.json` use npm. Either works — don't treat absence of one as an error.
 
 ## Architecture
-- One route: `/` → `src/pages/Index.tsx` composes `src/components/site/*` in order (Ambient, SiteNav, Hero, TrustedBy, Services, Process, TechStack, Pricing, Testimonials, Team, CTA, SiteFooter, StickyCTA). Everything else → `NotFound`.
+- One route: `/` → `src/pages/Index.tsx` composes `src/components/site/*` in order (Ambient, NoiseOverlay, SiteNav, Hero, TrustedBy, Features, Philosophy, Protocol, TechStack, Pricing, Testimonials, Members, CTA, SiteFooter, StickyCTA). Everything else → `NotFound`.
+- Cinematic sections: `SiteNav` (floating-island pill), `Hero` (Opening Shot, GSAP timeline), `Features` (3 interactive artifacts: Diagnostic Shuffler / Telemetry Typewriter / Cursor Protocol Scheduler — replaces old `Services`), `Philosophy` (Manifesto, word-reveal, carries the 4 principles), `Protocol` (3-card sticky stacking archive — grouped Discover/Build/Ship, replaces old 6-stage `Process`), `Members` (editorial team grid — replaces old `Team`). `Services.tsx`, `Process.tsx`, `Team.tsx` were deleted.
 - Alias `@/*` → `src/*` (configured in both Vite and vitest).
 - **External links live in exactly one place:** `src/lib/site.ts` (`CAL_LINK`, `GITHUB_LINK`, `EMAIL`, `PHONE`, `PHONE_DISPLAY`, `TELEGRAM`, `WHATSAPP`) — imported by Hero, Pricing, Process, SiteNav, StickyCTA, CTA. Update links/contact there, not inside components. Telegram/WhatsApp use Horeb's number +251 991 173 217.
-- **All page copy is inline** in the component files as const arrays: `offerings` (Pricing.tsx), `processSteps` + `principles` (Process.tsx), `testimonials` (Testimonials.tsx), `clientCompanies` + `ecosystemTools` (TrustedBy.tsx), `tools` (TechStack.tsx), hero copy/`stats` in JSX (Hero.tsx).
-- Hero's profile card shows both founders: imports `@/assets/Biruke.jpg` + `@/assets/Horeb.jpg`. SiteNav/SiteFooter use the logo at `/favicon.png` (public asset; also the favicon + new agency logo).
+- **All page copy is inline** in the component files as const arrays: `offerings` (Pricing.tsx), `services` (Features.tsx), `principles` (Philosophy.tsx), `phases` (Protocol.tsx), `testimonials` (Testimonials.tsx), `clientCompanies` + `ecosystemTools` (TrustedBy.tsx), `tools` (TechStack.tsx), `members` (Members.tsx), hero copy/`stats` in JSX (Hero.tsx).
+- Hero + Members import both founder portraits: `@/assets/Biruke.jpg` + `@/assets/Horeb.jpg` (no stock imagery — real founder photos only). SiteNav/SiteFooter use the logo at `/favicon.png` (public asset; also the favicon + agency logo).
 - SEO/meta/JSON-LD live in `index.html` (Organization "Auctor Workflows", founders Biruke + Horeb; canonical still `workflowfelip.lovable.app` — no new domain yet). `metadata.json` mirrors it for Lovable.
 
 ## Styling
-- Custom utilities defined in `src/index.css` `@layer utilities`: `.font-logo` (Space Grotesk), `.section-label`, `.gradient-text`, `.card-surface`, `.btn-primary-glow`. Read these before adding button/card styles.
-- Brand colors are CSS variables in `:root` (near-black background, gold `--primary`); Tailwind maps colors to these `hsl(var(--…))` vars (tailwind.config.ts). Body/display font is Outfit.
-- shadcn/ui primitives live in `src/components/ui`; business components in `src/components/site`.
+- Custom utilities in `src/index.css` `@layer utilities`: `.font-logo`/`.font-heading`/`.font-display` (all Inter), `.font-drama` (Playfair italic), `.font-mono`/`.font-data` (JetBrains Mono), `.section-label`, `.gradient-text`, `.card-surface` (2rem radius), `.btn-primary-glow`, `.lift`, `.ease-cinematic`, `.dur-900`, `.reveal`. Keyframes also live there: `spin-slow`, `scan-line`, `ekg-path`, `pulse-dot`, `caret-blink`, `.dot-grid`, `.grid-overlay`, `.orb`. Read before adding button/card styles.
+- Brand colors are CSS variables in `:root` (obsidian background, logo-grey `--primary`); Tailwind maps colors to these `hsl(var(--…))` vars (tailwind.config.ts). Body/heading font is Inter.
+- shadcn/ui primitives live in `src/components/ui` (plus `MagneticButton.tsx`); business/section components in `src/components/site`.
 
 ## Supabase / edge function
 - `vercel.json` hardcodes the real Supabase URL + anon publishable key + project id as build env. `src/integrations/supabase/client.ts` is Lovable **auto-generated — do not edit**; it falls back to placeholders without `.env` (`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID`).

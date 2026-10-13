@@ -1,8 +1,10 @@
-import { motion, type Variants } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { CalendarCheck, Code2, MapPin } from "lucide-react";
 import biruke from "@/assets/Biruke.jpg";
 import horeb from "@/assets/Horeb.jpg";
 import { CAL_LINK, GITHUB_LINK } from "@/lib/site";
+import { gsap, prefersReducedMotion } from "@/lib/gsap";
+import MagneticButton from "@/components/ui/MagneticButton";
 
 const chips = ["n8n", "OpenAI", "Apollo.io", "SendGrid"];
 
@@ -12,210 +14,156 @@ const stats = [
   { value: "10+ hrs", label: "Saved Per Week" },
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15,
-    },
-  },
-};
+const Hero = () => {
+  const root = useRef<HTMLElement>(null);
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.65,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (prefersReducedMotion()) {
+        gsap.set("[data-hero]", { opacity: 1, y: 0 });
+        return;
+      }
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.from("[data-hero='eyebrow']", { y: 24, opacity: 0, duration: 0.7 })
+        .from("[data-hero='line-1']", { y: 48, opacity: 0, duration: 0.9 }, "-=0.4")
+        .from("[data-hero='line-2']", { y: 60, opacity: 0, duration: 1 }, "-=0.7")
+        .from("[data-hero='para']", { y: 32, opacity: 0, duration: 0.8 }, "-=0.6")
+        .from("[data-hero='cta'] > *", { y: 24, opacity: 0, duration: 0.6, stagger: 0.08 }, "-=0.5")
+        .from(
+          "[data-hero='duo']",
+          { y: 60, opacity: 0, duration: 1, ease: "power2.out" },
+          "-=0.9"
+        )
+        .from(
+          "[data-hero='stat']",
+          { y: 26, opacity: 0, duration: 0.6, stagger: 0.15 },
+          "-=0.6"
+        );
+    }, root);
+    return () => ctx.revert();
+  }, []);
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 32, scale: 0.96 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      delay: 0.3,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
+  return (
+    <section
+      id="top"
+      ref={root}
+      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden px-[22px] pb-16 pt-32"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_20%,hsl(var(--card))_0%,transparent_60%)]" />
+        <div className="absolute inset-0 grid-overlay opacity-50" />
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-background via-background/60 to-transparent" />
+      </div>
 
-const chipVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.85 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.4,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-const statsContainerVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      delay: 0.55,
-      ease: [0.16, 1, 0.3, 1],
-      staggerChildren: 0.1,
-      delayChildren: 0.65,
-    },
-  },
-};
-
-const statItemVariants: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-const Hero = () => (
-  <section id="top" className="px-[22px] pb-16 pt-28 sm:pt-32 lg:pt-36">
-    <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1fr_380px]">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.h1
-          variants={itemVariants}
-          className="font-display text-4xl leading-[1.08] tracking-tight md:text-6xl"
-        >
-          Your sales team is <em className="gradient-text not-italic md:italic">one automation away</em>
-        </motion.h1>
-
-        <motion.p
-          variants={itemVariants}
-          className="mt-6 max-w-xl text-base leading-relaxed text-dim"
-        >
-          We're Auctor Workflows — a two-person B2B AI automation agency. We build intelligent n8n workflows that
-          capture leads, personalize outreach, and follow up automatically. Your calendar fills itself while you
-          sleep.
-        </motion.p>
-
-        <motion.div
-          variants={itemVariants}
-          className="mt-8 flex flex-col gap-3 sm:flex-row"
-        >
-          <motion.a
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            href={CAL_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary-glow inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold"
-          >
-            <CalendarCheck className="h-4 w-4" /> Book Free 30-Min Assessment
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            href={GITHUB_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-6 py-3.5 text-sm font-semibold text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
-          >
-            <Code2 className="h-4 w-4" /> View Our Work
-          </motion.a>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        variants={cardVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative"
-      >
-        <div className="absolute -top-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-border bg-[hsl(var(--card-hover))] px-3.5 py-1.5 text-xs text-dim shadow-lg">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[hsl(var(--success))] opacity-70" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--success))]" />
+      <div className="mx-auto grid w-full max-w-6xl items-end gap-14 lg:grid-cols-[1.35fr_0.65fr]">
+        <div>
+          <span data-hero="eyebrow" className="section-label">
+            B2B AI Automation Agency
           </span>
-          Available for new projects
+
+          <h1 className="mt-6 font-heading text-[clamp(2.4rem,6.4vw,5.2rem)] font-semibold leading-[0.98]">
+            <span data-hero="line-1" className="block">
+              Your sales team is
+            </span>
+            <span data-hero="line-2" className="font-drama block font-normal text-dim">
+              one automation away.
+            </span>
+          </h1>
+
+          <p
+            data-hero="para"
+            className="mt-7 max-w-xl text-base leading-relaxed text-dim"
+          >
+            We're Auctor Workflows — a two-person B2B AI automation agency. We build
+            intelligent n8n workflows that capture leads, personalize outreach, and follow up
+            automatically. Your calendar fills itself while you sleep.
+          </p>
+
+          <div data-hero="cta" className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <MagneticButton
+              href={CAL_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold"
+            >
+              <CalendarCheck className="h-4 w-4" /> Book Free 30-Min Assessment
+            </MagneticButton>
+            <MagneticButton
+              href={GITHUB_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="ghost"
+              className="font-semibold"
+            >
+              <Code2 className="h-4 w-4" /> View Our Work
+            </MagneticButton>
+          </div>
         </div>
 
-        <div className="card-surface p-6 pt-10 text-center">
-          <div className="flex items-end justify-center">
-            <div
-              className="h-28 w-28 rounded-full p-[3px]"
-              style={{ background: "linear-gradient(135deg, #e8e8e8, #9a9a9a, #f4f4f4)" }}
-            >
-              <img src={biruke} alt="Portrait of Biruke Zeckariyas" className="h-full w-full rounded-full object-cover" />
+        <div data-hero="duo" className="relative mx-auto w-full max-w-sm">
+          <div className="absolute -top-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-border bg-card/80 px-3.5 py-1.5 text-xs text-dim shadow-lg backdrop-blur-md">
+            <span className="relative flex h-2 w-2">
+              <span className="pulse-dot absolute inline-flex h-full w-full rounded-full bg-[hsl(var(--success))]" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-[hsl(var(--success))]" />
+            </span>
+            Available for new projects
+          </div>
+
+          <div className="overflow-hidden rounded-[2.5rem] border border-border bg-card/60 p-6 pt-10 text-center backdrop-blur-sm">
+            <div className="flex items-end justify-center">
+              <div className="h-28 w-28 rounded-[2rem] p-[3px] ring-1 ring-border">
+                <img
+                  src={biruke}
+                  alt="Portrait of Biruke Zeckariyas"
+                  className="h-full w-full rounded-[1.8rem] object-cover object-top grayscale"
+                />
+              </div>
+              <div className="-ml-6 mb-3 h-24 w-24 rounded-[1.7rem] p-[3px] ring-1 ring-border">
+                <img
+                  src={horeb}
+                  alt="Portrait of Horeb Yohannes"
+                  className="h-full w-full rounded-[1.5rem] object-cover object-top grayscale"
+                />
+              </div>
             </div>
-            <div
-              className="-ml-6 mb-3 h-24 w-24 rounded-full p-[3px]"
-              style={{ background: "linear-gradient(135deg, #e8e8e8, #9a9a9a, #f4f4f4)" }}
-            >
-              <img src={horeb} alt="Portrait of Horeb Yohannes" className="h-full w-full rounded-full object-cover" />
+            <h2 className="mt-5 font-heading text-xl">Auctor Workflows</h2>
+            <p className="mt-1 text-sm text-primary">B2B AI Automation Agency</p>
+            <p className="mt-2 text-xs text-dim">Biruke Zeckariyas · Horeb Yohannes</p>
+            <p className="mt-2 inline-flex items-center justify-center gap-1.5 text-xs text-muted-ink">
+              <MapPin className="h-3.5 w-3.5" /> Addis Ababa, Ethiopia
+            </p>
+            <div className="mt-5 flex flex-wrap justify-center gap-2">
+              {chips.map((c) => (
+                <span
+                  key={c}
+                  className="rounded-full border border-border px-3 py-1 text-xs text-dim"
+                >
+                  {c}
+                </span>
+              ))}
             </div>
           </div>
-          <h2 className="mt-5 font-display text-xl">Auctor Workflows</h2>
-          <p className="mt-1 text-sm text-primary">B2B AI Automation Agency</p>
-          <p className="mt-2 text-xs text-dim">
-            Biruke Zeckariyas · Horeb Yohannes
-          </p>
-          <p className="mt-2 inline-flex items-center justify-center gap-1.5 text-xs text-muted-ink">
-            <MapPin className="h-3.5 w-3.5" /> Addis Ababa, Ethiopia
-          </p>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            transition={{ staggerChildren: 0.08, delayChildren: 0.5 }}
-            className="mt-5 flex flex-wrap justify-center gap-2"
-          >
-            {chips.map((c) => (
-              <motion.span
-                key={c}
-                variants={chipVariants}
-                className="rounded-full border border-border px-3 py-1 text-xs text-dim"
-              >
-                {c}
-              </motion.span>
-            ))}
-          </motion.div>
         </div>
-      </motion.div>
-    </div>
-
-    <motion.div
-      variants={statsContainerVariants}
-      initial="hidden"
-      animate="visible"
-      className="mx-auto mt-16 w-full max-w-6xl"
-    >
-      <div className="card-surface grid divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-        {stats.map((s) => (
-          <motion.div
-            key={s.label}
-            variants={statItemVariants}
-            className="px-6 py-7 text-center"
-          >
-            <div className="font-logo text-3xl font-bold text-primary">{s.value}</div>
-            <div className="mt-1.5 text-xs uppercase tracking-wider text-muted-ink">{s.label}</div>
-          </motion.div>
-        ))}
       </div>
-    </motion.div>
-  </section>
-);
+
+      <div className="mx-auto mt-14 w-full max-w-6xl">
+        <div className="grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-3">
+          {stats.map((s) => (
+            <div
+              key={s.label}
+              data-hero="stat"
+              className="bg-card px-6 py-7 text-center"
+            >
+              <div className="font-data text-3xl font-bold text-primary">{s.value}</div>
+              <div className="mt-1.5 text-xs uppercase tracking-[0.18em] text-muted-ink">
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Hero;
