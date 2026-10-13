@@ -25,7 +25,7 @@ const SiteFooter = () => (
             <img
               src="/favicon.png"
               alt="Auctor Workflows logo"
-              className="h-11 w-11 rounded-full object-contain"
+              className="h-12 w-12 rounded-full object-contain"
             />
             <span className="font-heading text-base font-semibold">Auctor Workflows</span>
           </a>

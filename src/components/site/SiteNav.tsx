@@ -35,7 +35,7 @@ const SiteNav = () => {
             <img
               src="/favicon.png"
               alt="Auctor Workflows logo"
-              className="h-8 w-8 rounded-full object-contain"
+              className="h-10 w-10 rounded-full object-contain sm:h-11 sm:w-11"
             />
             <span className="font-heading text-sm font-semibold tracking-tight">
               Auctor <span className="text-dim">Workflows</span>
