@@ -23,7 +23,7 @@ Single-page Vite + React 18 + TypeScript site (shadcn/ui + Tailwind + framer-mot
 - Alias `@/*` → `src/*` (configured in both Vite and vitest).
 - **External links live in exactly one place:** `src/lib/site.ts` (`CAL_LINK`, `GITHUB_LINK`, `EMAIL`, `PHONE`, `PHONE_DISPLAY`, `TELEGRAM`, `WHATSAPP`) — imported by Hero, Pricing, Process, SiteNav, StickyCTA, CTA. Update links/contact there, not inside components. Telegram/WhatsApp use Horeb's number +251 991 173 217.
 - **All page copy is inline** in the component files as const arrays: `offerings` (Pricing.tsx), `services` (Features.tsx), `principles` (Philosophy.tsx), `phases` (Protocol.tsx), `testimonials` (Testimonials.tsx), `clientCompanies` + `ecosystemTools` (TrustedBy.tsx), `tools` (TechStack.tsx), `members` (Members.tsx), hero copy/`stats` in JSX (Hero.tsx).
-- Hero + Members import both founder portraits: `@/assets/Biruke.jpg` + `@/assets/Horeb.jpg` (no stock imagery — real founder photos only). SiteNav/SiteFooter use the logo at `/favicon.png` (public asset; also the favicon + agency logo).
+- Only `Members` uses the founder portraits (`@/assets/Biruke.jpg` + `@/assets/Horeb.jpg`) — the Hero is deliberately typographic with no photos (no duplicate faces, no stock imagery). SiteNav/SiteFooter use the logo at `/favicon.png` (public asset; also the favicon + agency logo).
 - SEO/meta/JSON-LD live in `index.html` (Organization "Auctor Workflows", founders Biruke + Horeb; canonical still `workflowfelip.lovable.app` — no new domain yet). `metadata.json` mirrors it for Lovable.
 
 ## Styling
