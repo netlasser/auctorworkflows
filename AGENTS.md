@@ -12,7 +12,7 @@ Single-page Vite + React 18 + TypeScript site (Lovable scaffold, shadcn/ui + Tai
 - Lockfile is `bun.lockb`; README and `vercel.json` use npm. Either works — don't treat absence of one as an error.
 
 ## Architecture
-- One route: `/` → `src/pages/Index.tsx` composes `src/components/site/*` in order (Ambient, SiteNav, Hero, TrustedBy, Services, Process, TechStack, Pricing, Testimonials, CTA, SiteFooter, StickyCTA). Everything else → `NotFound`.
+- One route: `/` → `src/pages/Index.tsx` composes `src/components/site/*` in order (Ambient, SiteNav, Hero, TrustedBy, Services, Process, TechStack, Pricing, Testimonials, Team, CTA, SiteFooter, StickyCTA). Everything else → `NotFound`.
 - Alias `@/*` → `src/*` (configured in both Vite and vitest).
 - **External links live in exactly one place:** `src/lib/site.ts` (`CAL_LINK`, `GITHUB_LINK`, `EMAIL`, `PHONE`, `PHONE_DISPLAY`, `TELEGRAM`, `WHATSAPP`) — imported by Hero, Pricing, Process, SiteNav, StickyCTA, CTA. Update links/contact there, not inside components. Telegram/WhatsApp use Horeb's number +251 991 173 217.
 - **All page copy is inline** in the component files as const arrays: `offerings` (Pricing.tsx), `processSteps` + `principles` (Process.tsx), `testimonials` (Testimonials.tsx), `clientCompanies` + `ecosystemTools` (TrustedBy.tsx), `tools` (TechStack.tsx), hero copy/`stats` in JSX (Hero.tsx).

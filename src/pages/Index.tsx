@@ -7,6 +7,7 @@ import Process from "@/components/site/Process";
 import TechStack from "@/components/site/TechStack";
 import Pricing from "@/components/site/Pricing";
 import Testimonials from "@/components/site/Testimonials";
+import Team from "@/components/site/Team";
 import CTA from "@/components/site/CTA";
 import StickyCTA from "@/components/site/StickyCTA";
 import SiteFooter from "@/components/site/SiteFooter";
@@ -23,6 +24,7 @@ const Index = () => (
       <TechStack />
       <Pricing />
       <Testimonials />
+      <Team />
       <CTA />
     </main>
     <SiteFooter />
