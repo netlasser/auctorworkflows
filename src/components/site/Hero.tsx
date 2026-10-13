@@ -157,13 +157,13 @@ const Hero = () => (
           <div className="flex items-end justify-center">
             <div
               className="h-28 w-28 rounded-full p-[3px]"
-              style={{ background: "linear-gradient(135deg, #d29b4a, #b06d2e, #f0c586)" }}
+              style={{ background: "linear-gradient(135deg, #e8e8e8, #9a9a9a, #f4f4f4)" }}
             >
               <img src={biruke} alt="Portrait of Biruke Zeckariyas" className="h-full w-full rounded-full object-cover" />
             </div>
             <div
               className="-ml-6 mb-3 h-24 w-24 rounded-full p-[3px]"
-              style={{ background: "linear-gradient(135deg, #d29b4a, #b06d2e, #f0c586)" }}
+              style={{ background: "linear-gradient(135deg, #e8e8e8, #9a9a9a, #f4f4f4)" }}
             >
               <img src={horeb} alt="Portrait of Horeb Yohannes" className="h-full w-full rounded-full object-cover" />
             </div>

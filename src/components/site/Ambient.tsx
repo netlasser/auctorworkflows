@@ -3,7 +3,7 @@ const Ambient = () => (
     <div className="absolute inset-0 grid-overlay opacity-60" />
     <div
       className="orb absolute -left-24 top-10 h-[420px] w-[420px] rounded-full blur-[120px]"
-      style={{ background: "rgba(210,155,74,0.28)" }}
+      style={{ background: "rgba(224,224,224,0.10)" }}
     />
     <div
       className="orb absolute right-[-8%] top-1/3 h-[460px] w-[460px] rounded-full blur-[130px]"

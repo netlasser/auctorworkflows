@@ -56,7 +56,7 @@ const StickyCTA = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.04, y: -2 }}
             whileTap={{ scale: 0.96 }}
-            className="group relative flex items-center gap-3 rounded-full border border-primary/40 bg-[hsl(var(--card))]/90 py-2.5 pl-4 pr-3.5 shadow-[0_14px_35px_-8px_rgba(210,155,74,0.4)] backdrop-blur-xl transition-all duration-300 hover:border-primary hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_18px_45px_-6px_rgba(210,155,74,0.6)]"
+            className="group relative flex items-center gap-3 rounded-full border border-primary/40 bg-[hsl(var(--card))]/90 py-2.5 pl-4 pr-3.5 shadow-[0_14px_35px_-8px_rgba(224,224,224,0.22)] backdrop-blur-xl transition-all duration-300 hover:border-primary hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_18px_45px_-6px_rgba(224,224,224,0.32)]"
             aria-label="Book a Consultation"
           >
             {/* Pulsing availability badge dot */}

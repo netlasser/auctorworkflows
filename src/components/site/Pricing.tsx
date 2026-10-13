@@ -218,7 +218,7 @@ const Pricing = () => {
                 <div
                   className={`card-surface relative flex h-full flex-col p-5 sm:p-6 transition-all ${
                     p.featured
-                      ? "border-primary/80 bg-[hsl(var(--card-hover))] shadow-[0_20px_60px_-25px_rgba(210,155,74,0.45)] lg:-translate-y-2"
+                      ? "border-primary/80 bg-[hsl(var(--card-hover))] shadow-[0_20px_60px_-25px_rgba(224,224,224,0.25)] lg:-translate-y-2"
                       : "hover:border-[hsl(var(--border-hover))]"
                   }`}
                 >
