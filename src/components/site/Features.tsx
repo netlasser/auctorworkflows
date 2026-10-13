@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Filter, Linkedin, Mail } from "lucide-react";
 import Reveal from "./Reveal";
+import { useInView } from "@/lib/useInView";
 
 const services = [
   {
@@ -41,13 +42,15 @@ const shufflerItems = [
 
 const DiagnosticShuffler = () => {
   const [step, setStep] = useState(0);
+  const { ref, inView } = useInView<HTMLDivElement>();
   useEffect(() => {
+    if (!inView) return;
     const t = setInterval(() => setStep((s) => s + 1), 3000);
     return () => clearInterval(t);
-  }, []);
+  }, [inView]);
 
   return (
-    <div className="relative h-44">
+    <div ref={ref} className="relative h-44">
       {shufflerItems.map((item, i) => {
         const pos = (i - step + shufflerItems.length) % shufflerItems.length;
         const style =
@@ -96,8 +99,10 @@ const TelemetryTypewriter = () => {
   const [lineIdx, setLineIdx] = useState(0);
   const [text, setText] = useState("");
   const [buf, setBuf] = useState<string[]>([]);
+  const { ref, inView } = useInView<HTMLDivElement>();
 
   useEffect(() => {
+    if (!inView) return;
     const full = telemetryLines[lineIdx];
     let i = 0;
     const t = setInterval(() => {
@@ -113,10 +118,10 @@ const TelemetryTypewriter = () => {
       }
     }, 42);
     return () => clearInterval(t);
-  }, [lineIdx]);
+  }, [lineIdx, inView]);
 
   return (
-    <div className="flex h-44 flex-col justify-end gap-1.5 overflow-hidden px-1 font-data text-xs">
+    <div ref={ref} className="flex h-44 flex-col justify-end gap-1.5 overflow-hidden px-1 font-data text-xs">
       <div className="mb-2 flex items-center gap-2">
         <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-[hsl(var(--success))]" />
         <span className="text-[10px] uppercase tracking-[0.22em] text-muted-ink">
@@ -142,13 +147,15 @@ const scheduled = [false, true, false, true, false, true, false];
 
 const CursorProtocolScheduler = () => {
   const [active, setActive] = useState(1);
+  const { ref, inView } = useInView<HTMLDivElement>();
   useEffect(() => {
+    if (!inView) return;
     const t = setInterval(() => setActive((a) => (a + 1) % 7), 1500);
     return () => clearInterval(t);
-  }, []);
+  }, [inView]);
 
   return (
-    <div className="relative flex h-44 flex-col justify-center">
+    <div ref={ref} className="relative flex h-44 flex-col justify-center">
       <div className="grid grid-cols-7 gap-1.5">
         {weekdays.map((d, i) => {
           const isActive = i === active;

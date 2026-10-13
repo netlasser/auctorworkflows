@@ -151,15 +151,15 @@ const Protocol = () => {
           <div
             key={p.name}
             data-wrap
-            className="sticky top-0 flex h-[100dvh] items-center justify-center px-[22px]"
+            className="sticky top-0 flex h-[100dvh] items-center justify-center px-[22px] py-14"
           >
-            <article className="protocol-inner card-surface relative grid w-full max-w-5xl gap-8 overflow-hidden p-7 md:grid-cols-2 md:p-12">
+            <article className="protocol-inner card-surface relative grid w-full max-w-5xl gap-6 overflow-hidden p-6 sm:p-8 md:grid-cols-2 md:gap-8 md:p-12">
               <div className="flex flex-col justify-between">
                 <div>
                   <span className="font-data text-[11px] uppercase tracking-[0.28em] text-muted-ink">
                     Phase {p.no} / 03
                   </span>
-                  <h3 className="font-drama mt-4 text-4xl font-normal md:text-5xl">{p.name}</h3>
+                  <h3 className="font-drama mt-4 text-3xl font-normal sm:text-4xl md:text-5xl">{p.name}</h3>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-dim">{p.desc}</p>
                 </div>
 
@@ -178,7 +178,7 @@ const Protocol = () => {
                 </ul>
               </div>
 
-              <div className="relative h-64 overflow-hidden rounded-[1.75rem] border border-border bg-background/50 md:h-full md:min-h-[320px]">
+              <div className="relative h-44 overflow-hidden rounded-[1.75rem] border border-border bg-background/50 sm:h-56 md:h-full md:min-h-[320px]">
                 {animations[i]}
               </div>
             </article>

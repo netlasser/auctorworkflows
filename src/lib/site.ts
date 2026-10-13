@@ -1,3 +1,7 @@
+// Production origin — no custom domain yet. When one goes live, update here AND
+// the canonical/og:url/JSON-LD URLs in index.html + metadata.json (search "workflowfelip.lovable.app").
+export const SITE_URL = "https://workflowfelip.lovable.app";
+
 export const CAL_LINK = "https://cal.com/biruke-z/30-minutes-assessment-call?overlayCalendar=true";
 export const GITHUB_LINK = "https://github.com/netlasser/My-n8n-workflows-and-automation";
 export const EMAIL = "birukezeckariays@gmail.com";

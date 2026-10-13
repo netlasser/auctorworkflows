@@ -95,7 +95,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="mx-auto mt-16 w-full max-w-4xl">
+      <div className="mx-auto mt-12 w-full max-w-4xl sm:mt-16">
         <div className="grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-3">
           {stats.map((s) => (
             <div key={s.label} data-hero="stat" className="bg-card px-6 py-7 text-center">

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Star, Quote, ChevronLeft, ChevronRight, Pause, Play, CheckCircle2, TrendingUp } from "lucide-react";
 import Reveal from "./Reveal";
+import { useInView } from "@/lib/useInView";
 import {
   Carousel,
   CarouselContent,
@@ -80,6 +81,7 @@ const Testimonials = () => {
   const [count, setCount] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const { ref: carouselRef, inView } = useInView<HTMLDivElement>();
 
   useEffect(() => {
     if (!api) return;
@@ -101,14 +103,14 @@ const Testimonials = () => {
 
   // Smooth auto-playing interval with hover pause
   useEffect(() => {
-    if (!api || !isPlaying || isHovered) return;
+    if (!api || !isPlaying || isHovered || !inView) return;
 
     const timer = setInterval(() => {
       api.scrollNext();
     }, 4500);
 
     return () => clearInterval(timer);
-  }, [api, isPlaying, isHovered]);
+  }, [api, isPlaying, isHovered, inView]);
 
   const handleScrollPrev = useCallback(() => {
     api?.scrollPrev();
@@ -153,7 +155,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
-                className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
                 aria-label={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
                 title={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
               >
@@ -163,7 +165,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollPrev}
-                className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -172,7 +174,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollNext}
-                className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -183,6 +185,7 @@ const Testimonials = () => {
 
         {/* Carousel Container */}
         <div
+          ref={carouselRef}
           className="mt-10"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -210,7 +213,7 @@ const Testimonials = () => {
                             <Star key={s} className="h-3.5 w-3.5 fill-primary text-primary" />
                           ))}
                         </div>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary-light">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-[11px] font-medium text-primary">
                           <TrendingUp className="h-3 w-3" />
                           {t.metric}
                         </span>

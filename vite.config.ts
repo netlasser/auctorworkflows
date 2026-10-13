@@ -18,4 +18,15 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-gsap": ["gsap"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-carousel": ["embla-carousel-react"],
+        },
+      },
+    },
+  },
 }));

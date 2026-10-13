@@ -33,7 +33,7 @@ const SiteNav = () => {
         <div className="flex items-center justify-between gap-3">
           <a href="#top" className="flex items-center gap-2.5 pl-2">
             <img
-              src="/favicon.png"
+              src="/logo.png"
               alt="Auctor Workflows logo"
               className="h-10 w-10 rounded-full object-contain sm:h-11 sm:w-11"
             />

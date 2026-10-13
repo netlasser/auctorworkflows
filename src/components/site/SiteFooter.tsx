@@ -23,7 +23,7 @@ const SiteFooter = () => (
         <div>
           <a href="#top" className="flex items-center gap-3">
             <img
-              src="/favicon.png"
+              src="/logo.png"
               alt="Auctor Workflows logo"
               className="h-12 w-12 rounded-full object-contain"
             />

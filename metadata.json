@@ -1,6 +1,8 @@
 {
   "name": "Auctor Workflows — B2B AI Automation Agency",
   "description": "We build intelligent n8n workflows that capture leads, personalize cold outreach, and follow up automatically — so your calendar fills itself.",
+  "url": "https://workflowfelip.lovable.app/",
+  "ogImage": "/og-image.png",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

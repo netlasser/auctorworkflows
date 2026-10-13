@@ -239,10 +239,10 @@ const TrustedBy = () => {
         <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
           {clientCompanies.map((company, index) => (
             <Reveal key={company.name} delay={index * 60} className="h-full">
-              <div className="group relative flex h-full flex-col justify-between rounded-[1.5rem] border border-border bg-background/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_12px_24px_-10px_rgba(224,224,224,0.12)]">
+              <div className="group relative flex h-full flex-col justify-between rounded-[1.75rem] border border-border bg-background/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_12px_24px_-10px_rgba(224,224,224,0.12)]">
                 <div>
                   <div className="flex items-center justify-between">
-                    <div className="transition-transform duration-200 group-hover:scale-105">
+                    <div className="opacity-75 grayscale transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0">
                       {company.logo}
                     </div>
                   </div>

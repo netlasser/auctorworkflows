@@ -152,7 +152,7 @@ const Pricing = () => {
               <button
                 type="button"
                 onClick={() => setBillingMode("one-time")}
-                className={`min-h-[40px] rounded-lg sm:rounded-full px-4 py-2 text-xs font-semibold text-center transition-all ${
+                className={`min-h-[40px] rounded-full px-4 py-2 text-xs font-semibold text-center transition-all ${
                   billingMode === "one-time"
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-dim hover:text-foreground"
@@ -163,7 +163,7 @@ const Pricing = () => {
               <button
                 type="button"
                 onClick={() => setBillingMode("retainer")}
-                className={`min-h-[40px] rounded-lg sm:rounded-full px-4 py-2 text-xs font-semibold text-center transition-all ${
+                className={`min-h-[40px] rounded-full px-4 py-2 text-xs font-semibold text-center transition-all ${
                   billingMode === "retainer"
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-dim hover:text-foreground"
@@ -285,7 +285,7 @@ const Pricing = () => {
                     href={CAL_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-6 sm:mt-7 flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-center text-xs font-semibold transition-all ${
+                    className={`mt-6 sm:mt-7 flex min-h-[44px] items-center justify-center gap-2 rounded-full px-4 py-2.5 text-center text-xs font-semibold transition-all ${
                       p.featured
                         ? "btn-primary-glow"
                         : "border border-border text-dim hover:border-[hsl(var(--border-hover))] hover:text-foreground hover:bg-[hsl(var(--card-hover))]"
@@ -321,7 +321,7 @@ const Pricing = () => {
               {offerings.map((item) => (
                 <div
                   key={item.name}
-                  className={`rounded-xl border p-4 transition-all ${
+                  className={`rounded-2xl border p-4 transition-all ${
                     item.featured
                       ? "border-primary/60 bg-primary/[0.04]"
                       : "border-border bg-background/50"
@@ -341,7 +341,7 @@ const Pricing = () => {
                     </div>
                   </div>
 
-                  <div className="mt-3 grid grid-cols-2 gap-2 rounded-lg bg-background/80 p-2.5 border border-border/60 text-xs">
+                  <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl bg-background/80 p-2.5 border border-border/60 text-xs">
                     <div>
                       <span className="text-[10px] uppercase font-semibold text-muted-ink block">One-Time Build</span>
                       <span className="font-logo font-bold text-sm text-foreground">{item.oneTimePrice}</span>
@@ -367,7 +367,7 @@ const Pricing = () => {
                     href={CAL_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-3 flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold ${
+                    className={`mt-3 flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold ${
                       item.featured
                         ? "btn-primary-glow"
                         : "border border-border bg-background/80 text-foreground hover:bg-[hsl(var(--card-hover))]"
@@ -437,7 +437,7 @@ const Pricing = () => {
                           href={CAL_LINK}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex min-h-[36px] items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all ${
+                          className={`inline-flex min-h-[36px] items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
                             item.featured
                               ? "bg-primary text-primary-foreground hover:bg-primary/90"
                               : "border border-border text-dim hover:text-foreground hover:border-[hsl(var(--border-hover))]"
