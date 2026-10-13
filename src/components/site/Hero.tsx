@@ -1,6 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { CalendarCheck, Code2, MapPin } from "lucide-react";
-import profile from "@/assets/bz-profile.jpg";
+import biruke from "@/assets/Biruke.jpg";
+import horeb from "@/assets/Horeb.jpg";
 import { CAL_LINK, GITHUB_LINK } from "@/lib/site";
 
 const chips = ["n8n", "OpenAI", "Apollo.io", "SendGrid"];
@@ -106,8 +107,9 @@ const Hero = () => (
           variants={itemVariants}
           className="mt-6 max-w-xl text-base leading-relaxed text-dim"
         >
-          I'm Biruke Zeckariyas — a B2B AI automation engineer. I build intelligent n8n workflows that capture leads,
-          personalize outreach, and follow up automatically. Your calendar fills itself while you sleep.
+          We're Auctor Workflows — a two-person B2B AI automation agency. We build intelligent n8n workflows that
+          capture leads, personalize outreach, and follow up automatically. Your calendar fills itself while you
+          sleep.
         </motion.p>
 
         <motion.div
@@ -132,7 +134,7 @@ const Hero = () => (
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-xl border border-border px-6 py-3.5 text-sm font-semibold text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
           >
-            <Code2 className="h-4 w-4" /> View My Work
+            <Code2 className="h-4 w-4" /> View Our Work
           </motion.a>
         </motion.div>
       </motion.div>
@@ -152,15 +154,26 @@ const Hero = () => (
         </div>
 
         <div className="card-surface p-6 pt-10 text-center">
-          <div
-            className="mx-auto h-32 w-32 rounded-full p-[3px]"
-            style={{ background: "linear-gradient(135deg, #d29b4a, #b06d2e, #f0c586)" }}
-          >
-            <img src={profile} alt="Portrait of Biruke Zeckariyas" className="h-full w-full rounded-full object-cover" />
+          <div className="flex items-end justify-center">
+            <div
+              className="h-28 w-28 rounded-full p-[3px]"
+              style={{ background: "linear-gradient(135deg, #d29b4a, #b06d2e, #f0c586)" }}
+            >
+              <img src={biruke} alt="Portrait of Biruke Zeckariyas" className="h-full w-full rounded-full object-cover" />
+            </div>
+            <div
+              className="-ml-6 mb-3 h-24 w-24 rounded-full p-[3px]"
+              style={{ background: "linear-gradient(135deg, #d29b4a, #b06d2e, #f0c586)" }}
+            >
+              <img src={horeb} alt="Portrait of Horeb Yohannes" className="h-full w-full rounded-full object-cover" />
+            </div>
           </div>
-          <h2 className="mt-5 font-display text-xl">Biruke Zeckariyas</h2>
-          <p className="mt-1 text-sm text-primary">B2B AI Automation Engineer</p>
-          <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-muted-ink">
+          <h2 className="mt-5 font-display text-xl">Auctor Workflows</h2>
+          <p className="mt-1 text-sm text-primary">B2B AI Automation Agency</p>
+          <p className="mt-2 text-xs text-dim">
+            Biruke Zeckariyas · Horeb Yohannes
+          </p>
+          <p className="mt-2 inline-flex items-center justify-center gap-1.5 text-xs text-muted-ink">
             <MapPin className="h-3.5 w-3.5" /> Addis Ababa, Ethiopia
           </p>
           <motion.div

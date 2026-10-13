@@ -20,7 +20,7 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "Biruke built us a cold outreach engine that completely transformed our pipeline. We went from generic email blasts to hyper-personalized Apollo + n8n sequences that sound individually researched. Our sales team now focuses on closing, not chasing.",
+      "The Auctor team built us a cold outreach engine that completely transformed our pipeline. We went from generic email blasts to hyper-personalized Apollo + n8n sequences that sound individually researched. Our sales team now focuses on closing, not chasing.",
     name: "Abebe Kebede",
     role: "Founder & CEO",
     company: "Addis Tech Solutions",
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Our onboarding required 14 repetitive cross-checks across identity documents, KYC verification, and CRM updates. Biruke automated the entire flow using n8n and vision AI. What took 2 business days is now completed in 90 seconds.",
+      "Our onboarding required 14 repetitive cross-checks across identity documents, KYC verification, and CRM updates. Auctor automated the entire flow using n8n and vision AI. What took 2 business days is now completed in 90 seconds.",
     name: "Nahum Tadesse",
     role: "Operations Lead",
     company: "Mereb FinTech",
@@ -47,7 +47,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "The automated re-engagement workflow Biruke engineered resurrected closed-lost deals from our HubSpot database. It detected company hiring surges, personalized follow-ups, and booked 23 discovery calls in our first 30 days.",
+      "The automated re-engagement workflow Auctor Workflows engineered resurrected closed-lost deals from our HubSpot database. It detected company hiring surges, personalized follow-ups, and booked 23 discovery calls in our first 30 days.",
     name: "Elena Rostova",
     role: "Head of Growth",
     company: "Pulse Analytics",
@@ -56,7 +56,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Extracting order details from unstructured PDF invoices and syncing them with inventory systems caused constant errors. Biruke's document AI pipeline solved it overnight. Reliable, silent, and flawlessly built.",
+      "Extracting order details from unstructured PDF invoices and syncing them with inventory systems caused constant errors. Auctor's document AI pipeline solved it overnight. Reliable, silent, and flawlessly built.",
     name: "Dawit Haile",
     role: "Managing Director",
     company: "Nexus Logistics",
@@ -65,7 +65,7 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Biruke doesn't just connect APIs; he understands sales operations and conversion psychology. The automations he deployed generated more qualified meetings in Q1 than our SDR team booked in all of last year.",
+      "Auctor doesn't just connect APIs; they understand sales operations and conversion psychology. The automations they deployed generated more qualified meetings in Q1 than our SDR team booked in all of last year.",
     name: "Marcus Chen",
     role: "Founder & Growth Partner",
     company: "ScaleWave Media",
@@ -239,7 +239,7 @@ const Testimonials = () => {
                             <span className="text-sm font-semibold text-foreground">{t.name}</span>
                             <CheckCircle2
                               className="h-3.5 w-3.5 text-primary"
-                              title="Verified Client"
+                              aria-label="Verified Client"
                             />
                           </div>
                           <span className="block text-xs text-muted-ink">

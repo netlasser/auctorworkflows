@@ -97,8 +97,8 @@ const TechStack = () => (
     <div className="mx-auto w-full max-w-6xl">
       <Reveal className="max-w-2xl">
         <span className="section-label">Tech Stack</span>
-        <h2 className="mt-4 font-display text-3xl md:text-4xl">Tools I work with</h2>
-        <p className="mt-4 text-dim">I integrate with the software you already use. No need to rip and replace.</p>
+        <h2 className="mt-4 font-display text-3xl md:text-4xl">Tools we work with</h2>
+        <p className="mt-4 text-dim">We integrate with the software you already use. No need to rip and replace.</p>
       </Reveal>
 
       <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">

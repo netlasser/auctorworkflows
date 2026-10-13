@@ -49,7 +49,7 @@ const processSteps: ProcessStep[] = [
     icon: Search,
     tagline: "Pinpointing bottlenecks, data leaks, and high-leverage automation targets.",
     summary:
-      "We begin with a focused 30-minute discovery session to inspect your existing sales, marketing, or ops stack (CRM, lead forms, Apollo, email inboxes, Google Sheets). I map the exact manual touchpoints and quantify the time and revenue leaks.",
+      "We begin with a focused 30-minute discovery session to inspect your existing sales, marketing, or ops stack (CRM, lead forms, Apollo, email inboxes, Google Sheets). We map the exact manual touchpoints and quantify the time and revenue leaks.",
     actions: [
       "Audit existing manual workflows, spreadsheets, and repetitive team tasks",
       "Inspect API capabilities, webhook endpoints, and rate limits across your current tools",
@@ -97,7 +97,7 @@ const processSteps: ProcessStep[] = [
     icon: Cpu,
     tagline: "Crafting resilient node logic, webhook listeners, and structured LLM prompts.",
     summary:
-      "I engineer the entire automation pipeline inside n8n or Make.com. AI components (OpenAI GPT-4o, Anthropic Claude) are configured with strict JSON schemas and few-shot examples to guarantee hallucination-free outputs.",
+      "We engineer the entire automation pipeline inside n8n or Make.com. Our AI components (OpenAI GPT-4o, Anthropic Claude) are configured with strict JSON schemas and few-shot examples to guarantee hallucination-free outputs.",
     actions: [
       "Build custom n8n node sequences connecting webhooks, databases, and APIs",
       "Engineer system prompts with structured JSON validation to prevent AI drift",
@@ -121,7 +121,7 @@ const processSteps: ProcessStep[] = [
     icon: ShieldAlert,
     tagline: "Simulating API crashes, bad inputs, and duplicate payloads to ensure bulletproof reliability.",
     summary:
-      "Automations that fail silently destroy pipeline trust. I subject the workflow to rigorous stress testing: malformed lead forms, disconnected webhooks, and rate-limit spikes, ensuring automated failovers trigger instantly.",
+      "Automations that fail silently destroy pipeline trust. We subject every workflow to rigorous stress testing: malformed lead forms, disconnected webhooks, and rate-limit spikes, ensuring automated failovers trigger instantly.",
     actions: [
       "Run 50+ diverse test payloads with missing data, unusual characters, and edge cases",
       "Configure automated dead-letter queues and instant Slack/Telegram alert nodes on errors",
@@ -145,7 +145,7 @@ const processSteps: ProcessStep[] = [
     icon: Rocket,
     tagline: "Going live in your infrastructure with complete documentation and full code ownership.",
     summary:
-      "We cut over to your live production environment. I provide a complete walkthrough video, detailed Notion/Markdown documentation, and raw exportable workflow JSON files. You own 100% of everything.",
+      "We cut over to your live production environment. We provide a complete walkthrough video, detailed Notion/Markdown documentation, and raw exportable workflow JSON files. You own 100% of everything.",
     actions: [
       "Migrate workflows directly to your self-hosted VPS or n8n Cloud instance",
       "Record custom step-by-step Loom SOPs explaining every node and configuration switch",
@@ -169,7 +169,7 @@ const processSteps: ProcessStep[] = [
     icon: Activity,
     tagline: "Free bug-fix warranty, live performance monitoring, and prompt fine-tuning.",
     summary:
-      "I don't disappear after deployment. Every project includes a 14 to 30 day warranty where I monitor real-world execution logs, tune AI prompt temperatures, and optimize API costs as your volume grows.",
+      "We don't disappear after deployment. Every project includes a 14 to 30 day warranty where we monitor real-world execution logs, tune AI prompt temperatures, and optimize API costs as your volume grows.",
     actions: [
       "Monitor daily production execution logs for unexpected third-party API rate limits",
       "Fine-tune prompt scoring criteria and custom fields based on real inbound lead feedback",
@@ -188,12 +188,12 @@ const processSteps: ProcessStep[] = [
 const principles = [
   {
     title: "Zero Vendor Lock-In",
-    desc: "You own 100% of the workflow logic, code, and accounts. I provide raw JSON export files that you can import into any n8n instance at any time.",
+    desc: "You own 100% of the workflow logic, code, and accounts. We provide raw JSON export files that you can import into any n8n instance at any time.",
     icon: KeyRound,
   },
   {
     title: "Asynchronous Respect",
-    desc: "No endless status meetings. I share concise Loom video demos and written milestone logs, reserving live calls purely for high-value strategic decisions.",
+    desc: "No endless status meetings. We share concise Loom video demos and written milestone logs, reserving live calls purely for high-value strategic decisions.",
     icon: Video,
   },
   {
@@ -226,7 +226,7 @@ const Process = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
           <Reveal>
-            <span className="section-label">How I Work</span>
+            <span className="section-label">How We Work</span>
             <h2 className="mt-3 font-display text-2xl sm:text-3xl md:text-4xl leading-tight">
               From initial discovery to live production automation
             </h2>
@@ -603,7 +603,7 @@ const Process = () => {
           <Reveal>
             <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8">
               <h3 className="font-display text-lg sm:text-xl font-bold text-foreground">
-                The Guarantees Behind How I Work
+                The Guarantees Behind How We Work
               </h3>
               <p className="text-xs sm:text-sm text-dim mt-1">
                 Built-in safeguards so you can outsource critical workflow engineering with total confidence.

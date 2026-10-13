@@ -14,7 +14,7 @@ const services = [
   {
     icon: Mail,
     title: "AI Cold Email Outreach Engine",
-    desc: "Stop sending generic blasts. My system researches each prospect, writes personalized icebreakers with GPT-4, A/B tests subject lines, and sends smart follow-ups based on engagement.",
+    desc: "Stop sending generic blasts. Our system researches each prospect, writes personalized icebreakers with GPT-4, A/B tests subject lines, and sends smart follow-ups based on engagement.",
     rows: [
       ["Generic blasts with ~2% reply rate", "AI-personalized emails, ~38% reply rate"],
       ["No follow-up, leads go cold", "3-tier conditional follow-up sequence"],
@@ -35,7 +35,7 @@ const Services = () => (
   <section id="services" className="px-[22px] py-[clamp(80px,10vw,130px)]">
     <div className="mx-auto w-full max-w-6xl">
       <Reveal className="max-w-2xl">
-        <span className="section-label">What I Build</span>
+        <span className="section-label">What We Build</span>
         <h2 className="mt-4 font-display text-3xl md:text-4xl">Systems that sell while you sleep</h2>
         <p className="mt-4 text-dim">
           Three automation engines that handle the repetitive work between a stranger and a booked call.

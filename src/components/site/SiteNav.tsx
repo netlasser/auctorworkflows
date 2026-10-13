@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Github, Menu, X } from "lucide-react";
-import logo from "@/assets/bz-logo-transparent.png";
 import { CAL_LINK, GITHUB_LINK } from "@/lib/site";
 
 const links = [
@@ -30,8 +29,8 @@ const SiteNav = () => {
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-[22px]">
         <a href="#top" className="flex items-center">
           <img
-            src={logo}
-            alt="Biruke Zeckariyas logo"
+            src="/favicon.png"
+            alt="Auctor Workflows logo"
             className="h-10 w-10 object-contain sm:h-11 sm:w-11 md:h-12 md:w-12"
           />
         </a>
