@@ -216,7 +216,7 @@ const Pricing = () => {
             return (
               <Reveal key={p.name} delay={i * 80} className="h-full">
                 <div
-                  className={`card-surface relative flex h-full flex-col p-5 sm:p-6 transition-all ${
+                  className={`card-surface relative flex h-full flex-col p-5 sm:p-6 lg:p-7 transition-all ${
                     p.featured
                       ? "border-primary/80 bg-[hsl(var(--card-hover))] shadow-[0_20px_60px_-25px_rgba(224,224,224,0.25)] lg:-translate-y-2"
                       : "hover:border-[hsl(var(--border-hover))]"
@@ -271,9 +271,9 @@ const Pricing = () => {
                     <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-muted-ink">
                       {isOneTime ? "What's Included" : "Retainer Services"}
                     </span>
-                    <ul className="mt-3 space-y-2.5">
+                    <ul className="mt-3 space-y-3">
                       {(isOneTime ? p.features : p.retainerPerks).map((feat) => (
-                        <li key={feat} className="flex items-start gap-2 text-xs text-dim leading-snug">
+                        <li key={feat} className="flex items-start gap-2.5 text-xs sm:text-sm text-dim leading-snug">
                           <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
                           <span>{feat}</span>
                         </li>
@@ -319,9 +319,9 @@ const Pricing = () => {
             {/* Mobile Stacked Card View for small screens (under sm) */}
             <div className="mt-4 space-y-3 sm:hidden">
               {offerings.map((item) => (
-                <div
-                  key={item.name}
-                  className={`rounded-2xl border p-4 transition-all ${
+<div
+                    key={item.name}
+                    className={`rounded-2xl border p-4 sm:p-5 transition-all ${
                     item.featured
                       ? "border-primary/60 bg-primary/[0.04]"
                       : "border-border bg-background/50"
@@ -341,7 +341,7 @@ const Pricing = () => {
                     </div>
                   </div>
 
-                  <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl bg-background/80 p-2.5 border border-border/60 text-xs">
+                  <div className="mt-3 grid grid-cols-2 gap-3 rounded-xl bg-background/80 p-3 border border-border/60 text-xs sm:text-sm">
                     <div>
                       <span className="text-[10px] uppercase font-semibold text-muted-ink block">One-Time Build</span>
                       <span className="font-logo font-bold text-sm text-foreground">{item.oneTimePrice}</span>
@@ -359,15 +359,15 @@ const Pricing = () => {
                     </div>
                   </div>
 
-                  <div className="mt-2.5 text-[11px] text-dim flex items-center justify-between">
-                    <span><strong className="text-foreground">Scope:</strong> {item.systemRef}</span>
-                  </div>
+<div className="mt-3 text-[11px] sm:text-sm text-dim flex items-center justify-between">
+                      <span><strong className="text-foreground">Scope:</strong> {item.systemRef}</span>
+                    </div>
 
                   <a
                     href={CAL_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-3 flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold active:scale-[0.98] ${
+                    className={`mt-3 flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-xs sm:text-sm font-semibold active:scale-[0.98] ${
                       item.featured
                         ? "btn-primary-glow"
                         : "border border-border bg-background/80 text-foreground hover:bg-[hsl(var(--card-hover))]"
@@ -437,7 +437,7 @@ const Pricing = () => {
                           href={CAL_LINK}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex min-h-[36px] items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold transition-all active:scale-95 ${
+                          className={`inline-flex min-h-[40px] items-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold transition-all active:scale-95 ${
                             item.featured
                               ? "bg-primary text-primary-foreground hover:bg-primary/90"
                               : "border border-border text-dim hover:text-foreground hover:border-[hsl(var(--border-hover))]"

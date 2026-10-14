@@ -115,19 +115,19 @@ const Philosophy = () => {
           {splitWords(statementB, "b")}
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.title}
-                className="group flex h-full flex-col rounded-[1.75rem] border border-border bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-card"
+                className="group flex h-full flex-col rounded-[1.75rem] border border-border bg-card/50 p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-card"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border bg-[hsl(var(--card-hover))] text-primary transition-transform group-hover:scale-110">
                   <Icon className="h-4 w-4" />
                 </div>
                 <h3 className="mt-4 font-heading text-sm font-semibold">{item.title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-dim">{item.desc}</p>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-dim">{item.desc}</p>
               </div>
             );
           })}

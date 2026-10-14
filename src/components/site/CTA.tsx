@@ -12,7 +12,7 @@ const socials = [
 const CTA = () => (
   <section id="contact" className="px-[22px] py-[clamp(80px,10vw,130px)]">
     <Reveal className="mx-auto w-full max-w-4xl">
-      <div className="relative overflow-hidden rounded-[3rem] border border-border bg-card/40 px-6 py-16 text-center sm:px-14">
+      <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-border bg-card/40 px-6 py-14 sm:px-10 sm:py-16 text-center">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,hsl(var(--card))_0%,transparent_70%)]"
@@ -32,7 +32,7 @@ const CTA = () => (
               href={CAL_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full justify-center px-5 font-semibold sm:w-auto sm:px-7"
+              className="w-full justify-center px-5 py-3 font-semibold sm:w-auto sm:px-7 sm:py-2.5"
             >
               <CalendarCheck className="h-4 w-4 shrink-0" /> Book Your Free Assessment
             </MagneticButton>
@@ -55,7 +55,7 @@ const CTA = () => (
                   rel="noopener noreferrer"
                   aria-label={s.label}
                   title={s.label}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
+                  className="inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-border text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
                 >
                   <s.icon className="h-4 w-4 text-primary" />
                 </a>

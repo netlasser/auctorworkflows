@@ -204,7 +204,7 @@ const Testimonials = () => {
                   key={t.name}
                   className="pl-4 md:basis-1/2 md:pl-6 lg:basis-1/3"
                 >
-                  <figure className="card-surface flex h-full flex-col justify-between p-7">
+                  <figure className="card-surface flex h-full flex-col justify-between p-6 sm:p-7">
                     <div>
                       {/* Top row: Stars & Metric highlight */}
                       <div className="flex items-center justify-between gap-2">
@@ -222,7 +222,7 @@ const Testimonials = () => {
                       {/* Quote */}
                       <div className="relative mt-5">
                         <Quote className="absolute -left-1 -top-2 h-6 w-6 text-primary/10" />
-                        <blockquote className="relative z-10 text-sm leading-relaxed text-dim">
+                        <blockquote className="relative z-10 text-sm sm:text-base leading-relaxed text-dim">
                           "{t.quote}"
                         </blockquote>
                       </div>
@@ -239,13 +239,13 @@ const Testimonials = () => {
                         </span>
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <span className="text-sm font-semibold text-foreground">{t.name}</span>
+                            <span className="text-sm sm:text-base font-semibold text-foreground">{t.name}</span>
                             <CheckCircle2
                               className="h-3.5 w-3.5 text-primary"
                               aria-label="Verified Client"
                             />
                           </div>
-                          <span className="block text-xs text-muted-ink">
+                          <span className="block text-xs sm:text-sm text-muted-ink">
                             {t.role}, <span className="text-dim">{t.company}</span>
                           </span>
                         </div>

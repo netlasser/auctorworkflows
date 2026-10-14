@@ -41,10 +41,10 @@ const Members = () => (
         </p>
       </Reveal>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-2">
+      <div className="mt-10 grid gap-5 md:gap-6 md:grid-cols-2">
         {members.map((m, i) => (
           <Reveal key={m.name} delay={i * 120} className="h-full">
-            <article className="card-surface flex h-full gap-5 p-5 sm:p-6">
+            <article className="card-surface flex h-full gap-5 p-5 sm:p-6 lg:p-7">
               <img
                 src={m.image}
                 alt={`Portrait of ${m.name}`}
@@ -53,12 +53,12 @@ const Members = () => (
               <div className="min-w-0">
                 <h3 className="font-heading text-lg">{m.name}</h3>
                 <p className="mt-0.5 text-xs font-medium text-primary">{m.role}</p>
-                <p className="mt-2 text-xs leading-relaxed text-dim">{m.bio}</p>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-dim">{m.bio}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {m.focus.map((f) => (
                     <span
                       key={f}
-                      className="rounded-full border border-border bg-background/50 px-2.5 py-0.5 font-data text-[10px] text-muted-ink"
+                      className="rounded-full border border-border bg-background/50 px-2.5 py-0.5 font-data text-[10px] sm:text-xs text-muted-ink"
                     >
                       {f}
                     </span>

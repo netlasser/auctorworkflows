@@ -236,10 +236,10 @@ const TrustedBy = () => {
         </div>
 
         {/* Company Logo Grid */}
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
           {clientCompanies.map((company, index) => (
             <Reveal key={company.name} delay={index * 60} className="h-full">
-              <div className="group relative flex h-full flex-col justify-between rounded-[1.75rem] border border-border bg-background/60 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_12px_24px_-10px_rgba(224,224,224,0.12)]">
+              <div className="group relative flex h-full flex-col justify-between rounded-[1.75rem] border border-border bg-background/60 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_12px_24px_-10px_rgba(224,224,224,0.12)]">
                 <div>
                   <div className="flex items-center justify-between">
                     <div className="opacity-75 grayscale transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0">
@@ -251,17 +251,17 @@ const TrustedBy = () => {
                     {company.name}
                   </h3>
                   {company.subname && company.subname !== company.name && (
-                    <p className="text-[10px] font-mono text-primary/80 truncate">
+                    <p className="text-[10px] sm:text-xs font-mono text-primary/80 truncate">
                       {company.subname}
                     </p>
                   )}
-                  <p className="mt-1 text-[11px] text-muted-ink leading-snug">
+                  <p className="mt-1 text-[11px] sm:text-xs text-muted-ink leading-snug">
                     {company.category}
                   </p>
                 </div>
 
                 <div className="mt-3 pt-2.5 border-t border-border/60">
-                  <span className="inline-flex items-center gap-1 text-[10px] font-medium text-dim">
+                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-medium text-dim">
                     <CheckCircle2 className="h-3 w-3 text-primary shrink-0" />
                     <span className="truncate">{company.highlight}</span>
                   </span>

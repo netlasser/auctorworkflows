@@ -183,24 +183,24 @@ const Protocol = () => {
             data-wrap
             className="md:sticky md:top-0 md:flex md:h-[100dvh] md:items-center md:justify-center md:px-[22px] md:py-14"
           >
-            <article className="protocol-inner card-surface relative grid w-full max-w-5xl gap-6 overflow-hidden p-6 sm:p-8 md:grid-cols-2 md:gap-8 md:p-12">
+            <article className="protocol-inner card-surface relative grid w-full max-w-5xl gap-6 overflow-hidden p-5 sm:p-6 lg:p-8 md:grid-cols-2 md:gap-8 md:p-12">
               <div className="flex flex-col justify-between">
                 <div>
                   <span className="font-data text-[11px] uppercase tracking-[0.28em] text-muted-ink">
                     Phase {p.no} / 03
                   </span>
                   <h3 className="font-drama mt-4 text-3xl font-normal sm:text-4xl md:text-5xl">{p.name}</h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-dim">{p.desc}</p>
+                  <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-dim">{p.desc}</p>
                 </div>
 
                 <ul className="mt-8 space-y-3 border-t border-border pt-5">
                   {p.stages.map((s) => (
                     <li key={s.no} data-stage className="flex items-center justify-between gap-4">
                       <span className="flex items-center gap-3">
-                        <span className="font-data text-xs text-primary">{s.no}</span>
-                        <span className="text-sm text-foreground">{s.title}</span>
+                        <span className="font-data text-xs sm:text-sm text-primary">{s.no}</span>
+                        <span className="text-sm sm:text-base text-foreground">{s.title}</span>
                       </span>
-                      <span className="shrink-0 font-data text-[10px] uppercase tracking-wider text-muted-ink">
+                      <span className="shrink-0 font-data text-[10px] sm:text-xs uppercase tracking-wider text-muted-ink">
                         {s.duration}
                       </span>
                     </li>

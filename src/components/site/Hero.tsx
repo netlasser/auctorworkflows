@@ -113,11 +113,11 @@ const Hero = () => {
       </div>
 
       <div className="mx-auto mt-12 w-full max-w-4xl sm:mt-16">
-        <div className="grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-3">
+        <div className="grid gap-2 overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-3 sm:gap-px">
           {stats.map((s) => (
-            <div key={s.label} data-hero="stat" className="bg-card px-5 py-5 text-center sm:px-6 sm:py-7">
+            <div key={s.label} data-hero="stat" className="bg-card px-6 py-6 text-center sm:px-6 sm:py-7">
               <div className="font-data text-2xl font-bold text-primary sm:text-3xl">{s.value}</div>
-              <div className="mt-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-ink sm:text-xs">
+              <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-muted-ink sm:text-xs">
                 {s.label}
               </div>
             </div>

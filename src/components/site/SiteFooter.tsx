@@ -17,7 +17,7 @@ const elsewhere = [
 ];
 
 const SiteFooter = () => (
-  <footer className="mt-10 rounded-t-[4rem] border-t border-border bg-card/40 px-[22px] pb-12 pt-16">
+  <footer className="mt-10 rounded-t-[3rem] sm:rounded-t-[4rem] border-t border-border bg-card/40 px-[22px] pb-12 pt-16">
     <div className="mx-auto w-full max-w-6xl">
       <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
@@ -45,10 +45,10 @@ const SiteFooter = () => (
           <h3 className="font-data text-[11px] uppercase tracking-[0.24em] text-muted-ink">
             Navigate
           </h3>
-          <ul className="mt-4 space-y-2.5">
+          <ul className="mt-4 space-y-3">
             {navigate.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="lift inline-block text-sm text-dim hover:text-foreground active:opacity-70">
+                <a href={l.href} className="lift inline-block text-sm sm:text-base text-dim hover:text-foreground active:opacity-70">
                   {l.label}
                 </a>
               </li>
@@ -60,14 +60,14 @@ const SiteFooter = () => (
           <h3 className="font-data text-[11px] uppercase tracking-[0.24em] text-muted-ink">
             Elsewhere
           </h3>
-          <ul className="mt-4 space-y-2.5">
+          <ul className="mt-4 space-y-3">
             {elsewhere.map((l) => (
               <li key={l.label}>
                 <a
                   href={l.href}
                   target={l.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="lift inline-flex items-center gap-2 text-sm text-dim hover:text-foreground active:opacity-70"
+                  className="lift inline-flex items-center gap-2 text-sm sm:text-base text-dim hover:text-foreground active:opacity-70"
                 >
                   <l.icon className="h-4 w-4 text-primary" /> {l.label}
                 </a>

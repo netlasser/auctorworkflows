@@ -226,7 +226,7 @@ const Features = () => (
           const Artifact = artifacts[i];
           return (
             <Reveal key={s.title} delay={i * 120} className="h-full">
-              <article className="card-surface flex h-full flex-col p-6">
+              <article className="card-surface flex h-full flex-col p-6 sm:p-7">
                 <div className="flex items-center justify-between">
                   <span className="font-data text-[11px] uppercase tracking-[0.24em] text-muted-ink">
                     0{i + 1}
@@ -236,7 +236,7 @@ const Features = () => (
                   </div>
                 </div>
 
-                <div className="mt-6 overflow-hidden rounded-[1.75rem] border border-border bg-background/50 px-4 py-2">
+                <div className="mt-6 overflow-hidden rounded-[1.75rem] border border-border bg-background/50 px-4 py-3 sm:py-2">
                   <Artifact />
                 </div>
 
@@ -247,11 +247,11 @@ const Features = () => (
                   {s.rows.map(([before, after], idx) => (
                     <div key={before}>
                       {idx > 0 && <div className="my-3 h-px bg-border" />}
-                      <div className="grid grid-cols-1 items-center gap-1.5 sm:grid-cols-[1fr_auto_1fr] sm:gap-3">
-                        <p className="text-xs text-muted-ink">{before}</p>
-                        <ArrowRight className="h-3.5 w-3.5 shrink-0 rotate-90 text-primary sm:rotate-0" />
-                        <p className="text-xs text-[hsl(var(--success))]">{after}</p>
-                      </div>
+<div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-[1fr_auto_1fr] sm:gap-3">
+                    <p className="text-xs text-muted-ink leading-snug">{before}</p>
+                    <ArrowRight className="h-4 w-4 shrink-0 rotate-90 text-primary sm:rotate-0" />
+                    <p className="text-xs text-[hsl(var(--success))] leading-snug">{after}</p>
+                  </div>
                     </div>
                   ))}
                 </div>
