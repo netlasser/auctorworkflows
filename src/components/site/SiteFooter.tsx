@@ -48,7 +48,7 @@ const SiteFooter = () => (
           <ul className="mt-4 space-y-2.5">
             {navigate.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="lift inline-block text-sm text-dim hover:text-foreground">
+                <a href={l.href} className="lift inline-block text-sm text-dim hover:text-foreground active:opacity-70">
                   {l.label}
                 </a>
               </li>
@@ -67,7 +67,7 @@ const SiteFooter = () => (
                   href={l.href}
                   target={l.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="lift inline-flex items-center gap-2 text-sm text-dim hover:text-foreground"
+                  className="lift inline-flex items-center gap-2 text-sm text-dim hover:text-foreground active:opacity-70"
                 >
                   <l.icon className="h-4 w-4 text-primary" /> {l.label}
                 </a>

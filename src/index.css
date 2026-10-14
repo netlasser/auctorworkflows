@@ -53,6 +53,7 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -206,6 +207,19 @@
   background-size: 16px 16px;
 }
 
+/* ---- Mobile marquee (tech stack / logos) ---- */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee-x var(--marquee-duration, 30s) linear infinite; }
+.marquee-track--reverse { animation-direction: reverse; }
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .spin-slow, .spin-slow-rev, .scan-line, .ekg-path, .orb, .pulse-dot { animation: none !important; }
+  .marquee-track { animation: none !important; }
 }

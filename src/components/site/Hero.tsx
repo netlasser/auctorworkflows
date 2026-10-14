@@ -31,6 +31,21 @@ const Hero = () => {
           { y: 26, opacity: 0, duration: 0.6, stagger: 0.15 },
           "-=0.3"
         );
+
+      // Parallax the ambient backdrop as the hero scrolls away (mobile + desktop).
+      const bg = root.current?.querySelector("[data-hero-bg]");
+      if (bg) {
+        gsap.to(bg, {
+          yPercent: 14,
+          ease: "none",
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
     }, root);
     return () => ctx.revert();
   }, []);
@@ -41,9 +56,11 @@ const Hero = () => {
       ref={root}
       className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden px-[22px] pb-12 pt-28 sm:pb-16 sm:pt-32"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_20%,hsl(var(--card))_0%,transparent_60%)]" />
-        <div className="absolute inset-0 grid-overlay opacity-50" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div data-hero-bg className="absolute inset-x-0 -inset-y-[14%]">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_20%,hsl(var(--card))_0%,transparent_60%)]" />
+          <div className="absolute inset-0 grid-overlay opacity-50" />
+        </div>
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-background via-background/60 to-transparent" />
       </div>
 

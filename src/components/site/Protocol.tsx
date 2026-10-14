@@ -109,9 +109,9 @@ const Protocol = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (prefersReducedMotion()) return;
-      // The sticky stacking effect only runs on desktop; on mobile the phases
-      // render as a plain vertical list.
       const mm = gsap.matchMedia();
+
+      // Desktop: sticky stacking effect + scroll-scrubbed recede.
       mm.add("(min-width: 768px)", () => {
         const wraps = gsap.utils.toArray<HTMLElement>("[data-wrap]");
         wraps.forEach((wrap, i) => {
@@ -130,6 +130,31 @@ const Protocol = () => {
               scrub: true,
             },
           });
+        });
+      });
+
+      // Mobile: phases stack in normal flow, so reveal each one as it enters.
+      mm.add("(max-width: 767px)", () => {
+        const cards = gsap.utils.toArray<HTMLElement>(".protocol-inner");
+        cards.forEach((card) => {
+          gsap.from(card, {
+            y: 46,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 88%" },
+          });
+          const items = card.querySelectorAll("[data-stage]");
+          if (items.length) {
+            gsap.from(items, {
+              y: 14,
+              opacity: 0,
+              duration: 0.45,
+              stagger: 0.09,
+              ease: "power2.out",
+              scrollTrigger: { trigger: card, start: "top 78%" },
+            });
+          }
         });
       });
     }, stack);
@@ -170,7 +195,7 @@ const Protocol = () => {
 
                 <ul className="mt-8 space-y-3 border-t border-border pt-5">
                   {p.stages.map((s) => (
-                    <li key={s.no} className="flex items-center justify-between gap-4">
+                    <li key={s.no} data-stage className="flex items-center justify-between gap-4">
                       <span className="flex items-center gap-3">
                         <span className="font-data text-xs text-primary">{s.no}</span>
                         <span className="text-sm text-foreground">{s.title}</span>

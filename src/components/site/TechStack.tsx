@@ -92,6 +92,40 @@ const tools: ToolItem[] = [
   },
 ];
 
+const ToolGlyph = ({ t, className = "" }: { t: ToolItem; className?: string }) => (
+  <svg
+    viewBox={t.viewBox || "0 0 24 24"}
+    className={className}
+    fill="currentColor"
+    role="img"
+    aria-label={`${t.name} logo`}
+  >
+    <path d={t.path} fillRule={t.fillRule || "nonzero"} clipRule={t.fillRule || "nonzero"} />
+  </svg>
+);
+
+const ToolPill = ({ t }: { t: ToolItem }) => (
+  <div className="flex shrink-0 flex-col items-center justify-center gap-2.5 rounded-2xl border border-border bg-card px-5 py-4">
+    <ToolGlyph t={t} className="h-7 w-7 text-primary" />
+    <span className="whitespace-nowrap text-xs text-dim">{t.name}</span>
+  </div>
+);
+
+const MarqueeRow = ({ items, reverse }: { items: ToolItem[]; reverse?: boolean }) => (
+  <div
+    className={`marquee-track flex w-max ${reverse ? "marquee-track--reverse" : ""}`}
+    style={{ animationDuration: reverse ? "40s" : "34s" }}
+  >
+    {[0, 1].map((set) => (
+      <div key={set} className="flex gap-3 pr-3" aria-hidden={set === 1}>
+        {items.map((t) => (
+          <ToolPill key={`${set}-${t.name}`} t={t} />
+        ))}
+      </div>
+    ))}
+  </div>
+);
+
 const TechStack = () => (
   <section className="px-[22px] py-[clamp(80px,10vw,130px)]">
     <div className="mx-auto w-full max-w-6xl">
@@ -101,19 +135,21 @@ const TechStack = () => (
         <p className="mt-4 text-dim">We integrate with the software you already use. No need to rip and replace.</p>
       </Reveal>
 
-      <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">
+      {/* Mobile: auto-scrolling marquee rows */}
+      <div className="marquee-mask mt-10 space-y-3 overflow-hidden sm:hidden">
+        <MarqueeRow items={tools} />
+        <MarqueeRow items={[...tools].reverse()} reverse />
+      </div>
+
+      {/* Tablet/desktop: grid */}
+      <div className="mt-12 hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">
         {tools.map((t, i) => (
           <Reveal key={t.name} delay={i * 35}>
             <div className="card-surface group flex h-full flex-col items-center justify-center gap-3 px-3 py-6 text-center transition-colors hover:border-[hsl(var(--border-hover))]">
-              <svg
-                viewBox={t.viewBox || "0 0 24 24"}
+              <ToolGlyph
+                t={t}
                 className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110"
-                fill="currentColor"
-                role="img"
-                aria-label={`${t.name} logo`}
-              >
-                <path d={t.path} fillRule={t.fillRule || "nonzero"} clipRule={t.fillRule || "nonzero"} />
-              </svg>
+              />
               <span className="text-xs text-dim leading-snug">{t.name}</span>
             </div>
           </Reveal>

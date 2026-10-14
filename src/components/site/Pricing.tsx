@@ -285,7 +285,7 @@ const Pricing = () => {
                     href={CAL_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-6 sm:mt-7 flex min-h-[44px] items-center justify-center gap-2 rounded-full px-4 py-2.5 text-center text-xs font-semibold transition-all ${
+                    className={`mt-6 sm:mt-7 flex min-h-[44px] items-center justify-center gap-2 rounded-full px-4 py-2.5 text-center text-xs font-semibold transition-all active:scale-[0.98] ${
                       p.featured
                         ? "btn-primary-glow"
                         : "border border-border text-dim hover:border-[hsl(var(--border-hover))] hover:text-foreground hover:bg-[hsl(var(--card-hover))]"
@@ -367,7 +367,7 @@ const Pricing = () => {
                     href={CAL_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-3 flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold ${
+                    className={`mt-3 flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-full px-3 py-2 text-xs font-semibold active:scale-[0.98] ${
                       item.featured
                         ? "btn-primary-glow"
                         : "border border-border bg-background/80 text-foreground hover:bg-[hsl(var(--card-hover))]"
@@ -437,7 +437,7 @@ const Pricing = () => {
                           href={CAL_LINK}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`inline-flex min-h-[36px] items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
+                          className={`inline-flex min-h-[36px] items-center gap-1 rounded-full px-3 py-1.5 text-xs font-semibold transition-all active:scale-95 ${
                             item.featured
                               ? "bg-primary text-primary-foreground hover:bg-primary/90"
                               : "border border-border text-dim hover:text-foreground hover:border-[hsl(var(--border-hover))]"

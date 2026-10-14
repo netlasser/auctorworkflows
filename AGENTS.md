@@ -41,3 +41,15 @@ Single-page Vite + React 18 + TypeScript site (shadcn/ui + Tailwind + framer-mot
 - `.lovable/plan.md` is **stale** — it describes a real-estate `CampaignBanner`/`Concierge`/`Navbar`/`FAQ` build that doesn't exist here. Ignore it.
 - `src/assets` holds **only** the two founder portraits (`Biruke.jpg`, `Horeb.jpg`). The old scrap images (`bz-logo.jpg`, `bz-logo-transparent.png`, `case-study-1..5.png`, `felipe-logo.png`, `logo-{acuity,chapa,laven,mereb}.png`, `public/placeholder.svg`) were deleted — do not re-add them.
 - Recent commits use `feat:`/`refactor:`/`chore:` prefixes. This repo is the source for the Lovable project — pushed commits are reflected back into Lovable.
+
+## Mobile animation pass (latest)
+- `src/index.css`: marquee keyframes (`.marquee-track`, `.marquee-mask`), `prefers-reduced-motion` off switch, tap-highlight removal.
+- `Protocol.tsx`: `gsap.matchMedia()` mobile block (`max-width: 767px`) — each `.protocol-inner` fades up on scroll, stage items stagger; desktop sticky stack untouched (`min-width: 768px`).
+- `SiteNav.tsx`: framer-motion `AnimatePresence` for mobile dropdown (height/opacity + icon swap); tap feedback on links.
+- `TechStack.tsx`: phone-only marquee rows (duplicated sets for seamless loop, reverse second row); tablet/desktop grid unchanged (`hidden sm:grid`).
+- `Hero.tsx`: parallax on background glow/grid layer (`yPercent: 14`, scrub, scoped to inner wrapper so bottom fade stays static); `overflow-hidden` on outer.
+- `CTA.tsx`, `Pricing.tsx`, `Testimonials.tsx`, `SiteNav.tsx`, `SiteFooter.tsx`: `active:` feedback (`scale-95`, `opacity-70`, etc.) across CTAs, social icons, nav links, testimonial controls.
+- `index.html`: `viewport-fit=cover` meta.
+- `SiteNav.tsx` header: `pt-[env(safe-area-inset-top)]` for top notch.
+- `StickyCTA.tsx`: bottom/right safe-area via `calc(1.25rem+env(safe-area-inset-bottom/right))`; fixed dead `text-primary-light` → `text-primary`.
+- Verified: lint (0 err/7 pre-existing warn), `tsc -b` clean, test 1/1, build OK (main ~128 kB gzip, vendor chunks stable).

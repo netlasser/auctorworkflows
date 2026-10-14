@@ -41,7 +41,7 @@ const StickyCTA = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 25, scale: 0.9, transition: { duration: 0.25 } }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-5 right-5 z-40 sm:bottom-7 sm:right-7"
+          className="fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom))] right-[calc(1.25rem+env(safe-area-inset-right))] z-40 sm:bottom-[calc(1.75rem+env(safe-area-inset-bottom))] sm:right-[calc(1.75rem+env(safe-area-inset-right))]"
         >
           <motion.a
             id="sticky-book-consultation-btn"
@@ -59,7 +59,7 @@ const StickyCTA = () => {
             </span>
 
             <div className="flex flex-col text-left">
-              <span className="whitespace-nowrap text-xs font-semibold tracking-wide text-foreground group-hover:text-primary-light">
+              <span className="whitespace-nowrap text-xs font-semibold tracking-wide text-foreground group-hover:text-primary">
                 Book a Consultation
               </span>
               <span className="hidden items-center gap-1 whitespace-nowrap text-[10px] text-muted-ink sm:inline-flex">

@@ -155,7 +155,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
                 aria-label={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
                 title={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
               >
@@ -165,7 +165,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollPrev}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -174,7 +174,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollNext}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="h-4 w-4" />

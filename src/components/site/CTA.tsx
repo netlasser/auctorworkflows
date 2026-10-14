@@ -41,7 +41,7 @@ const CTA = () => (
           <div className="mt-7 flex flex-col items-center gap-4">
             <a
               href={`tel:${PHONE}`}
-              className="lift inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-5 py-2.5 text-sm font-semibold text-primary hover:border-[hsl(var(--border-hover))]"
+              className="lift inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-5 py-2.5 text-sm font-semibold text-primary hover:border-[hsl(var(--border-hover))] active:scale-95"
             >
               <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
             </a>
@@ -55,7 +55,7 @@ const CTA = () => (
                   rel="noopener noreferrer"
                   aria-label={s.label}
                   title={s.label}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
                 >
                   <s.icon className="h-4 w-4 text-primary" />
                 </a>
