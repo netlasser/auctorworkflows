@@ -19,7 +19,7 @@ const Members = lazy(() => import("@/components/site/Members"));
 const SectionFallback = () => <div aria-hidden className="min-h-[45vh] w-full" />;
 
 const Index = () => (
-  <div className="min-h-screen bg-background text-foreground">
+  <div className="min-h-screen overflow-x-clip bg-background text-foreground">
     <Ambient />
     <NoiseOverlay />
     <SiteNav />

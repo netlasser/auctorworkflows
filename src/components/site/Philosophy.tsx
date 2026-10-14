@@ -30,7 +30,10 @@ const statementB = "We engineer automations that hold under real traffic, bad da
 
 const splitWords = (text: string, prefix: string) =>
   text.split(" ").map((word, i) => (
-    <span key={`${prefix}-${i}`} className="mr-[0.28em] inline-block overflow-hidden align-bottom">
+    <span
+      key={`${prefix}-${i}`}
+      className="mr-[0.28em] inline-block overflow-hidden pb-[0.14em] align-bottom"
+    >
       <span className="inline-block" data-word>
         {word}
       </span>

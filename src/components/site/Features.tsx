@@ -247,9 +247,9 @@ const Features = () => (
                   {s.rows.map(([before, after], idx) => (
                     <div key={before}>
                       {idx > 0 && <div className="my-3 h-px bg-border" />}
-                      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+                      <div className="grid grid-cols-1 items-center gap-1.5 sm:grid-cols-[1fr_auto_1fr] sm:gap-3">
                         <p className="text-xs text-muted-ink">{before}</p>
-                        <ArrowRight className="h-3.5 w-3.5 shrink-0 text-primary" />
+                        <ArrowRight className="h-3.5 w-3.5 shrink-0 rotate-90 text-primary sm:rotate-0" />
                         <p className="text-xs text-[hsl(var(--success))]">{after}</p>
                       </div>
                     </div>

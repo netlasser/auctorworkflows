@@ -32,9 +32,9 @@ const CTA = () => (
               href={CAL_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-7 font-semibold"
+              className="w-full justify-center px-5 font-semibold sm:w-auto sm:px-7"
             >
-              <CalendarCheck className="h-4 w-4" /> Book Your Free Assessment
+              <CalendarCheck className="h-4 w-4 shrink-0" /> Book Your Free Assessment
             </MagneticButton>
           </div>
 

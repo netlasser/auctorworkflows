@@ -39,7 +39,7 @@ const Hero = () => {
     <section
       id="top"
       ref={root}
-      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden px-[22px] pb-16 pt-32"
+      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden px-[22px] pb-12 pt-28 sm:pb-16 sm:pt-32"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_15%_20%,hsl(var(--card))_0%,transparent_60%)]" />
@@ -98,9 +98,9 @@ const Hero = () => {
       <div className="mx-auto mt-12 w-full max-w-4xl sm:mt-16">
         <div className="grid gap-px overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-3">
           {stats.map((s) => (
-            <div key={s.label} data-hero="stat" className="bg-card px-6 py-7 text-center">
-              <div className="font-data text-3xl font-bold text-primary">{s.value}</div>
-              <div className="mt-1.5 text-xs uppercase tracking-[0.18em] text-muted-ink">
+            <div key={s.label} data-hero="stat" className="bg-card px-5 py-5 text-center sm:px-6 sm:py-7">
+              <div className="font-data text-2xl font-bold text-primary sm:text-3xl">{s.value}</div>
+              <div className="mt-1.5 text-[11px] uppercase tracking-[0.18em] text-muted-ink sm:text-xs">
                 {s.label}
               </div>
             </div>

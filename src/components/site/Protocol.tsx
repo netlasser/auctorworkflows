@@ -109,22 +109,27 @@ const Protocol = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (prefersReducedMotion()) return;
-      const wraps = gsap.utils.toArray<HTMLElement>("[data-wrap]");
-      wraps.forEach((wrap, i) => {
-        if (i === wraps.length - 1) return;
-        const inner = wrap.querySelector(".protocol-inner");
-        if (!inner) return;
-        gsap.to(inner, {
-          scale: 0.9,
-          opacity: 0.5,
-          filter: "blur(20px)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: wraps[i + 1],
-            start: "top bottom",
-            end: "top top",
-            scrub: true,
-          },
+      // The sticky stacking effect only runs on desktop; on mobile the phases
+      // render as a plain vertical list.
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        const wraps = gsap.utils.toArray<HTMLElement>("[data-wrap]");
+        wraps.forEach((wrap, i) => {
+          if (i === wraps.length - 1) return;
+          const inner = wrap.querySelector(".protocol-inner");
+          if (!inner) return;
+          gsap.to(inner, {
+            scale: 0.9,
+            opacity: 0.5,
+            filter: "blur(20px)",
+            ease: "none",
+            scrollTrigger: {
+              trigger: wraps[i + 1],
+              start: "top bottom",
+              end: "top top",
+              scrub: true,
+            },
+          });
         });
       });
     }, stack);
@@ -146,12 +151,12 @@ const Protocol = () => {
         </Reveal>
       </div>
 
-      <div ref={stack} className="relative mt-16">
+      <div ref={stack} className="relative mt-12 space-y-5 px-[22px] md:mt-16 md:space-y-0 md:px-0">
         {phases.map((p, i) => (
           <div
             key={p.name}
             data-wrap
-            className="sticky top-0 flex h-[100dvh] items-center justify-center px-[22px] py-14"
+            className="md:sticky md:top-0 md:flex md:h-[100dvh] md:items-center md:justify-center md:px-[22px] md:py-14"
           >
             <article className="protocol-inner card-surface relative grid w-full max-w-5xl gap-6 overflow-hidden p-6 sm:p-8 md:grid-cols-2 md:gap-8 md:p-12">
               <div className="flex flex-col justify-between">

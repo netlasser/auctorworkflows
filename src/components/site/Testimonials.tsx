@@ -147,7 +147,7 @@ const Testimonials = () => {
                 ))}
               </span>
               <span className="font-semibold text-foreground">5.0 / 5.0</span>
-              <span className="text-muted-ink">· 100% On-Time Delivery</span>
+              <span className="hidden text-muted-ink sm:inline">· 100% On-Time Delivery</span>
             </div>
 
             {/* Slider controls */}
