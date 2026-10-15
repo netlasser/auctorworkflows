@@ -133,7 +133,7 @@ const Pricing = () => {
   const [billingMode, setBillingMode] = useState<"one-time" | "retainer">("one-time");
 
   return (
-    <section id="pricing" className="px-[18px] py-[clamp(60px,8vw,120px)] sm:px-[22px]">
+    <section id="pricing" className="px-[18px] py-[clamp(60px,8vw,130px)] sm:px-[22px]">
       <div className="mx-auto w-full max-w-7xl">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <Reveal className="max-w-2xl">
@@ -177,7 +177,7 @@ const Pricing = () => {
 
         {/* Mindful Trust & Regional Context Banner */}
         <Reveal delay={60} className="mt-6 sm:mt-8">
-          <div className="grid gap-3 rounded-2xl border border-border/80 bg-background/50 p-4 sm:grid-cols-3 text-xs text-dim">
+          <div className="grid gap-3 rounded-2xl border border-border/80 bg-background/50 p-4 sm:grid-cols-3 sm:gap-5 sm:p-5 text-xs text-dim lg:gap-6 lg:p-6">
             <div className="flex items-start gap-2.5">
               <ShieldCheck className="h-4 w-4 shrink-0 text-primary mt-0.5" />
               <div>
@@ -203,7 +203,7 @@ const Pricing = () => {
         </Reveal>
 
         {/* 4 Cards Grid */}
-        <div className="mt-8 sm:mt-10 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 sm:mt-10 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-7">
           {offerings.map((p, i) => {
             const isOneTime = billingMode === "one-time";
             const currentPrice = isOneTime ? p.oneTimePrice : p.monthlyPrice;

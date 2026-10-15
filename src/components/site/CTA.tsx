@@ -12,33 +12,33 @@ const socials = [
 const CTA = () => (
   <section id="contact" className="px-[22px] py-[clamp(80px,10vw,130px)]">
     <Reveal className="mx-auto w-full max-w-4xl">
-      <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-border bg-card/40 px-6 py-14 sm:px-10 sm:py-16 text-center">
+      <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-border bg-card/40 px-6 py-14 sm:px-10 sm:py-16 text-center lg:px-14 lg:py-20">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,hsl(var(--card))_0%,transparent_70%)]"
         />
         <div className="relative">
           <span className="section-label">Let's Talk</span>
-          <h2 className="font-heading mx-auto mt-5 max-w-2xl text-3xl md:text-5xl">
+          <h2 className="font-heading mx-auto mt-5 max-w-2xl text-3xl md:text-5xl lg:mt-6">
             Ready to stop doing work a machine should do?
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-dim">
+          <p className="mx-auto mt-5 max-w-2xl text-dim lg:mt-6">
             Book a free 30-minute assessment call. We'll audit your current process and show you
             exactly where automation will save you the most time and money.
           </p>
 
-          <div className="mt-9 flex justify-center">
+          <div className="mt-9 flex justify-center lg:mt-10">
             <MagneticButton
               href={CAL_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full justify-center px-5 py-3 font-semibold sm:w-auto sm:px-7 sm:py-2.5"
+              className="w-full justify-center px-5 py-3 font-semibold sm:w-auto sm:px-7 sm:py-2.5 lg:px-8"
             >
               <CalendarCheck className="h-4 w-4 shrink-0" /> Book Your Free Assessment
             </MagneticButton>
           </div>
 
-          <div className="mt-7 flex flex-col items-center gap-4">
+          <div className="mt-7 flex flex-col items-center gap-4 lg:mt-8 lg:gap-5">
             <a
               href={`tel:${PHONE}`}
               className="lift inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-5 py-2.5 text-sm font-semibold text-primary hover:border-[hsl(var(--border-hover))] active:scale-95"

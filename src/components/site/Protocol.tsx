@@ -190,10 +190,10 @@ const Protocol = () => {
                     Phase {p.no} / 03
                   </span>
                   <h3 className="font-drama mt-4 text-3xl font-normal sm:text-4xl md:text-5xl">{p.name}</h3>
-                  <p className="mt-4 max-w-md text-sm sm:text-base leading-relaxed text-dim">{p.desc}</p>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-dim sm:text-base md:mt-5">{p.desc}</p>
                 </div>
 
-                <ul className="mt-8 space-y-3 border-t border-border pt-5">
+                <ul className="mt-8 space-y-3 border-t border-border pt-5 md:mt-10 md:space-y-4 md:pt-6">
                   {p.stages.map((s) => (
                     <li key={s.no} data-stage className="flex items-center justify-between gap-4">
                       <span className="flex items-center gap-3">

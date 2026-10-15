@@ -155,7 +155,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
                 aria-label={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
                 title={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
               >
@@ -165,7 +165,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollPrev}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -174,7 +174,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollNext}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -186,7 +186,7 @@ const Testimonials = () => {
         {/* Carousel Container */}
         <div
           ref={carouselRef}
-          className="mt-10"
+          className="mt-10 lg:mt-12"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -204,7 +204,7 @@ const Testimonials = () => {
                   key={t.name}
                   className="pl-4 md:basis-1/2 md:pl-6 lg:basis-1/3"
                 >
-                  <figure className="card-surface flex h-full flex-col justify-between p-6 sm:p-7">
+                  <figure className="card-surface flex h-full flex-col justify-between p-6 sm:p-7 lg:p-8">
                     <div>
                       {/* Top row: Stars & Metric highlight */}
                       <div className="flex items-center justify-between gap-2">

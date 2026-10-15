@@ -142,10 +142,10 @@ const TechStack = () => (
       </div>
 
       {/* Tablet/desktop: grid */}
-      <div className="mt-12 hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8">
+      <div className="mt-12 hidden grid-cols-2 gap-4 sm:grid lg:grid-cols-4 lg:gap-5 xl:grid-cols-8">
         {tools.map((t, i) => (
           <Reveal key={t.name} delay={i * 35}>
-            <div className="card-surface group flex h-full flex-col items-center justify-center gap-3 px-3 py-6 text-center transition-colors hover:border-[hsl(var(--border-hover))]">
+            <div className="card-surface group flex h-full flex-col items-center justify-center gap-3 px-3 py-6 text-center transition-colors hover:border-[hsl(var(--border-hover))] lg:py-7">
               <ToolGlyph
                 t={t}
                 className="h-7 w-7 text-primary transition-transform duration-200 group-hover:scale-110"

@@ -220,7 +220,7 @@ const ecosystemTools = [
 
 const TrustedBy = () => {
   return (
-    <section id="trusted-by" className="relative border-y border-border/80 bg-card/40 px-[18px] py-14 sm:px-[22px] sm:py-20">
+    <section id="trusted-by" className="relative border-y border-border/80 bg-card/40 px-[18px] py-14 sm:px-[22px] sm:py-20 lg:py-24">
       <div className="mx-auto w-full max-w-6xl">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto">
@@ -273,7 +273,7 @@ const TrustedBy = () => {
 
         {/* Certified Stack & Infrastructure Strip */}
         <Reveal delay={120} className="mt-8 sm:mt-12">
-          <div className="rounded-[2rem] border border-border bg-card/80 p-5 sm:p-6 shadow-sm">
+          <div className="rounded-[2rem] border border-border bg-card/80 p-5 sm:p-6 shadow-sm lg:p-7">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/80 pb-4">
               <div className="flex items-center gap-2.5">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary">

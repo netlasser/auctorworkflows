@@ -54,7 +54,7 @@ const Hero = () => {
     <section
       id="top"
       ref={root}
-      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden px-[22px] pb-12 pt-28 sm:pb-16 sm:pt-32"
+      className="relative flex min-h-[100dvh] flex-col justify-end overflow-hidden px-[22px] pb-12 pt-28 sm:pb-16 sm:pt-32 lg:px-8 lg:pb-20 lg:pt-36"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div data-hero-bg className="absolute inset-x-0 -inset-y-[14%]">
@@ -69,7 +69,7 @@ const Hero = () => {
           B2B AI Automation Agency
         </span>
 
-        <h1 className="mt-6 font-heading text-[clamp(2.4rem,7vw,5.6rem)] font-semibold leading-[0.98]">
+        <h1 className="mt-6 font-heading text-[clamp(2.4rem,7vw,5.6rem)] font-semibold leading-[0.98] lg:mt-7">
           <span data-hero="line-1" className="block">
             Your sales team is
           </span>
@@ -78,7 +78,7 @@ const Hero = () => {
           </span>
         </h1>
 
-        <p data-hero="para" className="mt-7 max-w-xl text-base leading-relaxed text-dim">
+        <p data-hero="para" className="mt-7 max-w-xl text-base leading-relaxed text-dim lg:mt-9">
           We're Auctor Workflows — a two-person B2B AI automation agency. We build intelligent
           n8n workflows that capture leads, personalize outreach, and follow up automatically.
           Your calendar fills itself while you sleep.
@@ -91,7 +91,7 @@ const Hero = () => {
           Biruke Zeckariyas · Horeb Yohannes — Addis Ababa, Ethiopia
         </p>
 
-        <div data-hero="cta" className="mt-9 flex flex-col gap-3 sm:flex-row">
+        <div data-hero="cta" className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
           <MagneticButton
             href={CAL_LINK}
             target="_blank"
@@ -112,10 +112,10 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 w-full max-w-4xl sm:mt-16">
+      <div className="mx-auto mt-12 w-full max-w-4xl sm:mt-16 lg:mt-20">
         <div className="grid gap-2 overflow-hidden rounded-[2rem] border border-border bg-border sm:grid-cols-3 sm:gap-px">
           {stats.map((s) => (
-            <div key={s.label} data-hero="stat" className="bg-card px-6 py-6 text-center sm:px-6 sm:py-7">
+            <div key={s.label} data-hero="stat" className="bg-card px-6 py-6 text-center sm:px-6 sm:py-7 lg:py-8">
               <div className="font-data text-2xl font-bold text-primary sm:text-3xl">{s.value}</div>
               <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-muted-ink sm:text-xs">
                 {s.label}

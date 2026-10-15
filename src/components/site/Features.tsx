@@ -221,12 +221,12 @@ const Features = () => (
         </p>
       </Reveal>
 
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+      <div className="mt-14 grid gap-6 lg:mt-16 lg:grid-cols-3 lg:gap-8">
         {services.map((s, i) => {
           const Artifact = artifacts[i];
           return (
             <Reveal key={s.title} delay={i * 120} className="h-full">
-              <article className="card-surface flex h-full flex-col p-6 sm:p-7">
+              <article className="card-surface flex h-full flex-col p-6 sm:p-7 lg:p-8">
                 <div className="flex items-center justify-between">
                   <span className="font-data text-[11px] uppercase tracking-[0.24em] text-muted-ink">
                     0{i + 1}
@@ -240,10 +240,10 @@ const Features = () => (
                   <Artifact />
                 </div>
 
-                <h3 className="mt-6 font-heading text-xl">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-dim">{s.desc}</p>
+                <h3 className="mt-6 font-heading text-xl lg:text-2xl">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-dim lg:text-[0.95rem]">{s.desc}</p>
 
-                <div className="mt-6 flex-1 rounded-2xl border border-border bg-background/40 p-4">
+                <div className="mt-6 flex-1 rounded-2xl border border-border bg-background/40 p-4 sm:p-5">
                   {s.rows.map(([before, after], idx) => (
                     <div key={before}>
                       {idx > 0 && <div className="my-3 h-px bg-border" />}

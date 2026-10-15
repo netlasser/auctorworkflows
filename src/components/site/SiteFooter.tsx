@@ -17,17 +17,17 @@ const elsewhere = [
 ];
 
 const SiteFooter = () => (
-  <footer className="mt-10 rounded-t-[3rem] sm:rounded-t-[4rem] border-t border-border bg-card/40 px-[22px] pb-12 pt-16">
+  <footer className="mt-10 rounded-t-[3rem] sm:rounded-t-[4rem] border-t border-border bg-card/40 px-[22px] pb-12 pt-16 lg:pb-16 lg:pt-20">
     <div className="mx-auto w-full max-w-6xl">
-      <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+      <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] lg:gap-16">
         <div>
           <a href="#top" className="flex items-center gap-3">
             <img
               src="/logo.png"
               alt="Auctor Workflows logo"
-              className="h-12 w-12 rounded-full object-contain"
+              className="h-12 w-12 rounded-full object-contain lg:h-14 lg:w-14"
             />
-            <span className="font-heading text-base font-semibold">Auctor Workflows</span>
+            <span className="font-heading text-base font-semibold lg:text-lg">Auctor Workflows</span>
           </a>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-dim">
             A two-person B2B AI automation agency. We build n8n systems that capture leads,
@@ -77,7 +77,7 @@ const SiteFooter = () => (
         </div>
       </div>
 
-      <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-center sm:flex-row sm:text-left">
+      <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-center sm:flex-row sm:text-left lg:mt-16">
         <p className="text-xs text-muted-ink">
           Built with ❤ in Addis Ababa, Ethiopia · Powered by n8n &amp; AI
         </p>

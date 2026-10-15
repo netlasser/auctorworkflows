@@ -41,17 +41,17 @@ const Members = () => (
         </p>
       </Reveal>
 
-      <div className="mt-10 grid gap-5 md:gap-6 md:grid-cols-2">
+      <div className="mt-10 grid gap-5 md:gap-6 md:grid-cols-2 lg:gap-8">
         {members.map((m, i) => (
           <Reveal key={m.name} delay={i * 120} className="h-full">
-            <article className="card-surface flex h-full gap-5 p-5 sm:p-6 lg:p-7">
+            <article className="card-surface flex h-full gap-5 p-5 sm:p-6 lg:gap-6 lg:p-7">
               <img
                 src={m.image}
                 alt={`Portrait of ${m.name}`}
-                className="h-24 w-20 shrink-0 rounded-2xl object-cover object-top grayscale sm:h-28 sm:w-24"
+                className="h-24 w-20 shrink-0 rounded-2xl object-cover object-top grayscale sm:h-28 sm:w-24 lg:h-32 lg:w-28"
               />
               <div className="min-w-0">
-                <h3 className="font-heading text-lg">{m.name}</h3>
+                <h3 className="font-heading text-lg lg:text-xl">{m.name}</h3>
                 <p className="mt-0.5 text-xs font-medium text-primary">{m.role}</p>
                 <p className="mt-2 text-xs sm:text-sm leading-relaxed text-dim">{m.bio}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
