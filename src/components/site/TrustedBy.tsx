@@ -168,8 +168,8 @@ const clientCompanies: ClientCompany[] = [
           fill="#333333"
           fontFamily="system-ui, -apple-system, sans-serif"
           fontWeight="600"
-          fontSize="4.2"
-          letterSpacing="0.6"
+          fontSize="4"
+          letterSpacing="0.2"
         >
           COMMUNICATIONS
         </text>
@@ -239,8 +239,8 @@ const TrustedBy = () => {
         <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
           {clientCompanies.map((company, index) => (
             <Reveal key={company.name} delay={index * 60} className="h-full">
-              <div className="group relative flex h-full flex-col justify-between rounded-[1.75rem] border border-border bg-background/60 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_12px_24px_-10px_rgba(224,224,224,0.12)]">
-                <div>
+              <div className="group relative flex h-full min-w-0 flex-col justify-between overflow-hidden rounded-[1.75rem] border border-border bg-background/60 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_12px_24px_-10px_rgba(224,224,224,0.12)]">
+                <div className="min-w-0">
                   <div className="flex items-center justify-between">
                     <div className="opacity-75 grayscale transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0">
                       {company.logo}
@@ -260,10 +260,10 @@ const TrustedBy = () => {
                   </p>
                 </div>
 
-                <div className="mt-3 pt-2.5 border-t border-border/60">
-                  <span className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-medium text-dim">
-                    <CheckCircle2 className="h-3 w-3 text-primary shrink-0" />
-                    <span className="truncate">{company.highlight}</span>
+                <div className="mt-3 min-w-0 border-t border-border/60 pt-2.5">
+                  <span className="flex w-full min-w-0 items-center gap-1 text-[10px] sm:text-xs font-medium text-dim">
+                    <CheckCircle2 className="h-3 w-3 shrink-0 text-primary" />
+                    <span className="min-w-0 truncate">{company.highlight}</span>
                   </span>
                 </div>
               </div>
