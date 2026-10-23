@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Filter, Linkedin, Mail } from "lucide-react";
 import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 import { useInView } from "@/lib/useInView";
 
 const services = [
@@ -213,12 +214,15 @@ const artifacts = [DiagnosticShuffler, TelemetryTypewriter, CursorProtocolSchedu
 const Features = () => (
   <section id="services" className="px-[22px] py-[clamp(80px,10vw,130px)]">
     <div className="mx-auto w-full max-w-6xl">
-      <Reveal className="max-w-2xl">
-        <span className="section-label">What We Build</span>
-        <h2 className="mt-4 font-heading text-3xl md:text-5xl">Systems that sell while you sleep</h2>
-        <p className="mt-4 text-dim">
-          Three automation engines that handle the repetitive work between a stranger and a booked call.
-        </p>
+      <Reveal>
+        <div className="border-t border-border pt-6">
+          <h2 className="font-heading text-[clamp(1.9rem,3.4vw,3rem)] font-semibold tracking-[-0.025em]">
+            Systems that sell while you sleep
+          </h2>
+          <p className="mt-4 max-w-2xl text-dim">
+            Three automation engines that handle the repetitive work between a stranger and a booked call.
+          </p>
+        </div>
       </Reveal>
 
       <div className="mt-14 grid gap-6 lg:mt-16 lg:grid-cols-3 lg:gap-8">

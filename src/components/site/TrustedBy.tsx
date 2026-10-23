@@ -261,8 +261,8 @@ const TrustedBy = () => {
                 </div>
 
                 <div className="mt-3 min-w-0 border-t border-border/60 pt-2.5">
-                  <span className="flex w-full min-w-0 items-center gap-1 text-[10px] sm:text-xs font-medium text-dim">
-                    <CheckCircle2 className="h-3 w-3 shrink-0 text-primary" />
+                  <span className="flex w-full min-w-0 items-center gap-1.5 text-sm text-dim">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-foreground/60" />
                     <span className="min-w-0 truncate">{company.highlight}</span>
                   </span>
                 </div>

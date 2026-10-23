@@ -36,8 +36,7 @@ const Members = () => (
           Two specialists, one accountable team
         </h2>
         <p className="mt-4 text-dim">
-          Every engagement pairs an expert builder with a dedicated delivery lead — so you get
-          depth of engineering and the discipline to ship on time.
+          Two specialists. Biruke builds, Horeb delivers. One accountable team.
         </p>
       </Reveal>
 
@@ -52,13 +51,13 @@ const Members = () => (
               />
               <div className="min-w-0">
                 <h3 className="font-heading text-lg lg:text-xl">{m.name}</h3>
-                <p className="mt-0.5 text-xs font-medium text-primary">{m.role}</p>
+                <p className="mt-0.5 text-sm text-muted-ink">{m.role}</p>
                 <p className="mt-2 text-xs sm:text-sm leading-relaxed text-dim">{m.bio}</p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {m.focus.map((f) => (
                     <span
                       key={f}
-                      className="rounded-full border border-border bg-background/50 px-2.5 py-0.5 font-data text-[10px] sm:text-xs text-muted-ink"
+                      className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-ink"
                     >
                       {f}
                     </span>

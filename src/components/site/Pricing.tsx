@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowRight, Check, Sparkles, Layers, ShieldCheck, MapPin, CreditCard, Clock } from "lucide-react";
+import { ArrowRight, Check, ShieldCheck, MapPin, CreditCard, Sparkles, Clock, Layers } from "lucide-react";
 import { CAL_LINK } from "@/lib/site";
 import Reveal from "./Reveal";
 
@@ -135,45 +135,46 @@ const Pricing = () => {
   return (
     <section id="pricing" className="px-[18px] py-[clamp(60px,8vw,130px)] sm:px-[22px]">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <Reveal className="max-w-2xl">
-            <span className="section-label">Pricing</span>
-            <h2 className="mt-4 font-display text-2xl sm:text-3xl md:text-4xl leading-tight">
-              Honest, accessible pricing
-            </h2>
-            <p className="mt-3 text-xs sm:text-sm text-dim leading-relaxed">
-              Transparent rates designed for growing businesses, startups, and agencies. Available as a one-time build or ongoing monthly retainer.
-            </p>
-          </Reveal>
-
-          {/* Billing Switcher Toggle - Mobile Full Width */}
-          <Reveal delay={100} className="w-full sm:w-auto">
-            <div className="grid grid-cols-2 sm:inline-flex items-center rounded-xl sm:rounded-full border border-border bg-[hsl(var(--card))] p-1 shadow-sm w-full sm:w-auto">
-              <button
-                type="button"
-                onClick={() => setBillingMode("one-time")}
-                className={`min-h-[40px] rounded-full px-4 py-2 text-xs font-semibold text-center transition-all ${
-                  billingMode === "one-time"
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-dim hover:text-foreground"
-                }`}
-              >
-                One-Time Build
-              </button>
-              <button
-                type="button"
-                onClick={() => setBillingMode("retainer")}
-                className={`min-h-[40px] rounded-full px-4 py-2 text-xs font-semibold text-center transition-all ${
-                  billingMode === "retainer"
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "text-dim hover:text-foreground"
-                }`}
-              >
-                Monthly Retainer
-              </button>
+      <Reveal>
+        <div className="border-t border-border pt-6">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="font-heading text-[clamp(1.9rem,3.4vw,3rem)] font-semibold tracking-[-0.025em]">
+                Pricing
+              </h2>
+              <p className="mt-4 max-w-2xl text-dim">
+                Fixed scope or retainer.
+              </p>
             </div>
-          </Reveal>
+            <Reveal delay={100} className="w-full sm:w-auto">
+              <div className="grid grid-cols-2 sm:inline-flex items-center rounded-full border border-border p-1 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => setBillingMode("one-time")}
+                  className={`min-h-[40px] rounded-full px-4 py-1.5 text-sm text-center transition-colors ${
+                    billingMode === "one-time"
+                      ? "bg-foreground text-background"
+                      : "text-muted-ink hover:text-foreground"
+                  }`}
+                >
+                  One-time build
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setBillingMode("retainer")}
+                  className={`min-h-[40px] rounded-full px-4 py-1.5 text-sm text-center transition-colors ${
+                    billingMode === "retainer"
+                      ? "bg-foreground text-background"
+                      : "text-muted-ink hover:text-foreground"
+                  }`}
+                >
+                  Retainer
+                </button>
+              </div>
+            </Reveal>
+          </div>
         </div>
+      </Reveal>
 
         {/* Mindful Trust & Regional Context Banner */}
         <Reveal delay={60} className="mt-6 sm:mt-8">

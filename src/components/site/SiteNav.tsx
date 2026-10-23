@@ -11,48 +11,75 @@ const links = [
   { label: "Team", href: "#team" },
 ];
 
+const sectionIds = ["services", "process", "pricing", "team", "testimonials", "contact"];
+
 const SiteNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string>("");
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 16);
+      const h = document.documentElement;
+      const p = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)) * 100;
+      setProgress(p);
+      let current = "";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= 140) current = id;
+      }
+      setActive(current);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 pt-[env(safe-area-inset-top)]">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-[env(safe-area-inset-top)]">
+      <div className="absolute inset-x-0 top-0 h-px bg-border">
+        <div className="h-px bg-foreground/40" style={{ width: `${progress}%` }} />
+      </div>
       <div
-        className={`ease-cinematic w-full max-w-4xl rounded-full border px-2.5 py-2.5 transition-all duration-500 ${
+        className={`ease-cinematic mt-2 w-full max-w-6xl border px-2 py-1.5 transition-all duration-500 ${
           scrolled || open
-            ? "border-border bg-background/60 shadow-[0_16px_50px_-24px_rgba(0,0,0,0.9)] backdrop-blur-xl"
+            ? "border-border bg-background/80 backdrop-blur"
             : "border-transparent bg-transparent"
         }`}
+        style={{ borderRadius: "999px" }}
       >
         <div className="flex items-center justify-between gap-3">
           <a href="#top" className="flex items-center gap-2.5 pl-2">
             <img
               src="/logo.png"
               alt="Auctor Workflows logo"
-              className="h-10 w-10 rounded-full object-contain sm:h-11 sm:w-11"
+              className="h-9 w-9 rounded-full object-contain sm:h-10 sm:w-10"
             />
-            <span className="font-heading text-sm font-semibold tracking-tight">
-              Auctor <span className="text-dim">Workflows</span>
+            <span className="font-heading text-sm font-semibold tracking-[-0.02em]">
+              Auctor <span className="text-muted-ink">Workflows</span>
             </span>
           </a>
 
           <nav className="hidden items-center gap-1 lg:flex">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="lift rounded-full px-3.5 py-2 text-sm text-dim hover:text-foreground active:opacity-70"
+            {links.map((l) => {
+              const id = l.href.replace("#", "");
+              const isActive = active === id;
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  aria-current={isActive ? "page" : undefined}
+                className={`group relative rounded-full px-3.5 py-1.5 text-sm transition-colors ${isActive ? "text-foreground" : "text-muted-ink hover:text-foreground"}`}
               >
                 {l.label}
+                <span className={`absolute inset-x-3.5 bottom-1 h-px bg-foreground transition-transform duration-300 ${isActive ? "scale-x-100" : "origin-left scale-x-0 group-hover:scale-x-100"}`} />
               </a>
-            ))}
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
@@ -62,9 +89,9 @@ const SiteNav = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 strength={0.18}
-                className="px-5 py-2.5 text-xs font-semibold"
+                className="px-4 py-1.5 text-sm"
               >
-                Book a Call
+                Book a call
               </MagneticButton>
             </div>
             <button
@@ -99,7 +126,7 @@ const SiteNav = () => {
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden lg:hidden"
             >
-              <div className="mt-2.5 flex flex-col gap-1 rounded-[1.75rem] border border-border bg-card/95 p-3 shadow-2xl backdrop-blur-xl">
+              <div className="mt-2.5 flex flex-col gap-1 rounded-3xl border border-border bg-card/95 p-3 shadow-[inset_0_1px_0_hsl(var(--foreground)/0.06)] backdrop-blur-xl">
                 {links.map((l, i) => (
                   <motion.a
                     key={l.href}

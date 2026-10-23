@@ -48,19 +48,17 @@ const MagneticButton = ({
   };
 
   const classes = [
-    "group relative inline-flex select-none items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-sm font-medium tracking-wide",
+    "group relative inline-flex select-none items-center justify-center gap-2 overflow-hidden rounded-full border border-border px-6 py-2.5 text-sm text-foreground",
     variant === "primary"
-      ? "bg-primary text-primary-foreground"
-      : "border border-border text-foreground",
+      ? "bg-foreground text-background"
+      : "bg-background/40 text-foreground",
     className,
   ].join(" ");
 
   const inner = (
     <>
       <span
-        className={`ease-cinematic absolute inset-0 translate-y-full rounded-full transition-transform duration-500 group-hover:translate-y-0 ${
-          variant === "primary" ? "bg-[hsl(var(--primary-light))]" : "bg-[hsl(var(--card-hover))]"
-        }`}
+        className="ease-cinematic absolute inset-0 -translate-x-full rounded-full bg-foreground/5 transition-transform duration-500 group-hover:translate-x-0"
       />
       <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
     </>

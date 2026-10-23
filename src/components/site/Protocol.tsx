@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 
 interface Phase {
@@ -42,7 +43,7 @@ const phases: Phase[] = [
 const RotatingMotif = () => (
   <div className="absolute inset-0 flex items-center justify-center">
     <div className="spin-slow absolute h-52 w-52">
-      <svg viewBox="0 0 200 200" className="h-full w-full text-primary">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 200 200" className="h-full w-full text-primary">
         <circle cx="100" cy="100" r="88" fill="none" stroke="currentColor" strokeOpacity="0.25" />
         <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeOpacity="0.4" />
         <polygon
@@ -55,7 +56,7 @@ const RotatingMotif = () => (
       </svg>
     </div>
     <div className="spin-slow-rev absolute h-72 w-72">
-      <svg viewBox="0 0 200 200" className="h-full w-full text-primary">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 200 200" className="h-full w-full text-primary">
         <rect
           x="55"
           y="55"
@@ -75,9 +76,9 @@ const RotatingMotif = () => (
 const ScanningLaser = () => (
   <div className="absolute inset-0 overflow-hidden">
     <div className="absolute inset-0 dot-grid opacity-60" />
-    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-primary/[0.06] to-transparent" />
-    <div className="scan-line absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_18px_2px_rgba(224,224,224,0.35)]" />
-    <div className="absolute bottom-4 left-4 font-data text-[10px] uppercase tracking-[0.24em] text-muted-ink">
+    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-foreground/[0.04] to-transparent" />
+    <div className="scan-line absolute inset-x-6 top-6 h-px bg-gradient-to-r from-transparent via-foreground/60 to-transparent" />
+    <div className="absolute bottom-4 left-4 text-sm text-muted-ink">
       scanning payloads…
     </div>
   </div>
@@ -85,7 +86,7 @@ const ScanningLaser = () => (
 
 const EkgWaveform = () => (
   <div className="absolute inset-0 flex items-center justify-center px-6">
-    <svg viewBox="0 0 400 100" className="h-24 w-full text-primary">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 400 100" className="h-24 w-full text-primary">
       <path
         d="M0 50 H110 l8 -26 l8 52 l8 -34 l6 18 l5 -10 H210 l8 -30 l8 60 l8 -40 l6 20 l5 -10 H400"
         fill="none"
@@ -95,8 +96,8 @@ const EkgWaveform = () => (
         className="ekg-path"
       />
     </svg>
-    <div className="absolute bottom-4 left-4 font-data text-[10px] uppercase tracking-[0.24em] text-muted-ink">
-      uptime · monitoring
+    <div className="absolute bottom-4 left-4 text-sm text-muted-ink">
+      uptime and monitoring
     </div>
   </div>
 );
@@ -164,16 +165,16 @@ const Protocol = () => {
   return (
     <section id="process" className="relative py-[clamp(80px,10vw,130px)]">
       <div className="mx-auto w-full max-w-6xl px-[22px]">
-        <Reveal className="max-w-2xl">
-          <span className="section-label">How We Work</span>
-          <h2 className="mt-4 font-heading text-3xl md:text-5xl">
-            From discovery to live production automation
-          </h2>
-          <p className="mt-4 text-dim">
-            A disciplined, 6-stage engineering process designed to eliminate guesswork, protect
-            your time, and deliver reliable, high-converting workflows.
-          </p>
-        </Reveal>
+          <Reveal>
+            <div className="border-t border-border pt-6">
+              <h2 className="font-heading text-[clamp(1.9rem,3.4vw,3rem)] font-semibold tracking-[-0.025em]">
+                From first click to booked call
+              </h2>
+              <p className="mt-4 max-w-2xl text-dim">
+                A defined path. No guesswork, no tool sprawl.
+              </p>
+            </div>
+          </Reveal>
       </div>
 
       <div ref={stack} className="relative mt-12 space-y-5 px-[22px] md:mt-16 md:space-y-0 md:px-0">
@@ -186,8 +187,8 @@ const Protocol = () => {
             <article className="protocol-inner card-surface relative grid w-full max-w-5xl gap-6 overflow-hidden p-5 sm:p-6 lg:p-8 md:grid-cols-2 md:gap-8 md:p-12">
               <div className="flex flex-col justify-between">
                 <div>
-                  <span className="font-data text-[11px] uppercase tracking-[0.28em] text-muted-ink">
-                    Phase {p.no} / 03
+                  <span className="text-sm text-muted-ink">
+                    Phase {p.no}
                   </span>
                   <h3 className="font-drama mt-4 text-3xl font-normal sm:text-4xl md:text-5xl">{p.name}</h3>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-dim sm:text-base md:mt-5">{p.desc}</p>
@@ -200,7 +201,7 @@ const Protocol = () => {
                         <span className="font-data text-xs sm:text-sm text-primary">{s.no}</span>
                         <span className="text-sm sm:text-base text-foreground">{s.title}</span>
                       </span>
-                      <span className="shrink-0 font-data text-[10px] sm:text-xs uppercase tracking-wider text-muted-ink">
+                      <span className="shrink-0 text-sm text-muted-ink">
                         {s.duration}
                       </span>
                     </li>

@@ -60,7 +60,7 @@ const StickyCTA = () => {
 
             <div className="flex flex-col text-left">
               <span className="whitespace-nowrap text-xs font-semibold tracking-wide text-foreground group-hover:text-primary">
-                Book a Consultation
+                Book a call
               </span>
               <span className="hidden items-center gap-1 whitespace-nowrap text-[10px] text-muted-ink sm:inline-flex">
                 <Sparkles className="h-2.5 w-2.5 text-primary" /> Free 30-Min Call

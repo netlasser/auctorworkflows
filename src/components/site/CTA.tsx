@@ -10,43 +10,38 @@ const socials = [
 ];
 
 const CTA = () => (
-  <section id="contact" className="px-[22px] py-[clamp(80px,10vw,130px)]">
-    <Reveal className="mx-auto w-full max-w-4xl">
-      <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-border bg-card/40 px-6 py-14 sm:px-10 sm:py-16 text-center lg:px-14 lg:py-20">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,hsl(var(--card))_0%,transparent_70%)]"
-        />
-        <div className="relative">
-          <span className="section-label">Let's Talk</span>
-          <h2 className="font-heading mx-auto mt-5 max-w-2xl text-3xl md:text-5xl lg:mt-6">
-            Ready to stop doing work a machine should do?
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-dim lg:mt-6">
-            Book a free 30-minute assessment call. We'll audit your current process and show you
-            exactly where automation will save you the most time and money.
-          </p>
+  <section id="contact" className="page-x py-[clamp(90px,12vw,150px)]">
+    <Reveal className="mx-auto w-full max-w-6xl">
+      <div className="relative border-t border-border pt-10 lg:pt-12">
+        <div className="grid items-end gap-10 lg:grid-cols-[1.4fr_auto] lg:gap-16">
+          <div>
+            <h2 className="max-w-xl font-heading text-[clamp(2.1rem,4vw,3.6rem)] font-semibold tracking-[-0.03em] leading-[0.98]">
+              Book a call.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-dim">
+              Book a free 30-minute assessment call. We'll audit your current process and show you
+              where automation will save time.
+            </p>
+          </div>
 
-          <div className="mt-9 flex justify-center lg:mt-10">
+          <div className="flex flex-col items-start gap-4 lg:items-end">
             <MagneticButton
               href={CAL_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full justify-center px-5 py-3 font-semibold sm:w-auto sm:px-7 sm:py-2.5 lg:px-8"
+              className="w-full justify-center px-6 py-2.5 sm:w-auto sm:px-8"
             >
-              <CalendarCheck className="h-4 w-4 shrink-0" /> Book Your Free Assessment
+              <CalendarCheck className="h-4 w-4 shrink-0" /> Book a call
             </MagneticButton>
-          </div>
 
-          <div className="mt-7 flex flex-col items-center gap-4 lg:mt-8 lg:gap-5">
             <a
               href={`tel:${PHONE}`}
-              className="lift inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-5 py-2.5 text-sm font-semibold text-primary hover:border-[hsl(var(--border-hover))] active:scale-95"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-border bg-background/40 px-5 py-2.5 text-sm text-foreground transition-colors hover:border-foreground/40 active:scale-95"
             >
               <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
             </a>
 
-            <div className="flex justify-center gap-3">
+            <div className="flex gap-2.5">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -55,9 +50,9 @@ const CTA = () => (
                   rel="noopener noreferrer"
                   aria-label={s.label}
                   title={s.label}
-                  className="inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-border text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border text-muted-ink transition-colors hover:text-foreground active:scale-90"
                 >
-                  <s.icon className="h-4 w-4 text-primary" />
+                  <s.icon className="h-4 w-4" />
                 </a>
               ))}
             </div>

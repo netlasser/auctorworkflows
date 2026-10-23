@@ -17,7 +17,7 @@ const elsewhere = [
 ];
 
 const SiteFooter = () => (
-  <footer className="mt-10 rounded-t-[3rem] sm:rounded-t-[4rem] border-t border-border bg-card/40 px-[22px] pb-12 pt-16 lg:pb-16 lg:pt-20">
+  <footer className="page-x mt-6 border-t border-border bg-card/30 pb-10 pt-16 lg:pb-12 lg:pt-20">
     <div className="mx-auto w-full max-w-6xl">
       <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr] lg:gap-16">
         <div>
@@ -35,16 +35,12 @@ const SiteFooter = () => (
           </p>
           <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-3.5 py-1.5">
             <span className="pulse-dot h-2 w-2 rounded-full bg-[hsl(var(--success))]" />
-            <span className="font-data text-[11px] uppercase tracking-[0.2em] text-dim">
-              System Operational
-            </span>
+            <span className="text-sm text-dim">System operational</span>
           </div>
         </div>
 
         <div>
-          <h3 className="font-data text-[11px] uppercase tracking-[0.24em] text-muted-ink">
-            Navigate
-          </h3>
+          <h3 className="text-sm text-muted-ink">Navigate</h3>
           <ul className="mt-4 space-y-3">
             {navigate.map((l) => (
               <li key={l.href}>
@@ -57,9 +53,7 @@ const SiteFooter = () => (
         </div>
 
         <div>
-          <h3 className="font-data text-[11px] uppercase tracking-[0.24em] text-muted-ink">
-            Elsewhere
-          </h3>
+          <h3 className="text-sm text-muted-ink">Elsewhere</h3>
           <ul className="mt-4 space-y-3">
             {elsewhere.map((l) => (
               <li key={l.label}>
@@ -77,11 +71,15 @@ const SiteFooter = () => (
         </div>
       </div>
 
-      <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-center sm:flex-row sm:text-left lg:mt-16">
-        <p className="text-xs text-muted-ink">
-          Built with ❤ in Addis Ababa, Ethiopia · Powered by n8n &amp; AI
-        </p>
-        <p className="text-xs text-muted-ink">© 2026 Auctor Workflows · All rights reserved</p>
+      <p
+        aria-hidden
+        className="wordmark-ghost mt-16 select-none overflow-hidden font-heading text-[clamp(3.4rem,14vw,9.5rem)] font-semibold leading-[0.8] tracking-[-0.07em]"
+      >
+        Auctor
+      </p>
+
+      <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-center sm:flex-row sm:text-left">
+        <p className="text-sm text-muted-ink">© 2026 Auctor Workflows</p>
       </div>
     </div>
   </footer>

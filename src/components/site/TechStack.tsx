@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
 
 interface ToolItem {
   name: string;
@@ -129,10 +130,13 @@ const MarqueeRow = ({ items, reverse }: { items: ToolItem[]; reverse?: boolean }
 const TechStack = () => (
   <section className="px-[22px] py-[clamp(80px,10vw,130px)]">
     <div className="mx-auto w-full max-w-6xl">
-      <Reveal className="max-w-2xl">
-        <span className="section-label">Tech Stack</span>
-        <h2 className="mt-4 font-display text-3xl md:text-4xl">Tools we work with</h2>
-        <p className="mt-4 text-dim">We integrate with the software you already use. No need to rip and replace.</p>
+      <Reveal>
+        <SectionHeader
+          index="04"
+          label="Tech Stack"
+          title="Tools we work with"
+          description="We integrate with the software you already use. No need to rip and replace."
+        />
       </Reveal>
 
       {/* Mobile: auto-scrolling marquee rows */}
