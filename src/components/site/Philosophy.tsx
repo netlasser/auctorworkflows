@@ -99,15 +99,9 @@ const Philosophy = () => {
       </div>
 
       <div className="mx-auto w-full max-w-5xl">
-        <span className="section-label">
-          <span className="text-muted-ink">02</span>
-          <span aria-hidden className="h-px w-6 bg-border" />
-          <span>The Manifesto</span>
-        </span>
-
         <p
           data-manifesto-a
-          className="mt-8 max-w-xl text-lg text-muted-ink sm:text-xl lg:mt-10"
+          className="border-t border-border pt-8 max-w-xl text-lg text-muted-ink sm:text-xl lg:pt-10"
         >
           {statementA}
         </p>

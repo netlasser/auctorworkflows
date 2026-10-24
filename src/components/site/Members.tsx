@@ -30,14 +30,16 @@ const members: TeamMember[] = [
 const Members = () => (
   <section id="team" className="px-[22px] py-[clamp(80px,10vw,130px)]">
     <div className="mx-auto w-full max-w-5xl">
-      <Reveal className="max-w-2xl">
-        <span className="section-label">Our Team</span>
-        <h2 className="mt-4 font-heading text-3xl md:text-4xl">
-          Two specialists, one accountable team
-        </h2>
-        <p className="mt-4 text-dim">
-          Two specialists. Biruke builds, Horeb delivers. One accountable team.
-        </p>
+      <Reveal>
+        <div className="border-t border-border pt-6">
+          <h2 className="font-heading text-[clamp(1.9rem,3.4vw,3rem)] font-semibold tracking-[-0.025em]">
+            Two specialists, one accountable team
+          </h2>
+          <p className="mt-4 max-w-2xl text-dim">
+            Every engagement pairs an expert builder with a dedicated delivery lead, so you get
+            depth of engineering and the discipline to ship on time.
+          </p>
+        </div>
       </Reveal>
 
       <div className="mt-10 grid gap-5 md:gap-6 md:grid-cols-2 lg:gap-8">

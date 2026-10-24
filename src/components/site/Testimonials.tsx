@@ -130,32 +130,34 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="px-[22px] py-[clamp(80px,10vw,130px)]">
       <div className="mx-auto w-full max-w-6xl">
-        <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <span className="section-label">Social Proof</span>
-            <h2 className="mt-3 font-display text-3xl md:text-4xl">What clients say</h2>
-            <p className="mt-3 text-dim">
-              Real results from production B2B automations that run silently around the clock.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs text-dim">
-              <span className="flex text-primary">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-3.5 w-3.5 fill-primary text-primary" />
-                ))}
-              </span>
-              <span className="font-semibold text-foreground">5.0 / 5.0</span>
-              <span className="hidden text-muted-ink sm:inline">· 100% On-Time Delivery</span>
+        <Reveal>
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="border-t border-border pt-6">
+              <h2 className="font-heading text-[clamp(1.9rem,3.4vw,3rem)] font-semibold tracking-[-0.025em]">
+                What clients say
+              </h2>
+              <p className="mt-4 max-w-2xl text-dim">
+                Real results from production B2B automations that run silently around the clock.
+              </p>
             </div>
 
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs text-dim">
+                <span className="flex text-primary">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-primary text-primary" />
+                  ))}
+                </span>
+                <span className="font-semibold text-foreground">5.0 / 5.0</span>
+                <span className="hidden text-muted-ink sm:inline">· 100% On-Time Delivery</span>
+              </div>
+            </div>
             {/* Slider controls */}
             <div className="flex items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-ink transition-colors hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
                 aria-label={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
                 title={isPlaying ? "Pause auto-slide" : "Play auto-slide"}
               >
@@ -165,7 +167,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollPrev}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-ink transition-colors hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -174,7 +176,7 @@ const Testimonials = () => {
               <button
                 type="button"
                 onClick={handleScrollNext}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-dim transition-colors hover:border-[hsl(var(--border-hover))] hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted-ink transition-colors hover:text-foreground active:scale-90 sm:h-10 sm:w-10"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="h-4 w-4" />

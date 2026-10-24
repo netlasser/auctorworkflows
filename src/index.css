@@ -97,7 +97,7 @@
   .font-logo { font-family: var(--font-body); font-weight: 600; letter-spacing: -0.04em; }
   .font-heading { font-family: var(--font-body); letter-spacing: -0.045em; }
   .font-display { font-family: var(--font-body); letter-spacing: -0.045em; }
-  .font-drama { font-family: var(--font-body); font-style: normal; letter-spacing: -0.02em; }
+  .font-drama { font-family: 'Playfair Display', serif; font-style: italic; letter-spacing: -0.02em; }
   .font-mono,
   .font-data { font-family: 'JetBrains Mono', monospace; }
 

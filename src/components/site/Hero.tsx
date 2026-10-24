@@ -64,25 +64,36 @@ const Hero = () => {
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-background via-background/60 to-transparent" />
       </div>
 
-      <div className="mx-auto w-full max-w-6xl">
-        <h1 className="font-heading text-[clamp(2.8rem,8vw,7rem)] font-semibold leading-[0.9] tracking-[-0.05em]">
+      <div className="mx-auto w-full max-w-4xl">
+        <span
+          data-hero="eyebrow"
+          className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm text-muted-ink"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-foreground/60" />
+          Available for new projects
+        </span>
+
+        <h1 className="mt-7 font-heading text-[clamp(2.7rem,7.4vw,6.4rem)] font-semibold leading-[0.92] lg:mt-8">
           <span data-hero="line-1" className="block">
             Your sales team is
           </span>
-          <span data-hero="line-2" className="block text-muted-ink">
+          <span data-hero="line-2" className="font-drama block font-normal text-dim">
             one automation away.
           </span>
         </h1>
 
-        <p data-hero="para" className="mt-8 max-w-xl text-base leading-relaxed text-dim sm:text-lg lg:mt-10">
-          Auctor Workflows builds n8n automation that captures leads, personalizes outreach and follows up automatically.
-          Your calendar fills itself.
+        <p data-hero="para" className="mt-8 max-w-xl text-[15px] leading-relaxed text-dim sm:text-base lg:mt-10">
+          Auctor Workflows is a two-person B2B AI automation agency. We build n8n workflows that
+          capture leads, personalize outreach, and follow up automatically. Your calendar fills
+          itself.
         </p>
 
-          <span className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-sm text-muted-ink">
-            <span className="h-1.5 w-1.5 rounded-full bg-foreground/60" />
-            Available for new projects
-          </span>
+        <p
+          data-hero="founders"
+          className="mt-5 text-sm text-muted-ink lg:mt-6"
+        >
+          Biruke Zeckariyas · Horeb Yohannes · Addis Ababa, Ethiopia
+        </p>
 
         <div data-hero="cta" className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
           <MagneticButton
@@ -105,7 +116,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 w-full max-w-6xl border-t border-border sm:mt-16 lg:mt-20">
+      <div className="mx-auto mt-12 w-full max-w-4xl border-t border-border sm:mt-16 lg:mt-20">
         <div className="grid sm:grid-cols-3">
           {stats.map((s) => (
             <div

@@ -48,9 +48,9 @@ const MagneticButton = ({
   };
 
   const classes = [
-    "group relative inline-flex select-none items-center justify-center gap-2 overflow-hidden rounded-full border border-border px-6 py-2.5 text-sm text-foreground",
+    "group relative inline-flex select-none items-center justify-center gap-2 overflow-hidden rounded-full border border-border px-6 py-2.5 text-sm",
     variant === "primary"
-      ? "bg-foreground text-background"
+      ? "border-transparent bg-foreground text-background"
       : "bg-background/40 text-foreground",
     className,
   ].join(" ");

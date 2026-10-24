@@ -1,6 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import Reveal from "./Reveal";
-import SectionHeader from "./SectionHeader";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 
 interface Phase {

@@ -223,23 +223,23 @@ const TrustedBy = () => {
     <section id="trusted-by" className="relative border-y border-border/80 bg-card/40 px-[18px] py-14 sm:px-[22px] sm:py-20 lg:py-24">
       <div className="mx-auto w-full max-w-6xl">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto">
-          <Reveal>
-            <span className="section-label">Credibility & Trust</span>
-            <h2 className="mt-3 font-display text-xl sm:text-2xl md:text-3xl leading-tight">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <div className="border-t border-border pt-6">
+            <h2 className="font-heading text-[clamp(1.45rem,2.6vw,2rem)] font-semibold leading-[1.15]">
               Trusted by innovative companies & teams
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-dim leading-relaxed">
-              Workflow engineering and AI automation built for fast-moving businesses, global agencies, and scaling platforms.
+            <p className="mt-4 text-sm leading-relaxed text-dim sm:text-[0.95rem]">
+              Workflow engineering and AI automation built for fast-moving businesses, global
+              agencies, and scaling platforms.
             </p>
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
 
         {/* Company Logo Grid */}
         <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-4 md:grid-cols-3 lg:grid-cols-6">
           {clientCompanies.map((company, index) => (
             <Reveal key={company.name} delay={index * 60} className="h-full">
-              <div className="group relative flex h-full min-w-0 flex-col justify-between overflow-hidden rounded-[1.75rem] border border-border bg-background/60 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[hsl(var(--border-hover))] hover:bg-[hsl(var(--card-hover))] hover:shadow-[0_12px_24px_-10px_rgba(224,224,224,0.12)]">
+              <div className="group relative flex h-full min-w-0 flex-col justify-between overflow-hidden rounded-[1.75rem] border border-border bg-background/60 p-4 sm:p-5 transition-colors duration-300 hover:border-foreground/30 hover:bg-[hsl(var(--card-hover))]">
                 <div className="min-w-0">
                   <div className="flex items-center justify-between">
                     <div className="opacity-75 grayscale transition-all duration-300 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0">

@@ -12,13 +12,17 @@ const socials = [
 const CTA = () => (
   <section id="contact" className="page-x py-[clamp(90px,12vw,150px)]">
     <Reveal className="mx-auto w-full max-w-6xl">
-      <div className="relative border-t border-border pt-10 lg:pt-12">
-        <div className="grid items-end gap-10 lg:grid-cols-[1.4fr_auto] lg:gap-16">
+      <div className="card-surface relative overflow-hidden px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-16">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_80%_at_0%_0%,hsl(var(--foreground)/0.05)_0%,transparent_55%)]"
+        />
+        <div className="relative grid items-end gap-10 lg:grid-cols-[1.4fr_auto] lg:gap-16">
           <div>
             <h2 className="max-w-xl font-heading text-[clamp(2.1rem,4vw,3.6rem)] font-semibold tracking-[-0.03em] leading-[0.98]">
               Book a call.
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-dim">
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-dim sm:text-base">
               Book a free 30-minute assessment call. We'll audit your current process and show you
               where automation will save time.
             </p>

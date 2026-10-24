@@ -132,8 +132,6 @@ const TechStack = () => (
     <div className="mx-auto w-full max-w-6xl">
       <Reveal>
         <SectionHeader
-          index="04"
-          label="Tech Stack"
           title="Tools we work with"
           description="We integrate with the software you already use. No need to rip and replace."
         />

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Filter, Linkedin, Mail } from "lucide-react";
 import Reveal from "./Reveal";
-import SectionHeader from "./SectionHeader";
 import { useInView } from "@/lib/useInView";
 
 const services = [
